@@ -36,7 +36,7 @@
         }
     }
 
-    class UnionNode<T>
+    public class UnionNode<T>
     {
         public T Value { get; set; }
         public UnionNode<T> Parent { get; set; }
