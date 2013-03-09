@@ -5,7 +5,7 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static void InsertionSort(T[] input)
+        public static T[] InsertionSort(T[] input)
         {
             T current;
             int j;
@@ -21,6 +21,7 @@ namespace Utility
                 }
                 input[j] = current;
             }
+            return input;
         }
     }
 }

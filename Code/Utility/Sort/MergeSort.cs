@@ -5,35 +5,37 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static void MergeSort(T[] input)
+        public static T[] MergeSort(T[] input)
         {
-            if (input.Length > 1)
-            {
-                int half = input.Length / 2;
-                T[] left = new T[half];
-                T[] right = new T[input.Length - half];
-                for (int i = 0; i < half; i++)
-                    left[i] = input[i];
-                for (int i = 0; i < input.Length - half; i++)
-                    right[i] = input[i + half];
-                MergeSort(left);
-                MergeSort(right);
+            return MergeSort(input, new T[input.Length]);
+        }
 
-                int p1 = 0, p2 = 0;
-                for (int i = 0; i < input.Length; i++)
+        private static T[] MergeSort(T[] input, T[] output)
+        {
+            T[] temp;
+            int p1, p2, pLeft, pRight, pEnd;
+            for (int i = 1; i < input.Length; i *= 2)
+            {
+                for (int j = 0; j < input.Length; j += 2 * i)
                 {
-                    if (p1 == left.Length)
-                        input[i] = right[p2++];
-                    else if (p2 == right.Length)
-                        input[i] = left[p1++];
-                    else if (left[p1].CompareTo(right[p2]) < 0)
-                        input[i] = left[p1++];
-                    else
-                        input[i] = right[p2++];
+                    pLeft = p1 = j;
+                    pRight = p2 = Math.Min(i + j, input.Length);
+                    pEnd = Math.Min(2 * i + j, input.Length);
+
+                    for (int k = p1; k < pEnd; k++)
+                    {
+                        if (p1 < pRight && (p2 >= pEnd || input[p1].CompareTo(input[p2]) < 0))
+                            output[k] = input[p1++];
+                        else
+                            output[k] = input[p2++];
+                    }
                 }
+
+                temp = input;
+                input = output;
+                output = temp;
             }
-            
-            return;
+            return input;
         }
     }
 }
