@@ -74,6 +74,8 @@
     <Compile Include="Datastructures\AVLTree.cs" />
     <Compile Include="Datastructures\Heap.cs" />
     <Compile Include="Datastructures\RedBlackTree.cs" />
+    <Compile Include="Sort\BubbleSort.cs" />
+    <Compile Include="Sort\FlashSort.cs" />
     <Compile Include="Sort\HeapSort.cs" />
     <Compile Include="Sort\InsertionSort.cs" />
     <Compile Include="Sort\MergeSort.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Sort\RandomizedQuickSort3.cs" />
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="Datastructures\UnionFind.cs" />
+    <Compile Include="Sort\ShellSort.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
