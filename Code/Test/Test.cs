@@ -9,42 +9,35 @@ class Test
 
     static void Main()
     {
-        //Random random = new Random();
-        //StreamWriter writer = new StreamWriter("TestSparseMedium.out");
-        ////for (int i = 0; i < 10000; i++)
-        ////    writer.WriteLine(random.Next(100));
+        ////Random random = new Random();
+        //StreamWriter writer = new StreamWriter("TestUniformSmall.in");
+        ////for (int i = 0; i < 100; i++)
+        ////    writer.WriteLine(random.Next());
         //writer.Close();
+        ////return;
 
-        //List<int> sort = new List<int>(LoadTestData("TestSparseMedium"));
+        //List<int> sort = new List<int>(LoadTestData("TestSparseSmall"));
         //sort.Sort();
-        ////sort.Reverse();
+        //sort.Reverse();
 
-        //writer = new StreamWriter("TestSparseMedium.out");
+        //writer = new StreamWriter("TestSparseSmallReverseSorted.in");
         //for (int i = 0; i < sort.Count; i++)
         //    writer.WriteLine(sort[i]);
         //writer.Close();
         //return;
 
-        string test = "TestUniformMedium";
-        int[] data = LoadTestData(test);
-        DateTime start, end;
+        string test = "Sparse/Random/Large";
 
-        Console.WriteLine("Using C# Sort.");
-        List<int> list = new List<int>(data);
-        start = DateTime.Now;
-        list.Sort();
-        end = DateTime.Now;
-        data = list.ToArray();
-        Console.WriteLine("Sorted {0} numbers in {1} seconds.", data.Length, (end - start).TotalSeconds);
-        Console.WriteLine("Output is {0}.", CheckOutput(data, test) ? "correct" : "incorrect");
-        Console.WriteLine();
+        ReferenceTest(test);
 
         RunTest(test, new SortMethod(Sort<int>.MergeSort), "MergeSort");
         RunTest(test, new SortMethod(Sort<int>.HeapSort), "HeapSort");
-        RunTest(test, new SortMethod(Sort<int>.InsertionSort), "InsertionSort");
-        RunTest(test, new SortMethod(Sort<int>.BubbleSort), "BubbleSort");
-        RunTest(test, new SortMethod(Sort<int>.SelectionSort), "SelectionSort");
-        RunTest(test, new SortMethod(Sort<int>.CocktailSort), "CocktailSort");
+        //RunTest(test, new SortMethod(Sort<int>.InsertionSort), "InsertionSort");
+        //RunTest(test, new SortMethod(Sort<int>.BubbleSort), "BubbleSort");
+        //RunTest(test, new SortMethod(Sort<int>.SelectionSort), "SelectionSort");
+        //RunTest(test, new SortMethod(Sort<int>.CocktailSort), "CocktailSort");
+        RunTest(test, new SortMethod(Sort<int>.CombSort), "CombSort");
+        RunTest(test, new SortMethod(Sort<int>.ShellSort), "ShellSort");
 
         //for (int i = 0; i < testList.Count; i++)
         //    Console.WriteLine(test[i]);
@@ -60,6 +53,22 @@ class Test
         data = Sort(data);
         DateTime end = DateTime.Now;
 
+        Console.WriteLine("Sorted {0} numbers in {1} seconds.", data.Length, (end - start).TotalSeconds);
+        Console.WriteLine("Output is {0}.", CheckOutput(data, test) ? "correct" : "incorrect");
+        Console.WriteLine();
+    }
+
+    static void ReferenceTest(string test)
+    {
+        int[] data = LoadTestData(test);
+        Console.WriteLine("Using C# Sort.");
+        List<int> list = new List<int>(data);
+
+        DateTime start = DateTime.Now;
+        list.Sort();
+        DateTime end = DateTime.Now;
+
+        data = list.ToArray();
         Console.WriteLine("Sorted {0} numbers in {1} seconds.", data.Length, (end - start).TotalSeconds);
         Console.WriteLine("Output is {0}.", CheckOutput(data, test) ? "correct" : "incorrect");
         Console.WriteLine();
