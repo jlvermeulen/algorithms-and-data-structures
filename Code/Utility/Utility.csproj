@@ -75,6 +75,7 @@
     <Compile Include="Datastructures\Heap.cs" />
     <Compile Include="Datastructures\RedBlackTree.cs" />
     <Compile Include="Sort\BubbleSort.cs" />
+    <Compile Include="Sort\CocktailSort.cs" />
     <Compile Include="Sort\FlashSort.cs" />
     <Compile Include="Sort\HeapSort.cs" />
     <Compile Include="Sort\InsertionSort.cs" />
