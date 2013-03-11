@@ -11,6 +11,7 @@ Currently has:
 - Heapsort
 - Insertion sort
 - Merge Sort
+- Quicksort
 - Selection sort
 - Shellsort
 

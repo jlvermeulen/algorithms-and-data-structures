@@ -75,114 +75,71 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestData\Sparse\Random\Large.in">
+    <None Include="TestData\Sparse\Random\Large.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Random\Large.out">
+    <None Include="TestData\Sparse\Random\Medium.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Random\Medium.in">
+    <None Include="TestData\Sparse\Random\Small.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Random\Medium.out">
+    <None Include="TestData\Sparse\ReverseSorted\Large.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Random\Small.in">
+    <None Include="TestData\Sparse\ReverseSorted\Medium.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Random\Small.out">
+    <None Include="TestData\Sparse\ReverseSorted\Small.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\ReverseSorted\Large.in">
+    <None Include="TestData\Sparse\Sorted\Large.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\ReverseSorted\Large.out">
+    <None Include="TestData\Sparse\Sorted\Medium.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\ReverseSorted\Medium.in">
+    <None Include="TestData\Sparse\Sorted\Small.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\ReverseSorted\Medium.out">
+    <None Include="TestData\Uniform\Random\Large.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\ReverseSorted\Small.in">
+    <None Include="TestData\Uniform\Random\Medium.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\ReverseSorted\Small.out">
+    <None Include="TestData\Uniform\Random\Small.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Sorted\Large.in">
+    <None Include="TestData\Uniform\ReverseSorted\Large.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Sorted\Large.out">
+    <None Include="TestData\Uniform\ReverseSorted\Medium.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Sorted\Medium.in">
+    <None Include="TestData\Uniform\ReverseSorted\Small.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Sorted\Medium.out">
+    <None Include="TestData\Uniform\Sorted\Large.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Sorted\Small.in">
+    <None Include="TestData\Uniform\Sorted\Medium.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Sparse\Sorted\Small.out">
+    <None Include="TestData\Uniform\Sorted\Small.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Uniform\Random\Large.in">
+    <None Include="TestData\Uniform\Sorted\VeryLarge.7z">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Uniform\Random\Large.out">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="7za.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\Uniform\Random\Medium.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Random\Medium.out">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Random\Small.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Random\Small.out">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\ReverseSorted\Large.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\ReverseSorted\Large.out">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\ReverseSorted\Medium.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\ReverseSorted\Medium.out">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\ReverseSorted\Small.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\ReverseSorted\Small.out">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Sorted\Large.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Sorted\Large.out">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Sorted\Medium.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Sorted\Medium.out">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Sorted\Small.in">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\Uniform\Sorted\Small.out">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

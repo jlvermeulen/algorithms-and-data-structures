@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Utility;
 using System.IO;
+using System.Diagnostics;
 
 class Test
 {
@@ -9,38 +10,49 @@ class Test
 
     static void Main()
     {
-        ////Random random = new Random();
-        //StreamWriter writer = new StreamWriter("TestUniformSmall.in");
-        ////for (int i = 0; i < 100; i++)
-        ////    writer.WriteLine(random.Next());
+        //StreamWriter writer;
+        //Random random = new Random();
+        //writer = new StreamWriter("VeryLarge.in");
+        //for (int i = 0; i < 100000000; i++)
+        //    writer.WriteLine(random.Next(100));
         //writer.Close();
-        ////return;
+        //return;
 
-        //List<int> sort = new List<int>(LoadTestData("TestSparseSmall"));
+        //List<int> sort = new List<int>(LoadTestData("Sparse/Random/VeryLarge"));
         //sort.Sort();
         //sort.Reverse();
 
-        //writer = new StreamWriter("TestSparseSmallReverseSorted.in");
+        //writer = new StreamWriter("VeryLarge.in");
         //for (int i = 0; i < sort.Count; i++)
         //    writer.WriteLine(sort[i]);
         //writer.Close();
         //return;
 
-        string test = "Sparse/Random/Large";
+        string testSize = "Large";
+        string testDir = "Uniform\\Random\\";
+        string test = testDir + testSize;
+
+        UnzipTestData(test, testDir);
 
         ReferenceTest(test);
 
-        RunTest(test, new SortMethod(Sort<int>.MergeSort), "MergeSort");
-        RunTest(test, new SortMethod(Sort<int>.HeapSort), "HeapSort");
-        //RunTest(test, new SortMethod(Sort<int>.InsertionSort), "InsertionSort");
-        //RunTest(test, new SortMethod(Sort<int>.BubbleSort), "BubbleSort");
-        //RunTest(test, new SortMethod(Sort<int>.SelectionSort), "SelectionSort");
-        //RunTest(test, new SortMethod(Sort<int>.CocktailSort), "CocktailSort");
-        RunTest(test, new SortMethod(Sort<int>.CombSort), "CombSort");
-        RunTest(test, new SortMethod(Sort<int>.ShellSort), "ShellSort");
+        RunTest(test, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
+        RunTest(test, new SortMethod(Sort<int>.Heapsort), "Heapsort");
+        //RunTest(test, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
+        //RunTest(test, new SortMethod(Sort<int>.BubbleSort), "Bubble Sort");
+        //RunTest(test, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
+        //RunTest(test, new SortMethod(Sort<int>.CocktailSort), "Cocktail Sort");
+        RunTest(test, new SortMethod(Sort<int>.CombSort), "Comb Sort");
+        RunTest(test, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
+        RunTest(test, new SortMethod(Sort<int>.Quicksort), "Quicksort");
+        RunTest(test, new SortMethod(Sort<int>.Quicksort2), "Quicksort2");
 
         //for (int i = 0; i < testList.Count; i++)
         //    Console.WriteLine(test[i]);
+
+        File.Delete("TestData\\" + test + ".in");
+        File.Delete("TestData\\" + test + ".out");
+
         Console.ReadLine();
     }
 
@@ -76,7 +88,7 @@ class Test
 
     static int[] LoadTestData(string test)
     {
-        StreamReader reader = new StreamReader("TestData/" + test + ".in");
+        StreamReader reader = new StreamReader("TestData\\" + test + ".in");
         List<int> list = new List<int>();
         string line;
         while ((line = reader.ReadLine()) != null)
@@ -84,6 +96,17 @@ class Test
         reader.Close();
 
         return list.ToArray();
+    }
+
+    static void UnzipTestData(string test, string testDir)
+    {
+        Process p = new Process();
+        p.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\7za.exe";
+        p.StartInfo.Arguments = "e " + "TestData\\" + test + ".7z -y -o" + Directory.GetCurrentDirectory() + "\\TestData\\" + testDir;
+        p.StartInfo.CreateNoWindow = true;
+        p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+        p.Start();
+        p.WaitForExit();
     }
 
     static bool CheckOutput(int[] output, string test)

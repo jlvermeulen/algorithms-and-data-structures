@@ -5,7 +5,7 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] HeapSort(T[] input)
+        public static T[] Heapsort(T[] input)
         {
             Heapify(input);
             int length = input.Length;
@@ -16,7 +16,7 @@ namespace Utility
             }
             return input;
         }
-
+        
         private static void Heapify(T[] heap)
         {
             int start = (heap.Length - 2) / 2;

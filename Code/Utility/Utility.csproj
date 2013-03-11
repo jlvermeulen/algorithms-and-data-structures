@@ -110,11 +110,11 @@
     <Compile Include="Sort\CocktailSort.cs" />
     <Compile Include="Sort\CombSort.cs" />
     <Compile Include="Sort\FlashSort.cs" />
-    <Compile Include="Sort\HeapSort.cs" />
+    <Compile Include="Sort\Heapsort.cs" />
     <Compile Include="Sort\InsertionSort.cs" />
     <Compile Include="Sort\MergeSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sort\RandomizedQuickSort3.cs" />
+    <Compile Include="Sort\Quicksort.cs" />
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="Datastructures\UnionFind.cs" />
     <Compile Include="Sort\ShellSort.cs" />
