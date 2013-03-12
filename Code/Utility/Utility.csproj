@@ -108,12 +108,15 @@
     <Compile Include="Datastructures\RedBlackTree.cs" />
     <Compile Include="Sort\BubbleSort.cs" />
     <Compile Include="Sort\CocktailSort.cs" />
+    <Compile Include="Sort\CombInsertionSort.cs" />
     <Compile Include="Sort\CombSort.cs" />
     <Compile Include="Sort\FlashSort.cs" />
+    <Compile Include="Sort\GnomeSort.cs" />
     <Compile Include="Sort\Heapsort.cs" />
     <Compile Include="Sort\InsertionSort.cs" />
     <Compile Include="Sort\MergeSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sort\OddEvenSort.cs" />
     <Compile Include="Sort\Quicksort.cs" />
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="Datastructures\UnionFind.cs" />

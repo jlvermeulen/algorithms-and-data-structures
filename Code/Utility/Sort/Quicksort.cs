@@ -21,7 +21,7 @@ namespace Utility
                 for (int i = start + 1; i < end + 1; i++)
                 {
                     current = input[i];
-                    for (j = i; j > 0; j--)
+                    for (j = i; j > start; j--)
                     {
                         if (input[j - 1].CompareTo(current) > 0)
                             input[j] = input[j - 1];

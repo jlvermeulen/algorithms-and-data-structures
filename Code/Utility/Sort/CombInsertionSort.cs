@@ -5,7 +5,7 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] CombSort(T[] input)
+        public static T[] CombInsertionSort(T[] input)
         {
             int gap = input.Length;
             T temp;
@@ -25,7 +25,7 @@ namespace Utility
                 }
             }
 
-            return BubbleSort(input);
+            return InsertionSort(input);
         }
     }
 }

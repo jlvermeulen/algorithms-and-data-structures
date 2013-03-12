@@ -28,7 +28,7 @@ class Test
         //writer.Close();
         //return;
 
-        string testSize = "Large";
+        string testSize = "Medium";
         string testDir = "Uniform\\Random\\";
         string test = testDir + testSize;
 
@@ -36,16 +36,19 @@ class Test
 
         ReferenceTest(test);
 
-        RunTest(test, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
-        RunTest(test, new SortMethod(Sort<int>.Heapsort), "Heapsort");
-        //RunTest(test, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
         //RunTest(test, new SortMethod(Sort<int>.BubbleSort), "Bubble Sort");
-        //RunTest(test, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
         //RunTest(test, new SortMethod(Sort<int>.CocktailSort), "Cocktail Sort");
-        RunTest(test, new SortMethod(Sort<int>.CombSort), "Comb Sort");
+        //RunTest(test, new SortMethod(Sort<int>.CombSort), "Comb Sort");
+        RunTest(test, new SortMethod(Sort<int>.CombInsertionSort), "Comb-Insertion Sort");
+        RunTest(test, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
+        //RunTest(test, new SortMethod(Sort<int>.Heapsort), "Heapsort");
+        RunTest(test, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
+        //RunTest(test, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
+        RunTest(test, new SortMethod(Sort<int>.OddEvenSort), "Odd-Even Sort");
+        //RunTest(test, new SortMethod(Sort<int>.Quicksort), "Quicksort");
+        RunTest(test, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
         RunTest(test, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
-        RunTest(test, new SortMethod(Sort<int>.Quicksort), "Quicksort");
-        RunTest(test, new SortMethod(Sort<int>.Quicksort2), "Quicksort2");
+        
 
         //for (int i = 0; i < testList.Count; i++)
         //    Console.WriteLine(test[i]);
@@ -102,7 +105,7 @@ class Test
     {
         Process p = new Process();
         p.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\7za.exe";
-        p.StartInfo.Arguments = "e " + "TestData\\" + test + ".7z -y -o" + Directory.GetCurrentDirectory() + "\\TestData\\" + testDir;
+        p.StartInfo.Arguments = "x " + "TestData\\" + test + ".7z -aoa -o" + "TestData\\" + testDir;
         p.StartInfo.CreateNoWindow = true;
         p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
         p.Start();
