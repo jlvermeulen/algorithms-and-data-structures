@@ -26,8 +26,9 @@ Currently has:
 # DATASTRUCTURES
 
 ## Binary search tree
-- AVL tree — height-balanced tree with guaranteed O(log n) operations
+- AVL tree — height-balanced tree with worst-case O(log n) operations
 - Binary search tree — base class for all other BSTs, no balancing, implements ICollection&lt;T>
+- Scapegoat tree — weight-balanced tree with O(log n) lookup, amortized O(log n) insertion and deletion
 - Splay tree — height-balanced tree with amortized O(log n) operations
 
 ## Disjoint-set

@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="BinarySearchTree\AVLTree.cs" />
     <Compile Include="BinarySearchTree\BinarySearchTree.cs" />
+    <Compile Include="BinarySearchTree\ScapegoatTree.cs" />
     <Compile Include="BinarySearchTree\SplayTree.cs" />
     <Compile Include="PriorityQueue\BinaryHeap.cs" />
     <Compile Include="BinarySearchTree\RedBlackTree.cs" />

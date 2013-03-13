@@ -27,9 +27,10 @@ namespace Utility
             TreeNode current = this.root;
             while (current != null)
             {
-                if (element.CompareTo(current.Value) < 0)
+                int c = element.CompareTo(current.Value);
+                if (c < 0)
                     current = current.Left;
-                else if (element.CompareTo(current.Value) > 0)
+                else if (c > 0)
                     current = current.Right;
                 else
                     break;

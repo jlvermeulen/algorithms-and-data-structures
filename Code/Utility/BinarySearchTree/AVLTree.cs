@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Utility;
 
@@ -8,11 +7,7 @@ public class AVLTree<T> : BinarySearchTree<T>
 {
     public AVLTree() { }
 
-    public AVLTree(IEnumerable<T> data)
-    {
-        foreach (T t in data)
-            this.Add(t);
-    }
+    public AVLTree(IEnumerable<T> data) : base(data) { }
 
     public override void Add(T element)
     {
