@@ -28,7 +28,7 @@ class Test
         //writer.Close();
         //return;
 
-        string testSize = "Medium";
+        string testSize = "Large";
         string testDir = "Uniform\\Random\\";
         string test = testDir + testSize;
 
@@ -39,19 +39,16 @@ class Test
         //RunTest(test, new SortMethod(Sort<int>.BubbleSort), "Bubble Sort");
         //RunTest(test, new SortMethod(Sort<int>.CocktailSort), "Cocktail Sort");
         //RunTest(test, new SortMethod(Sort<int>.CombSort), "Comb Sort");
-        RunTest(test, new SortMethod(Sort<int>.CombInsertionSort), "Comb-Insertion Sort");
-        RunTest(test, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
-        //RunTest(test, new SortMethod(Sort<int>.Heapsort), "Heapsort");
-        RunTest(test, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
-        //RunTest(test, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
-        RunTest(test, new SortMethod(Sort<int>.OddEvenSort), "Odd-Even Sort");
-        //RunTest(test, new SortMethod(Sort<int>.Quicksort), "Quicksort");
-        RunTest(test, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
-        RunTest(test, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
-        
-
-        //for (int i = 0; i < testList.Count; i++)
-        //    Console.WriteLine(test[i]);
+        //RunTest(test, new SortMethod(Sort<int>.CombInsertionSort), "Comb-Insertion Sort");
+        //RunTest(test, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
+        RunTest(test, new SortMethod(Sort<int>.Heapsort), "Heapsort");
+        //RunTest(test, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
+        RunTest(test, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
+        //RunTest(test, new SortMethod(Sort<int>.OddEvenSort), "Odd-Even Sort");
+        RunTest(test, new SortMethod(Sort<int>.Quicksort), "Quicksort");
+        //RunTest(test, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
+        //RunTest(test, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
+        RunTest(test, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
 
         File.Delete("TestData\\" + test + ".in");
         File.Delete("TestData\\" + test + ".out");

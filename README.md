@@ -12,20 +12,24 @@ Currently has:
 - Comb sort — repeated passes of Bubble sort with decreasing gaps between elements, calls to Bubble sort when the gap reaches 1 for final sorting
 - Comb-Insertion sort — same as Comb sort, but calls to Insertion sort for final sorting
 - Gnome sort — optimised by making the gnome remember his position before walking back
-- Heapsort — uses Floyd's method for constructing a heap in O(n) time
+- Heapsort — using a binary heap with Floyd's method for constructing a heap in O(n) time
 - Insertion sort — no fancy stuff here, just plain old Insertion sort
 - Merge sort — bottom-up merging, requires only one extra array of length n
 - Odd-Even sort — swap odd-even pairs when out of order, then swap even-odd pairs
 - Quicksort — dual-pivot randomized quicksort as proposed by Vladimir Yaroslavskiy
 - Selection sort — uses an optimisation that finds the two smallest elements in 3n/2 - 2 comparisons
 - Shellsort — repeated passes of Insertion sort over decreasing gaps, using the gap sequence h(n) = ⌈2.25 * h(n - 1)⌉, with h(0) = 1
+- Tree sort — uses an AVL Tree to add all elements and retrieve them in order
 
 ---
 
 # DATASTRUCTURES
 
-## Priority queue
-- Heap — uses Floyd's method for constructing a heap in O(n) time
+## Binary search tree
+- AVL Tree — implements the ICollection&lt;T> interface
 
 ## Disjoint-set
 - Union Find — implements union by rank and path compression
+
+## Priority queue
+- Binary heap — uses Floyd's method for constructing a heap in O(n) time

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Utility
 {
-    public class MaxHeap<T> : Heap<T>
+    public class BinaryMaxHeap<T> : BinaryHeap<T>
         where T : IComparable<T>
     {
-        public MaxHeap() { }
+        public BinaryMaxHeap() { }
 
-        public MaxHeap(IEnumerable<T> data) : base(data) { }
+        public BinaryMaxHeap(IEnumerable<T> data) : base(data) { }
 
         protected override void Heapify()
         {
@@ -49,12 +49,12 @@ namespace Utility
         }
     }
 
-    public class MinHeap<T> : Heap<T>
+    public class BinaryMinHeap<T> : BinaryHeap<T>
         where T : IComparable<T>
     {
-        public MinHeap() { }
+        public BinaryMinHeap() { }
 
-        public MinHeap(IEnumerable<T> data) : base(data) { }
+        public BinaryMinHeap(IEnumerable<T> data) : base(data) { }
 
         protected override void Heapify()
         {
@@ -98,14 +98,14 @@ namespace Utility
         }
     }
 
-    public abstract class Heap<T>
+    public abstract class BinaryHeap<T>
         where T : IComparable<T>
     {
         protected List<T> heap = new List<T>();
 
-        public Heap() { }
+        public BinaryHeap() { }
 
-        public Heap(IEnumerable<T> data)
+        public BinaryHeap(IEnumerable<T> data)
         {
             this.heap = new List<T>(data);
             this.Heapify();
