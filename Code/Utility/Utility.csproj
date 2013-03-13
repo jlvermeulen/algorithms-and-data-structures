@@ -103,9 +103,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Datastructures\AVLTree.cs" />
-    <Compile Include="Datastructures\BinaryHeap.cs" />
-    <Compile Include="Datastructures\RedBlackTree.cs" />
+    <Compile Include="BinarySearchTree\AVLTree.cs" />
+    <Compile Include="BinarySearchTree\BinarySearchTree.cs" />
+    <Compile Include="BinarySearchTree\SplayTree.cs" />
+    <Compile Include="PriorityQueue\BinaryHeap.cs" />
+    <Compile Include="BinarySearchTree\RedBlackTree.cs" />
     <Compile Include="Sort\BubbleSort.cs" />
     <Compile Include="Sort\CocktailSort.cs" />
     <Compile Include="Sort\CombInsertionSort.cs" />
@@ -119,7 +121,7 @@
     <Compile Include="Sort\OddEvenSort.cs" />
     <Compile Include="Sort\Quicksort.cs" />
     <Compile Include="Sort\SelectionSort.cs" />
-    <Compile Include="Datastructures\UnionFind.cs" />
+    <Compile Include="DisjointSet\UnionFind.cs" />
     <Compile Include="Sort\ShellSort.cs" />
     <Compile Include="Sort\TreeSort.cs" />
   </ItemGroup>
