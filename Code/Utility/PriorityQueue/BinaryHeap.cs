@@ -42,7 +42,10 @@ namespace Utility
             while ((p = this.Parent(start)) != -1)
             {
                 if (this.heap[start].CompareTo(this.heap[p]) > 0)
+                {
                     this.Switch(start, p);
+                    start = p;
+                }
                 else
                     return;
             }
@@ -91,7 +94,10 @@ namespace Utility
             while ((p = this.Parent(start)) != -1)
             {
                 if (this.heap[start].CompareTo(this.heap[p]) < 0)
+                {
                     this.Switch(start, p);
+                    start = p;
+                }
                 else
                     return;
             }

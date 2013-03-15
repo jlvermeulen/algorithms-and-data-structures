@@ -16,6 +16,7 @@ Currently has:
 - Insertion sort — no fancy stuff here, just plain old Insertion sort
 - Merge sort — bottom-up merging, requires only one extra array of length n
 - Odd-Even sort — swap odd-even pairs when out of order, then swap even-odd pairs
+- Patience sort — build stacks with elements in order, then repeatedly extract the value of the stack with the smallest top
 - Quicksort — dual-pivot randomized quicksort as proposed by Vladimir Yaroslavskiy
 - Selection sort — uses an optimisation that finds the two smallest elements in 3n/2 - 2 comparisons
 - Shellsort — repeated Insertion sort over decreasing gaps, using the gap sequence h(n) = ⌈2.25 * h(n - 1)⌉, with h(0) = 1

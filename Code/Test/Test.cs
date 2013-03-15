@@ -45,6 +45,7 @@ class Test
         //RunTest(test, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
         //RunTest(test, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
         //RunTest(test, new SortMethod(Sort<int>.OddEvenSort), "Odd-Even Sort");
+        //RunTest(test, new SortMethod(Sort<int>.PatienceSort), "Patience Sort");
         //RunTest(test, new SortMethod(Sort<int>.Quicksort), "Quicksort");
         //RunTest(test, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
         //RunTest(test, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
