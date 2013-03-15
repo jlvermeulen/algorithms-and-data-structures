@@ -37,4 +37,4 @@ Currently has:
 - Union Find — implements union by rank and path compression
 
 ## Priority queue
-- Binary heap — uses Floyd's method for constructing a heap in O(n) time
+- Binary heap — uses Floyd's method for constructing a heap in O(n) time, implements ICollection&lt;T>

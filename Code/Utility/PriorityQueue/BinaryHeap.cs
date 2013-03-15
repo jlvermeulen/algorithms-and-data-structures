@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Utility
 {
@@ -104,7 +105,7 @@ namespace Utility
         }
     }
 
-    public abstract class BinaryHeap<T>
+    public abstract class BinaryHeap<T> : ICollection<T>
         where T : IComparable<T>
     {
         protected List<T> heap = new List<T>();
@@ -175,5 +176,34 @@ namespace Utility
             this.heap[i1] = this.heap[i2];
             this.heap[i2] = temp;
         }
+
+        public bool IsReadOnly { get { return false; } }
+
+        public bool Remove(T item)
+        {
+            int index = -1;
+            for (int i = 0; i < this.heap.Count; i++)
+                if (item.CompareTo(this.heap[i]) == 0)
+                    index = i;
+
+            if (index == -1)
+                return false;
+
+            this.heap[index] = this.heap[this.heap.Count - 1];
+            this.heap.RemoveAt(this.heap.Count - 1);
+            this.PushDown(index);
+
+            return true;
+        }
+
+        public bool Contains(T item) { return this.heap.Contains(item); }
+
+        public void CopyTo(T[] array, int arrayIndex) { this.heap.CopyTo(array, arrayIndex); }
+
+        public void Clear() { this.heap.Clear(); }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() { return this.heap.GetEnumerator(); }
+
+        IEnumerator IEnumerable.GetEnumerator() { return this.heap.GetEnumerator(); }
     }
 }
