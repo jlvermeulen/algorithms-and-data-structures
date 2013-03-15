@@ -20,6 +20,7 @@ Currently has:
 - Quicksort — dual-pivot randomized quicksort as proposed by Vladimir Yaroslavskiy
 - Selection sort — uses an optimisation that finds the two smallest elements in 3n/2 - 2 comparisons
 - Shellsort — repeated Insertion sort over decreasing gaps, using the gap sequence h(n) = ⌈2.25 * h(n - 1)⌉, with h(0) = 1
+- Strand sort — looks for sequences of input that are already sorted and merges them with the sorted part of the array
 - Tree sort — uses an AVL Tree, adds all elements and retrieves them in order
 
 ---

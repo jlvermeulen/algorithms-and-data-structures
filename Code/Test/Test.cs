@@ -28,13 +28,13 @@ class Test
         //writer.Close();
         //return;
 
-        //string testSize = "Large";
-        //string testDir = "Uniform\\Random\\";
-        //string test = testDir + testSize;
+        string testSize = "Large";
+        string testDir = "Uniform\\Random\\";
+        string test = testDir + testSize;
 
-        //UnzipTestData(test, testDir);
+        UnzipTestData(test, testDir);
 
-        //ReferenceTest(test);
+        ReferenceTest(test);
 
         //RunTest(test, new SortMethod(Sort<int>.BubbleSort), "Bubble Sort");
         //RunTest(test, new SortMethod(Sort<int>.CocktailSort), "Cocktail Sort");
@@ -48,11 +48,12 @@ class Test
         //RunTest(test, new SortMethod(Sort<int>.PatienceSort), "Patience Sort");
         //RunTest(test, new SortMethod(Sort<int>.Quicksort), "Quicksort");
         //RunTest(test, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
+        //RunTest(test, new SortMethod(Sort<int>.StrandSort), "Strand Sort");
         //RunTest(test, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
         //RunTest(test, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
 
-        //File.Delete("TestData\\" + test + ".in");
-        //File.Delete("TestData\\" + test + ".out");
+        File.Delete("TestData\\" + test + ".in");
+        File.Delete("TestData\\" + test + ".out");
 
         Console.ReadLine();
     }

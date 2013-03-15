@@ -125,6 +125,7 @@
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="DisjointSet\UnionFind.cs" />
     <Compile Include="Sort\ShellSort.cs" />
+    <Compile Include="Sort\StrandSort.cs" />
     <Compile Include="Sort\TreeSort.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
