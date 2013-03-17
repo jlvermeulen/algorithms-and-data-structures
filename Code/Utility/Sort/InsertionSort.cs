@@ -14,11 +14,10 @@ namespace Utility
                 current = input[i];
                 for (j = i; j > 0; j--)
                 {
-                    if (input[j - 1].CompareTo(current) > 0)
-                        input[j] = input[j - 1];
-                    else
+                    if (input[j - 1].CompareTo(current) <= 0)
                         break;
                 }
+                Buffer.BlockCopy(input, j * sizeof(int), input, (j + 1) * sizeof(int), (i - j) * sizeof(int));
                 input[j] = current;
             }
             return input;

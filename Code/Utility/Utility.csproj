@@ -109,11 +109,11 @@
     <Compile Include="BinarySearchTree\SplayTree.cs" />
     <Compile Include="PriorityQueue\BinaryHeap.cs" />
     <Compile Include="BinarySearchTree\RedBlackTree.cs" />
+    <Compile Include="Sort\BinaryInsertionSort.cs" />
     <Compile Include="Sort\BubbleSort.cs" />
     <Compile Include="Sort\CocktailSort.cs" />
     <Compile Include="Sort\CombInsertionSort.cs" />
     <Compile Include="Sort\CombSort.cs" />
-    <Compile Include="Sort\FlashSort.cs" />
     <Compile Include="Sort\GnomeSort.cs" />
     <Compile Include="Sort\Heapsort.cs" />
     <Compile Include="Sort\InsertionSort.cs" />
@@ -126,6 +126,7 @@
     <Compile Include="DisjointSet\UnionFind.cs" />
     <Compile Include="Sort\ShellSort.cs" />
     <Compile Include="Sort\StrandSort.cs" />
+    <Compile Include="Sort\Timsort.cs" />
     <Compile Include="Sort\TreeSort.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

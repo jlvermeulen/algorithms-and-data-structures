@@ -7,6 +7,7 @@ Currently has:
 # ALGORITHMS
 
 ## Sorting
+- Binary Insertion sort — performs a binary search on the sorted part to determine where to place the next element
 - Bubble sort — optimised by keeping track of the place of the last swap, everything after that is sorted
 - Cocktail sort — one pass of Bubble sort left-to-right, followed by a pass right-to-left
 - Comb sort — repeated Bubble sort with decreasing gaps, calls to Bubble sort when the gap reaches 1 for final sorting
