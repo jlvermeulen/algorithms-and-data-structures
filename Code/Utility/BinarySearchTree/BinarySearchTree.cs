@@ -17,17 +17,17 @@ namespace Utility
                 this.Add(t);
         }
 
-        public virtual void Add(T element)
+        public virtual void Add(T item)
         {
-            this.Add(new TreeNode(element));
+            this.Add(new TreeNode(item));
         }
 
-        public virtual bool Remove(T element)
+        public virtual bool Remove(T item)
         {
             TreeNode current = this.root;
             while (current != null)
             {
-                int c = element.CompareTo(current.Value);
+                int c = item.CompareTo(current.Value);
                 if (c < 0)
                     current = current.Left;
                 else if (c > 0)
@@ -63,9 +63,9 @@ namespace Utility
             return true;
         }
 
-        public virtual bool Contains(T element)
+        public virtual bool Contains(T item)
         {
-            return this.Find(element) != null;
+            return this.Find(item) != null;
         }
 
         public virtual void Clear()
@@ -86,34 +86,28 @@ namespace Utility
                 array[arrayIndex++] = t;
         }
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            return new BSTEnumerator(this);
-        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() { return new BSTEnumerator(this); }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return new BSTEnumerator(this);
-        }
+        IEnumerator IEnumerable.GetEnumerator() { return new BSTEnumerator(this); }
 
         public virtual int Count { get; protected set; }
 
         public virtual bool IsReadOnly { get { return false; } }
 
-        public virtual bool Successor(T element, out T result)
+        public virtual bool Successor(T item, out T result)
         {
             result = default(T);
-            TreeNode successor = this.Successor(this.Find(element));
+            TreeNode successor = this.Successor(this.Find(item));
             if (successor == null)
                 return false;
             result = successor.Value;
             return true;
         }
 
-        public virtual bool Predecessor(T element, out T result)
+        public virtual bool Predecessor(T item, out T result)
         {
             result = default(T);
-            TreeNode predecessor = this.Predecessor(this.Find(element));
+            TreeNode predecessor = this.Predecessor(this.Find(item));
             if (predecessor == null)
                 return false;
             result = predecessor.Value;
@@ -161,12 +155,12 @@ namespace Utility
             return node;
         }
 
-        protected virtual TreeNode Find(T element)
+        protected virtual TreeNode Find(T item)
         {
             TreeNode current = this.root;
             while (current != null)
             {
-                int c = element.CompareTo(current.Value);
+                int c = item.CompareTo(current.Value);
                 if (c < 0)
                     current = current.Left;
                 else if (c > 0)
@@ -228,48 +222,48 @@ namespace Utility
                 rightC.Parent = start;
         }
 
-        protected virtual TreeNode Successor(TreeNode element)
+        protected virtual TreeNode Successor(TreeNode item)
         {
-            if (element.Right == null)
+            if (item.Right == null)
             {
                 TreeNode previous;
-                while (element.Parent != null)
+                while (item.Parent != null)
                 {
-                    previous = element;
-                    element = element.Parent;
-                    if (element.Left == previous)
-                        return element;
+                    previous = item;
+                    item = item.Parent;
+                    if (item.Left == previous)
+                        return item;
                 }
                 return null;
             }
 
-            element = element.Right;
-            while (element.Left != null)
-                element = element.Left;
+            item = item.Right;
+            while (item.Left != null)
+                item = item.Left;
 
-            return element;
+            return item;
         }
 
-        protected virtual TreeNode Predecessor(TreeNode element)
+        protected virtual TreeNode Predecessor(TreeNode item)
         {
-            if (element.Left == null)
+            if (item.Left == null)
             {
                 TreeNode previous;
-                while (element.Parent != null)
+                while (item.Parent != null)
                 {
-                    previous = element;
-                    element = element.Parent;
-                    if (element.Right == previous)
-                        return element;
+                    previous = item;
+                    item = item.Parent;
+                    if (item.Right == previous)
+                        return item;
                 }
                 return null;
             }
 
-            element = element.Left;
-            while (element.Right != null)
-                element = element.Right;
+            item = item.Left;
+            while (item.Right != null)
+                item = item.Right;
 
-            return element;
+            return item;
         }
 
         protected class TreeNode
@@ -278,9 +272,6 @@ namespace Utility
             {
                 this.Value = value;
                 this.Count = 1;
-                this.Parent = null;
-                this.Left = null;
-                this.Right = null;
             }
 
             public int Count { get; set; }

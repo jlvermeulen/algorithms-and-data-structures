@@ -9,9 +9,9 @@ public class AVLTree<T> : BinarySearchTree<T>
 
     public AVLTree(IEnumerable<T> data) : base(data) { }
 
-    public override void Add(T element)
+    public override void Add(T item)
     {
-        AVLNode node = new AVLNode(element);
+        AVLNode node = new AVLNode(item);
         base.Add(node);
         this.Rebalance(node.Parent);
     }

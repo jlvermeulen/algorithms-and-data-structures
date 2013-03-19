@@ -9,22 +9,22 @@ public class SplayTree<T> : BinarySearchTree<T>
 
     public SplayTree(IEnumerable<T> data) : base(data) { }
 
-    public override void Add(T element)
+    public override void Add(T item)
     {
-        TreeNode node = new TreeNode(element);
+        TreeNode node = new TreeNode(item);
         node = base.Add(node);
         this.Splay(node);
     }
 
-    public override bool Remove(T element)
+    public override bool Remove(T item)
     {
         TreeNode current = this.root, previous = null;
         while (current != null)
         {
             previous = current;
-            if (element.CompareTo(current.Value) < 0)
+            if (item.CompareTo(current.Value) < 0)
                 current = current.Left;
-            else if (element.CompareTo(current.Value) > 0)
+            else if (item.CompareTo(current.Value) > 0)
                 current = current.Right;
             else
                 break;
@@ -67,12 +67,12 @@ public class SplayTree<T> : BinarySearchTree<T>
         this.Splay(current.Parent);
     }
 
-    protected override TreeNode Find(T element)
+    protected override TreeNode Find(T item)
     {
         TreeNode current = this.root, previous = null;
         while (current != null)
         {
-            int c = element.CompareTo(current.Value);
+            int c = item.CompareTo(current.Value);
             previous = current;
             if (c < 0)
                 current = current.Left;

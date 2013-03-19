@@ -27,9 +27,9 @@ namespace Utility
                 this.Add(t);
         }
 
-        public override void Add(T element)
+        public override void Add(T item)
         {
-            TreeNode node = new TreeNode(element);
+            TreeNode node = new TreeNode(item);
             this.Add(node);
         }
 
@@ -83,10 +83,10 @@ namespace Utility
             return node;
         }
 
-        public override bool Remove(T element)
+        public override bool Remove(T item)
         {
             int count = this.Count;
-            bool removed = base.Remove(element);
+            bool removed = base.Remove(item);
             if (count != this.Count)
             {
                 this.size--;

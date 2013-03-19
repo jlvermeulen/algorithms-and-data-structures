@@ -11,12 +11,17 @@ namespace Utility
 
         public BinaryMaxHeap(IEnumerable<T> data) : base(data) { }
 
-        protected override void Heapify()
+        public override void ChangeKey(T item, T newValue)
         {
-            int start = (this.heap.Count - 2) / 2;
-
-            for (; start >= 0; start--)
-                this.PushDown(start);
+            int index = this.heap.IndexOf(item);
+            if (index == -1)
+                return;
+            this.heap[index] = newValue;
+            int c = item.CompareTo(newValue);
+            if (c < 0)
+                this.PullUp(index);
+            else if (c > 0)
+                this.PushDown(index);
         }
 
         protected override void PushDown(int root)
@@ -60,12 +65,17 @@ namespace Utility
 
         public BinaryMinHeap(IEnumerable<T> data) : base(data) { }
 
-        protected override void Heapify()
+        public override void ChangeKey(T item, T newValue)
         {
-            int start = (this.heap.Count - 2) / 2;
-
-            for (; start >= 0; start--)
-                this.PushDown(start);
+            int index = this.heap.IndexOf(item);
+            if (index == -1)
+                return;
+            this.heap[index] = newValue;
+            int c = item.CompareTo(newValue);
+            if (c < 0)
+                this.PushDown(index);
+            else if (c > 0)
+                this.PullUp(index);
         }
 
         protected override void PushDown(int root)
@@ -138,9 +148,21 @@ namespace Utility
             return this.heap[0];
         }
 
-        public int Count { get { return this.heap.Count; } }
+        public void Merge(BinaryHeap<T> other)
+        {
+            this.heap.AddRange(other.heap);
+            this.Heapify();
+        }
 
-        protected abstract void Heapify();
+        protected void Heapify()
+        {
+            int start = (this.heap.Count - 2) / 2;
+
+            for (; start >= 0; start--)
+                this.PushDown(start);
+        }
+
+        public abstract void ChangeKey(T item, T newValue);
 
         protected abstract void PushDown(int start);
 
@@ -195,6 +217,8 @@ namespace Utility
 
             return true;
         }
+
+        public int Count { get { return this.heap.Count; } }
 
         public bool Contains(T item) { return this.heap.Contains(item); }
 
