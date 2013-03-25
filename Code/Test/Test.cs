@@ -35,7 +35,7 @@ class Test
         //    writer.WriteLine(list[i]);
         //writer.Close();
         //return;
-        Console.BufferHeight = 11000;
+        //Console.BufferHeight = 11000;
         //Console.BufferWidth = 100;
 
         string testSize = "Large";
@@ -55,6 +55,7 @@ class Test
         //RunTest(input, test, true, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.Heapsort), "Heapsort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.JSort), "JSort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.OddEvenSort), "Odd-Even Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.PatienceSort), "Patience Sort");

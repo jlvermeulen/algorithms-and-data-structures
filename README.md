@@ -15,6 +15,7 @@ Currently has:
 - Gnome sort — optimised by making the gnome remember his position before walking back
 - Heapsort — using a binary heap with Floyd's method for constructing a heap in O(n) time
 - Insertion sort — no fancy stuff here, just plain old Insertion sort
+- JSort — builds a min-heap from the lowest index followed by a max-heap from the highest index, then sorts completely with Insertion sort
 - Merge sort — bottom-up merging, requires only one extra array of length n
 - Odd-Even sort — swap odd-even pairs when out of order, then swap even-odd pairs
 - Patience sort — build stacks with elements in order, then repeatedly extract the value of the stack with the smallest top
