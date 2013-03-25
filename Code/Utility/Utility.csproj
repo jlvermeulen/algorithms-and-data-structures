@@ -109,6 +109,7 @@
     <Compile Include="BinarySearchTree\SplayTree.cs" />
     <Compile Include="PriorityQueue\BinaryHeap.cs" />
     <Compile Include="BinarySearchTree\RedBlackTree.cs" />
+    <Compile Include="ProbabilisticStructures\SkipList.cs" />
     <Compile Include="Sort\BinaryInsertionSort.cs" />
     <Compile Include="Sort\BubbleSort.cs" />
     <Compile Include="Sort\CocktailSort.cs" />

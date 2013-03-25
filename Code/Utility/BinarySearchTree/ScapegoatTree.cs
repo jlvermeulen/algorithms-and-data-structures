@@ -17,13 +17,13 @@ namespace Utility
             this.maxSize = 0;
         }
 
-        public ScapegoatTree(IEnumerable<T> data, float alpha = 0.75f)
+        public ScapegoatTree(IEnumerable<T> collection, float alpha = 0.75f)
             : base()
         {
             this.alpha = alpha;
             this.size = 0;
             this.maxSize = 0;
-            foreach (T t in data)
+            foreach (T t in collection)
                 this.Add(t);
         }
 

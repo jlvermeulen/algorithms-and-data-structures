@@ -9,7 +9,7 @@ namespace Utility
     {
         public BinaryMaxHeap() { }
 
-        public BinaryMaxHeap(IEnumerable<T> data) : base(data) { }
+        public BinaryMaxHeap(IEnumerable<T> collection) : base(collection) { }
 
         public override void ChangeKey(T item, T newValue)
         {
@@ -63,7 +63,7 @@ namespace Utility
     {
         public BinaryMinHeap() { }
 
-        public BinaryMinHeap(IEnumerable<T> data) : base(data) { }
+        public BinaryMinHeap(IEnumerable<T> collection) : base(collection) { }
 
         public override void ChangeKey(T item, T newValue)
         {
@@ -122,9 +122,9 @@ namespace Utility
 
         public BinaryHeap() { }
 
-        public BinaryHeap(IEnumerable<T> data)
+        public BinaryHeap(IEnumerable<T> collection)
         {
-            this.heap = new List<T>(data);
+            this.heap = new List<T>(collection);
             this.Heapify();
         }
 

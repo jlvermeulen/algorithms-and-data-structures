@@ -7,7 +7,7 @@ public class SplayTree<T> : BinarySearchTree<T>
 {
     public SplayTree() { }
 
-    public SplayTree(IEnumerable<T> data) : base(data) { }
+    public SplayTree(IEnumerable<T> collection) : base(collection) { }
 
     public override void Add(T item)
     {

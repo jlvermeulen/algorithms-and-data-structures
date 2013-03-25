@@ -35,9 +35,10 @@ class Test
         //    writer.WriteLine(list[i]);
         //writer.Close();
         //return;
-        //Console.BufferHeight = 11000;
+        Console.BufferHeight = 11000;
+        //Console.BufferWidth = 100;
 
-        string testSize = "Small";
+        string testSize = "Large";
         string testDir = "Random\\";
         string test = testDir + testSize;
 
@@ -61,8 +62,8 @@ class Test
         //RunTest(input, test, true, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.StrandSort), "Strand Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
-        RunTest(input, test, false, new SortMethod(Sort<int>.Timsort), "Timsort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.Timsort), "Timsort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
 
         File.Delete("TestData\\" + test + ".in");
         File.Delete("TestData\\" + test + ".out");
@@ -84,8 +85,8 @@ class Test
         if (!benchmark)
             Console.WriteLine("Output is {0}.", CheckOutput(data, test) ? "correct" : "incorrect");
 
-        for (int i = 0; i < data.Length; i++)
-            Console.WriteLine(i + ": " + data[i]);
+        //for (int i = 0; i < data.Length; i++)
+        //    Console.WriteLine(i + ": " + data[i]);
 
         Console.WriteLine();
     }

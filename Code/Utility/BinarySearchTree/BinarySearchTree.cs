@@ -11,9 +11,9 @@ namespace Utility
 
         public BinarySearchTree() { }
 
-        public BinarySearchTree(IEnumerable<T> data)
+        public BinarySearchTree(IEnumerable<T> collection)
         {
-            foreach (T t in data)
+            foreach (T t in collection)
                 this.Add(t);
         }
 
@@ -42,6 +42,7 @@ namespace Utility
             if (current.Count > 1)
             {
                 current.Count--;
+                this.Count--;
                 return true;
             }
 
@@ -125,7 +126,8 @@ namespace Utility
             TreeNode current = this.root;
             while (current != null)
             {
-                if (node.Value.CompareTo(current.Value) < 0)
+                int c = node.Value.CompareTo(current.Value);
+                if (c < 0)
                 {
                     if (current.Left != null)
                         current = current.Left;
@@ -135,7 +137,7 @@ namespace Utility
                         break;
                     }
                 }
-                else if (node.Value.CompareTo(current.Value) > 0)
+                else if (c > 0)
                 {
                     if (current.Right != null)
                         current = current.Right;

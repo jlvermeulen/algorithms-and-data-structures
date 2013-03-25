@@ -31,6 +31,7 @@ Currently has:
 ## Binary search tree
 - AVL tree — height-balanced tree with worst-case O(log n) operations
 - Binary search tree — base class for all other BSTs, no balancing, implements ICollection&lt;T>
+- Red-black tree — height-balanced tree with worst-case O(log n) operations
 - Scapegoat tree — weight-balanced tree with O(log n) lookup, amortized O(log n) insertion and deletion
 - Splay tree — height-balanced tree with amortized O(log n) operations
 
@@ -39,3 +40,6 @@ Currently has:
 
 ## Priority queue
 - Binary heap — uses Floyd's method for constructing a heap in O(n) time, implements ICollection&lt;T>
+
+## Probabilistic datastructures
+- Skip list — an alternative to balanced BSTs, offers average case O(log n) operations, but worst case O(n)

@@ -7,7 +7,7 @@ public class AVLTree<T> : BinarySearchTree<T>
 {
     public AVLTree() { }
 
-    public AVLTree(IEnumerable<T> data) : base(data) { }
+    public AVLTree(IEnumerable<T> collection) : base(collection) { }
 
     public override void Add(T item)
     {
