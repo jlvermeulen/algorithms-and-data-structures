@@ -12,6 +12,7 @@ Currently has:
 - Cocktail sort — one pass of Bubble sort left-to-right, followed by a pass right-to-left
 - Comb sort — repeated Bubble sort with decreasing gaps, calls to Bubble sort when the gap reaches 1 for final sorting
 - Comb-Insertion sort — same as Comb sort, but calls to Insertion sort for final sorting
+- Cycle sort — achieves the theoretical minimum number of writes to the original array
 - Gnome sort — optimised by making the gnome remember his position before walking back
 - Heapsort — using a binary heap with Floyd's method for constructing a heap in O(n) time
 - Insertion sort — no fancy stuff here, just plain old Insertion sort

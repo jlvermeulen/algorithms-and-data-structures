@@ -115,6 +115,7 @@
     <Compile Include="Sort\CocktailSort.cs" />
     <Compile Include="Sort\CombInsertionSort.cs" />
     <Compile Include="Sort\CombSort.cs" />
+    <Compile Include="Sort\CycleSort.cs" />
     <Compile Include="Sort\GnomeSort.cs" />
     <Compile Include="Sort\Heapsort.cs" />
     <Compile Include="Sort\InsertionSort.cs" />

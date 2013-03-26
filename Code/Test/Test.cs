@@ -52,6 +52,7 @@ class Test
         //RunTest(input, test, true, new SortMethod(Sort<int>.CocktailSort), "Cocktail Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.CombSort), "Comb Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.CombInsertionSort), "Comb-Insertion Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.CycleSort), "Cycle Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.Heapsort), "Heapsort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
