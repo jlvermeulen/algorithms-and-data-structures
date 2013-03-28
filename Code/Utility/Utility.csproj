@@ -107,8 +107,9 @@
     <Compile Include="BinarySearchTree\BinarySearchTree.cs" />
     <Compile Include="BinarySearchTree\ScapegoatTree.cs" />
     <Compile Include="BinarySearchTree\SplayTree.cs" />
-    <Compile Include="PriorityQueue\BinaryHeap.cs" />
+    <Compile Include="Graph\Interfaces.cs" />
     <Compile Include="BinarySearchTree\RedBlackTree.cs" />
+    <Compile Include="PriorityQueue\DHeap.cs" />
     <Compile Include="ProbabilisticStructures\SkipList.cs" />
     <Compile Include="Sort\BinaryInsertionSort.cs" />
     <Compile Include="Sort\BubbleSort.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Sort\Timsort.cs" />
     <Compile Include="Sort\TreeSort.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -41,7 +41,7 @@ Currently has:
 - Union Find — implements union by rank and path compression
 
 ## Priority queue
-- Binary heap — uses Floyd's method for constructing a heap in O(n) time, implements ICollection&lt;T>
+- d-ary heap — generalisation of a binary heap with d children, uses Floyd's method for constructing a heap in O(n) time, implements ICollection&lt;T>
 
-## Probabilistic datastructures
+## Probabilistic structures
 - Skip list — an alternative to balanced BSTs, offers average case O(log n) operations, but worst case O(n)

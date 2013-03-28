@@ -4,12 +4,12 @@ using System.Collections;
 
 namespace Utility
 {
-    public class BinaryMaxHeap<T> : BinaryHeap<T>
+    public class DMaxHeap<T> : DHeap<T>
         where T : IComparable<T>
     {
-        public BinaryMaxHeap() { }
+        public DMaxHeap(int d = 2) : base(d) { }
 
-        public BinaryMaxHeap(IEnumerable<T> collection) : base(collection) { }
+        public DMaxHeap(IEnumerable<T> collection, int d = 2) : base(collection, d) { }
 
         public override void ChangeKey(T item, T newValue)
         {
@@ -26,17 +26,26 @@ namespace Utility
 
         protected override void PushDown(int root)
         {
-            int l, r, s;
+            int l, c, s;
             while ((l = this.Left(root)) != -1)
             {
-                r = l + 1;
                 s = root;
-                if (this.heap[s].CompareTo(this.heap[l]) < 0)
-                    s = l;
-                if (r < this.heap.Count && this.heap[s].CompareTo(this.heap[r]) < 0)
-                    s = r;
+                for (int i = 0; i < this.d; i++)
+                {
+                    c = l + i;
+                    if (c < this.heap.Count)
+                    {
+                        if (this.heap[s].CompareTo(this.heap[c]) < 0)
+                            s = c;
+                    }
+                    else
+                        break;
+                }
                 if (s != root)
+                {
                     this.Switch(s, root);
+                    root = s;
+                }
                 else
                     return;
             }
@@ -58,12 +67,12 @@ namespace Utility
         }
     }
 
-    public class BinaryMinHeap<T> : BinaryHeap<T>
+    public class DMinHeap<T> : DHeap<T>
         where T : IComparable<T>
     {
-        public BinaryMinHeap() { }
+        public DMinHeap(int d = 2) : base(d) { }
 
-        public BinaryMinHeap(IEnumerable<T> collection) : base(collection) { }
+        public DMinHeap(IEnumerable<T> collection, int d = 2) : base(collection, d) { }
 
         public override void ChangeKey(T item, T newValue)
         {
@@ -80,15 +89,21 @@ namespace Utility
 
         protected override void PushDown(int root)
         {
-            int l, r, s;
+            int l, c, s;
             while ((l = this.Left(root)) != -1)
             {
-                r = l + 1;
                 s = root;
-                if (this.heap[s].CompareTo(this.heap[l]) > 0)
-                    s = l;
-                if (r < this.heap.Count && this.heap[s].CompareTo(this.heap[r]) > 0)
-                    s = r;
+                for (int i = 0; i < this.d; i++)
+                {
+                    c = l + i;
+                    if (c < this.heap.Count)
+                    {
+                        if (this.heap[s].CompareTo(this.heap[c]) > 0)
+                            s = c;
+                    }
+                    else
+                        break;
+                }
                 if (s != root)
                 {
                     this.Switch(s, root);
@@ -115,16 +130,18 @@ namespace Utility
         }
     }
 
-    public abstract class BinaryHeap<T> : ICollection<T>
+    public abstract class DHeap<T> : ICollection<T>
         where T : IComparable<T>
     {
         protected List<T> heap = new List<T>();
+        protected int d;
 
-        public BinaryHeap() { }
+        public DHeap(int d) { this.d = d; }
 
-        public BinaryHeap(IEnumerable<T> collection)
+        public DHeap(IEnumerable<T> collection, int d)
         {
             this.heap = new List<T>(collection);
+            this.d = d;
             this.Heapify();
         }
 
@@ -148,7 +165,7 @@ namespace Utility
             return this.heap[0];
         }
 
-        public void Merge(BinaryHeap<T> other)
+        public void Merge(DHeap<T> other)
         {
             this.heap.AddRange(other.heap);
             this.Heapify();
@@ -156,7 +173,7 @@ namespace Utility
 
         protected void Heapify()
         {
-            int start = (this.heap.Count - 2) / 2;
+            int start = (this.heap.Count - 2) / this.d;
 
             for (; start >= 0; start--)
                 this.PushDown(start);
@@ -170,25 +187,17 @@ namespace Utility
 
         protected int Parent(int node)
         {
-            int p = (node + 1) / 2 - 1;
-            if (p >= 0 && p < this.heap.Count)
+            int p = (node - 1) / this.d;
+            if (p >= 0)
                 return p;
             return -1;
         }
 
         protected int Left(int node)
         {
-            int l = (node + 1) * 2 - 1;
+            int l = node * this.d + 1;
             if (l < this.heap.Count)
                 return l;
-            return -1;
-        }
-
-        protected int Right(int node)
-        {
-            int r = (node + 1) * 2;
-            if (r < this.heap.Count)
-                return r;
             return -1;
         }
 
@@ -203,11 +212,7 @@ namespace Utility
 
         public bool Remove(T item)
         {
-            int index = -1;
-            for (int i = 0; i < this.heap.Count; i++)
-                if (item.CompareTo(this.heap[i]) == 0)
-                    index = i;
-
+            int index = this.heap.IndexOf(item);
             if (index == -1)
                 return false;
 

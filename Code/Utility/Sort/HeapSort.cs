@@ -16,10 +16,10 @@ namespace Utility
             }
             return input;
         }
-        
+
         private static void Heapify(T[] heap)
         {
-            int start = (heap.Length - 2) / 2;
+            int start = (heap.Length - 2) / 5;
 
             for (; start >= 0; start--)
                 PushDown(heap, heap.Length, start);
@@ -27,15 +27,24 @@ namespace Utility
 
         private static void PushDown(T[] heap, int length, int root)
         {
-            int l, r, s;
-            while ((l = Left(heap, length, root)) != -1)
+            int l, c1, c2, c3, c4, s;
+            while ((l = Left(root, length)) != -1)
             {
-                r = l + 1;
+                c1 = l + 1;
+                c2 = l + 2;
+                c3 = l + 3;
+                c4 = l + 4;
                 s = root;
                 if (heap[s].CompareTo(heap[l]) < 0)
                     s = l;
-                if (r < length && heap[s].CompareTo(heap[r]) < 0)
-                    s = r;
+                if (c1 < length && heap[s].CompareTo(heap[c1]) < 0)
+                    s = c1;
+                if (c2 < length && heap[s].CompareTo(heap[c2]) < 0)
+                    s = c2;
+                if (c3 < length && heap[s].CompareTo(heap[c3]) < 0)
+                    s = c3;
+                if (c4 < length && heap[s].CompareTo(heap[c4]) < 0)
+                    s = c4;
                 if (s != root)
                 {
                     Switch(heap, s, root);
@@ -46,27 +55,11 @@ namespace Utility
             }
         }
 
-        private static int Parent(T[] heap, int length, int node)
+        private static int Left(int node, int length)
         {
-            int p = (node + 1) / 2 - 1;
-            if (p >= 0 && p < length)
-                return p;
-            return -1;
-        }
-
-        private static int Left(T[] heap, int length, int node)
-        {
-            int l = (node + 1) * 2 - 1;
+            int l = node * 5 + 1;
             if (l < length)
                 return l;
-            return -1;
-        }
-
-        private static int Right(T[] heap, int length, int node)
-        {
-            int r = (node + 1) * 2;
-            if (r < heap.Length)
-                return r;
             return -1;
         }
 

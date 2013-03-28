@@ -52,7 +52,7 @@ class Test
         //RunTest(input, test, true, new SortMethod(Sort<int>.CocktailSort), "Cocktail Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.CombSort), "Comb Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.CombInsertionSort), "Comb-Insertion Sort");
-        //RunTest(input, test, false, new SortMethod(Sort<int>.CycleSort), "Cycle Sort");
+        //RunTest(input, test, true, new SortMethod(Sort<int>.CycleSort), "Cycle Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.Heapsort), "Heapsort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
@@ -64,8 +64,8 @@ class Test
         //RunTest(input, test, true, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.StrandSort), "Strand Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
-        //RunTest(input, test, false, new SortMethod(Sort<int>.Timsort), "Timsort");
-        //RunTest(input, test, false, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
+        //RunTest(input, test, true, new SortMethod(Sort<int>.Timsort), "Timsort");
+        //RunTest(input, test, true, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
 
         File.Delete("TestData\\" + test + ".in");
         File.Delete("TestData\\" + test + ".out");

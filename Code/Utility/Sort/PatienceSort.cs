@@ -24,7 +24,7 @@ namespace Utility
                     stacks.Add(stack);
             }
 
-            BinaryMinHeap<ComparableStack> heap = new BinaryMinHeap<ComparableStack>(stacks);
+            DMinHeap<ComparableStack> heap = new DMinHeap<ComparableStack>(stacks, 3);
             for (int i = 0; i < input.Length; i++)
             {
                 ComparableStack stack = heap.Extract();
