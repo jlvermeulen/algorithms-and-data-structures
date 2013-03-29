@@ -1,4 +1,4 @@
-A collection of various algorithms and datastructures made in C#
+A collection of various algorithms and data structures made in C#
 
 Currently has:
 
@@ -32,7 +32,7 @@ Currently has:
 
 ## Binary search tree
 - AVL tree — height-balanced tree with worst-case O(log n) operations
-- Binary search tree — base class for all other BSTs, no balancing, implements ICollection&lt;T>
+- Binary search tree — base class for all other BSTs, no balancing, implemented as ICollection&lt;T> and IDictionary&lt;TKey, TValue>
 - Red-black tree — height-balanced tree with worst-case O(log n) operations
 - Scapegoat tree — weight-balanced tree with O(log n) lookup, amortized O(log n) insertion and deletion
 - Splay tree — height-balanced tree with amortized O(log n) operations

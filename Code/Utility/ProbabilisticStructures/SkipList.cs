@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace Utility
 {
+    /// <summary>
+    /// Represents a skip list.
+    /// </summary>
+    /// <typeparam name="T">The type of the values in the SkipList&lt;T>.</typeparam>
     public class SkipList<T> : ICollection<T>
         where T : IComparable<T>
     {
@@ -11,8 +15,17 @@ namespace Utility
         float p;
         Random random;
 
+        /// <summary>
+        /// Initializes a new instance of the SkipList&lt;T> class that is empty.
+        /// </summary>
+        /// <param name="p">The probability of adding new items to a higher layer.</param>
         public SkipList(float p = 0.25f) { this.Initialise(p); }
 
+        /// <summary>
+        /// Initializes a new instance of the SkipList&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+        /// </summary>
+        /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new SkipList&lt;T>.</param>
+        /// <param name="p">The probability of adding new items to a higher layer.</param>
         public SkipList(IEnumerable<T> collection, float p = 0.25f)
         {
             this.Initialise(p);
@@ -27,6 +40,10 @@ namespace Utility
             this.random = new Random();
         }
 
+        /// <summary>
+        /// Adds the specified value to the SkipList&ltT>.
+        /// </summary>
+        /// <param name="item">The value to add.</param>
         public void Add(T item)
         {
             SkipNode node = this.head, previous = null;
@@ -116,6 +133,10 @@ namespace Utility
             }
         }
 
+        /// <summary>
+        /// Adds the elements of the specified IEnumerable&ltT> to the SkipList&ltT>.
+        /// </summary>
+        /// <param name="collection">The IEnumerable&lt;T> whose values should be added to the SkipList&ltT>.</param>
         public void AddRange(IEnumerable<T> collection)
         {
             if (collection == null)
@@ -125,6 +146,11 @@ namespace Utility
                 this.Add(t);
         }
 
+        /// <summary>
+        /// Removes the first occurrence of a specific object from the SkipList&ltT>.
+        /// </summary>
+        /// <param name="item">The object to be removed.</param>
+        /// <returns>true if item was successfully removed from the SkipList&ltT>; otherwise, false.</returns>
         public bool Remove(T item)
         {
             SkipNode node = this.Find(item), pre = node;
@@ -146,10 +172,23 @@ namespace Utility
             return true;
         }
 
+        /// <summary>
+        /// Determines whether the SkipList&ltT> contains a specific value.
+        /// </summary>
+        /// <param name="item">The object to locate in the SkipList&ltT>.</param>
+        /// <returns>true if <paramref name="item"/> is found in the SkipList&ltT>; false otherwise.</returns>
         public bool Contains(T item) { return this.Find(item) != null; }
 
+        /// <summary>
+        /// Removes all items from the SkipList&lt;T>.
+        /// </summary>
         public void Clear() { this.head = null; }
 
+        /// <summary>
+        /// Copies the elements of the SkipList&lt;T> to an Array, starting at a particular Array index.
+        /// </summary>
+        /// <param name="array">The one-dimensional Array that is the destination of the elements copied from the SkipList&lt;T>.</param>
+        /// <param name="arrayIndex">The zero-based index in <paramref name="array"/> at which copying begins.</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (array == null)
@@ -163,12 +202,26 @@ namespace Utility
                 array[arrayIndex++] = t;
         }
 
+        /// <summary>
+        /// Gets the number of elements contained in the SkipList&lt;T>.
+        /// </summary>
         public int Count { get; private set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the SkipList&lt;T> is read-only.
+        /// </summary>
         public bool IsReadOnly { get { return false; } }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>An IEnumerator&lt;T> that can be used to iterate through the collection.</returns>
         IEnumerator<T> IEnumerable<T>.GetEnumerator() { return new SLEnumerator(this); }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>An IEnumerator that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator() { return new SLEnumerator(this); }
 
         private SkipNode Find(T item)

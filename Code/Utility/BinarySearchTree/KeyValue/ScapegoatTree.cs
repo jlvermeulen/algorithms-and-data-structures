@@ -3,19 +3,33 @@ using System.Collections.Generic;
 
 namespace Utility
 {
+    /// <summary>
+    /// Represents a dictionary implemented by a balanced binary search tree.
+    /// </summary>
+    /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
     public class ScapegoatTree<TKey, TValue> : BinarySearchTree<TKey, TValue>
         where TKey : IComparable<TKey>
     {
         private float alpha;
         private int size, maxSize;
 
-        public ScapegoatTree(float alpha = 1f)
+        /// <summary>
+        /// Initializes a new instance of the ScapeGoatTree&lt;TKey, TValue> class that is empty.
+        /// </summary>
+        /// <param name="alpha">The weight factor that is used when balancing the tree.</param>
+        public ScapegoatTree(float alpha = 0.75f)
         {
             this.alpha = alpha;
             this.size = 0;
             this.maxSize = 0;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the ScapeGoatTree&lt;TKey, TValue> class that contains elements copied from the specified IDictionary&lt;TKey, TValue>.
+        /// </summary>
+        /// <param name="collection">The IDictionary&lt;TKey, TValue> whose elements are copied to the new ScapeGoatTree&lt;TKey, TValue>.</param>
+        /// <param name="alpha">The weight factor that is used when balancing the tree.</param>
         public ScapegoatTree(IDictionary<TKey, TValue> collection, float alpha = 0.75f)
             : base()
         {
@@ -24,12 +38,6 @@ namespace Utility
             this.maxSize = 0;
             foreach (KeyValuePair<TKey, TValue> t in collection)
                 this.Add(t.Key, t.Value);
-        }
-
-        public override void Add(TKey key, TValue value)
-        {
-            KeyValueTreeNode node = new KeyValueTreeNode(key, value);
-            this.Add(node);
         }
 
         protected override KeyValueTreeNode Add(KeyValueTreeNode node)
@@ -79,6 +87,11 @@ namespace Utility
             return node;
         }
 
+        /// <summary>
+        /// Removes the value with the specified key from the ScapeGoatTree&lt;TKey, TValue>.
+        /// </summary>
+        /// <param name="key">The key of the element to remove.</param>
+        /// <returns>true if the element is successfully found and removed; otherwise, false.</returns>
         public override bool Remove(TKey key)
         {
             int count = this.Count;

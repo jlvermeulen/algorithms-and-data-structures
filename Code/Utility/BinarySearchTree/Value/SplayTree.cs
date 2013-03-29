@@ -3,13 +3,28 @@ using System.Collections.Generic;
 
 namespace Utility
 {
+    /// <summary>
+    /// Represents a balanced binary search tree.
+    /// </summary>
+    /// <typeparam name="T">The type of the values in the tree.</typeparam>
     public class SplayTree<T> : BinarySearchTree<T>
         where T : IComparable<T>
     {
+        /// <summary>
+        /// Initializes a new instance of the SplayTree&lt;T> class that is empty.
+        /// </summary>
         public SplayTree() { }
 
+        /// <summary>
+        /// Initializes a new instance of the SplayTree&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+        /// </summary>
+        /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new SplayTree&lt;T>.</param>
         public SplayTree(IEnumerable<T> collection) : base(collection) { }
 
+        /// <summary>
+        /// Adds the specified value to the SplayTree&lt;T>.
+        /// </summary>
+        /// <param name="item">The value to add.</param>
         public override void Add(T item)
         {
             ValueTreeNode node = new ValueTreeNode(item);
@@ -17,6 +32,11 @@ namespace Utility
             this.Splay(node);
         }
 
+        /// <summary>
+        /// Removes the first occurrence of a specific object from the SplayTree&lt;T>.
+        /// </summary>
+        /// <param name="item">The object to be removed.</param>
+        /// <returns>true if item was successfully removed from the SplayTree&lt;T>; otherwise, false.</returns>
         public override bool Remove(T item)
         {
             ValueTreeNode current = (ValueTreeNode)this.root, previous = null;

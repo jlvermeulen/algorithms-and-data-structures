@@ -3,13 +3,28 @@ using System.Collections.Generic;
 
 namespace Utility
 {
+    /// <summary>
+    /// Represents a balanced binary search tree.
+    /// </summary>
+    /// <typeparam name="T">The type of the values in the tree.</typeparam>
     public class AVLTree<T> : BinarySearchTree<T>
         where T : IComparable<T>
     {
+        /// <summary>
+        /// Initializes a new instance of the AVLTree&lt;T> class that is empty.
+        /// </summary>
         public AVLTree() { }
 
+        /// <summary>
+        /// Initializes a new instance of the AVLTree&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+        /// </summary>
+        /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new AVLTree&lt;T>.</param>
         public AVLTree(IEnumerable<T> collection) : base(collection) { }
 
+        /// <summary>
+        /// Adds the specified value to the AVLTree&lt;T>.
+        /// </summary>
+        /// <param name="item">The value to add.</param>
         public override void Add(T item)
         {
             AVLNode node = new AVLNode(item);

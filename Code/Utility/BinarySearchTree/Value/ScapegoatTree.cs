@@ -3,19 +3,32 @@ using System.Collections.Generic;
 
 namespace Utility
 {
+    /// <summary>
+    /// Represents a balanced binary search tree.
+    /// </summary>
+    /// <typeparam name="T">The type of the values in the tree.</typeparam>
     public class ScapegoatTree<T> : BinarySearchTree<T>
         where T : IComparable<T>
     {
         private float alpha;
         private int size, maxSize;
 
-        public ScapegoatTree(float alpha = 1f)
+        /// <summary>
+        /// Initializes a new instance of the ScapeGoatTree&lt;T> class that is empty.
+        /// </summary>
+        /// <param name="alpha">The weight factor that is used when balancing the tree.</param>
+        public ScapegoatTree(float alpha = 0.75f)
         {
             this.alpha = alpha;
             this.size = 0;
             this.maxSize = 0;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the ScapeGoatTree&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+        /// </summary>
+        /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new ScapeGoatTree&lt;T>.</param>
+        /// <param name="alpha">The weight factor that is used when balancing the tree.</param>
         public ScapegoatTree(IEnumerable<T> collection, float alpha = 0.75f)
             : base()
         {
@@ -24,12 +37,6 @@ namespace Utility
             this.maxSize = 0;
             foreach (T t in collection)
                 this.Add(t);
-        }
-
-        public override void Add(T item)
-        {
-            ValueTreeNode node = new ValueTreeNode(item);
-            this.Add(node);
         }
 
         protected override ValueTreeNode Add(ValueTreeNode node)
@@ -82,6 +89,11 @@ namespace Utility
             return node;
         }
 
+        /// <summary>
+        /// Removes the specified value from the ScapeGoatTree&lt;T>.
+        /// </summary>
+        /// <param name="item">The value to remove.</param>
+        /// <returns>true if item was successfully removed from the ScapeGoatTree&lt;T>; otherwise, false.</returns>
         public override bool Remove(T item)
         {
             int count = this.Count;

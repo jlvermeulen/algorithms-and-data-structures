@@ -112,7 +112,7 @@
     <Compile Include="BinarySearchTree\KeyValue\SplayTree.cs" />
     <Compile Include="BinarySearchTree\Value\ScapegoatTree.cs" />
     <Compile Include="BinarySearchTree\Value\SplayTree.cs" />
-    <Compile Include="Graph\Interfaces.cs" />
+    <Compile Include="Graph\GraphInterfaces.cs" />
     <Compile Include="BinarySearchTree\Value\RedBlackTree.cs" />
     <Compile Include="PriorityQueue\DHeap.cs" />
     <Compile Include="ProbabilisticStructures\SkipList.cs" />

@@ -4,13 +4,30 @@ using System.Collections.Generic;
 
 namespace Utility
 {
+    /// <summary>
+    /// Represents a dictionary implemented by a balanced binary search tree.
+    /// </summary>
+    /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
     public class RedBlackTree<TKey, TValue> : BinarySearchTree<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>
         where TKey : IComparable<TKey>
     {
+        /// <summary>
+        /// Initializes a new instance of the RedBlackTree&lt;TKey, TValue> class that is empty.
+        /// </summary>
         public RedBlackTree() { }
 
+        /// <summary>
+        /// Initializes a new instance of the RedBlackTree&lt;TKey, TValue> class that contains elements copied from the specified IDictionary&lt;TKey, TValue>.
+        /// </summary>
+        /// <param name="collection">The IDictionary&lt;TKey, TValue> whose elements are copied to the new RedBlackTree&lt;TKey, TValue>.</param>
         public RedBlackTree(IDictionary<TKey, TValue> collection) : base(collection) { }
 
+        /// <summary>
+        /// Adds the specified key and value to the RedBlackTree&lt;TKey, TValue>.
+        /// </summary>
+        /// <param name="key">The key of the element to add.</param>
+        /// <param name="value">The value of the element to add.</param>
         public override void Add(TKey key, TValue value)
         {
             RBNode node = new RBNode(key, value);
@@ -52,6 +69,11 @@ namespace Utility
             this.InsertRebalance(node);
         }
 
+        /// <summary>
+        /// Removes the value with the specified key from the RedBlackTree&lt;TKey, TValue>.
+        /// </summary>
+        /// <param name="key">The key of the element to remove.</param>
+        /// <returns>true if the element is successfully found and removed; otherwise, false.</returns>
         public override bool Remove(TKey key)
         {
             RBNode current = (RBNode)this.root;
@@ -309,8 +331,16 @@ namespace Utility
             return node;
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>An IEnumerator&lt;T> that can be used to iterate through the collection.</returns>
         IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() { return new RBEnumerator(this); }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>An IEnumerator that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator() { return new RBEnumerator(this); }
 
         protected class RBNode : KeyValueTreeNode

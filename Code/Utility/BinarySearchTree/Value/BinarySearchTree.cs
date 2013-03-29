@@ -4,22 +4,55 @@ using System.Collections.Generic;
 
 namespace Utility
 {
+    /// <summary>
+    /// Represents an unbalanced binary search tree.
+    /// </summary>
+    /// <typeparam name="T">The type of the values in the tree.</typeparam>
     public class BinarySearchTree<T> : BinaryTree, ICollection<T>
         where T : IComparable<T>
     {
+        /// <summary>
+        /// Initializes a new instance of the BinarySearchTree&lt;T> class that is empty.
+        /// </summary>
         public BinarySearchTree() { }
 
+        /// <summary>
+        /// Initializes a new instance of the BinarySearchTree&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+        /// </summary>
+        /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new BinarySearchTree&lt;T>.</param>
         public BinarySearchTree(IEnumerable<T> collection)
         {
             foreach (T t in collection)
                 this.Add(t);
         }
 
+        /// <summary>
+        /// Adds the specified value to the BinarySearchTree&lt;T>.
+        /// </summary>
+        /// <param name="item">The value to add.</param>
         public virtual void Add(T item)
         {
             this.Add(new ValueTreeNode(item));
         }
 
+        /// <summary>
+        /// Adds the elements of the specified IEnumerable&lt;T> to the BinarySearchTree&lt;T>.
+        /// </summary>
+        /// <param name="collection">The IEnumerable&lt;T> whose values should be added to the BinarySearchTree&lt;T>.</param>
+        public virtual void AddRange(IEnumerable<T> collection)
+        {
+            if (collection == null)
+                throw new ArgumentNullException("collection");
+
+            foreach (T t in collection)
+                this.Add(t);
+        }
+
+        /// <summary>
+        /// Removes the first occurrence of a specific object from the BinarySearchTree&lt;T>.
+        /// </summary>
+        /// <param name="item">The object to be removed.</param>
+        /// <returns>true if item was successfully removed from the BinarySearchTree&lt;T>; otherwise, false.</returns>
         public virtual bool Remove(T item)
         {
             ValueTreeNode current = this.Find(item);
@@ -52,8 +85,16 @@ namespace Utility
             return true;
         }
 
+        /// <summary>
+        /// Determines whether the BinarySearchTree&lt;T> contains a specific value.
+        /// </summary>
         public virtual bool Contains(T item) { return this.Find(item) != null; }
 
+        /// <summary>
+        /// Copies the entire BinarySearchTree&lt;T> to a compatible one-dimensional array, starting at the specified index of the target array.
+        /// </summary>
+        /// <param name="array">The one-dimensional Array that is the destination of the elements copied from BinarySearchTree&lt;T>.</param>
+        /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public virtual void CopyTo(T[] array, int arrayIndex)
         {
             if (array == null)
@@ -67,8 +108,16 @@ namespace Utility
                 array[arrayIndex++] = t;
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>An IEnumerator&lt;T> that can be used to iterate through the collection.</returns>
         IEnumerator<T> IEnumerable<T>.GetEnumerator() { return new BSTEnumerator(this); }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>An IEnumerator that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator() { return new BSTEnumerator(this); }
 
         protected virtual ValueTreeNode Add(ValueTreeNode node)
@@ -201,14 +250,26 @@ namespace Utility
         }
     }
 
+    /// <summary>
+    /// Represents the abstract binary tree that all other trees derive from.
+    /// </summary>
     public abstract class BinaryTree
     {
         protected TreeNode root;
 
+        /// <summary>
+        /// Gets the number of elements contained in the BinaryTree.
+        /// </summary>
         public virtual int Count { get; protected set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the BinaryTree is read-only.
+        /// </summary>
         public virtual bool IsReadOnly { get { return false; } }
 
+        /// <summary>
+        /// Removes all items from the BinaryTree.
+        /// </summary>
         public virtual void Clear() { this.root = null; }
 
         protected virtual void Delete(TreeNode current)

@@ -3,13 +3,30 @@ using System.Collections.Generic;
 
 namespace Utility
 {
+    /// <summary>
+    /// Represents a dictionary implemented by a balanced binary search tree.
+    /// </summary>
+    /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+    /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
     public class AVLTree<TKey, TValue> : BinarySearchTree<TKey, TValue>
         where TKey : IComparable<TKey>
     {
+        /// <summary>
+        /// Initializes a new instance of the AVLTree&lt;TKey, TValue> class that is empty.
+        /// </summary>
         public AVLTree() { }
 
+        /// <summary>
+        /// Initializes a new instance of the AVLTree&lt;TKey, TValue> class that contains elements copied from the specified IDictionary&lt;TKey, TValue>.
+        /// </summary>
+        /// <param name="collection">The IDictionary&lt;TKey, TValue> whose elements are copied to the new AVLTree&lt;TKey, TValue>.</param>
         public AVLTree(IDictionary<TKey, TValue> collection) : base(collection) { }
 
+        /// <summary>
+        /// Adds the specified key and value to the AVLTree&lt;TKey, TValue>.
+        /// </summary>
+        /// <param name="key">The key of the element to add.</param>
+        /// <param name="value">The value of the element to add.</param>
         public override void Add(TKey key, TValue value)
         {
             AVLNode node = new AVLNode(key, value);

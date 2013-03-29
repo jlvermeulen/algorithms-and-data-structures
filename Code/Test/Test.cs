@@ -44,7 +44,7 @@ class Test
 
         UnzipTestData(test, testDir);
         int[] input = LoadTestData(test);
-
+        
         ReferenceTest(input, test, true);
 
         //RunTest(input, test, true, new SortMethod(Sort<int>.BinaryInsertionSort), "Binary Insertion Sort");
@@ -69,6 +69,9 @@ class Test
 
         File.Delete("TestData\\" + test + ".in");
         File.Delete("TestData\\" + test + ".out");
+
+        RedBlackTree<int, int> rbt = new RedBlackTree<int, int>();
+        
 
         Console.ReadLine();
     }
