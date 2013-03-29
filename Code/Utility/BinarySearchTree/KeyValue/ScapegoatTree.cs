@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Utility;
 
 namespace Utility
 {
-    public class ScapegoatTree<T> : BinarySearchTree<T>
-        where T : IComparable<T>
+    public class ScapegoatTree<TKey, TValue> : BinarySearchTree<TKey, TValue>
+        where TKey : IComparable<TKey>
     {
         private float alpha;
         private int size, maxSize;
@@ -17,23 +16,23 @@ namespace Utility
             this.maxSize = 0;
         }
 
-        public ScapegoatTree(IEnumerable<T> collection, float alpha = 0.75f)
+        public ScapegoatTree(IDictionary<TKey, TValue> collection, float alpha = 0.75f)
             : base()
         {
             this.alpha = alpha;
             this.size = 0;
             this.maxSize = 0;
-            foreach (T t in collection)
-                this.Add(t);
+            foreach (KeyValuePair<TKey, TValue> t in collection)
+                this.Add(t.Key, t.Value);
         }
 
-        public override void Add(T item)
+        public override void Add(TKey key, TValue value)
         {
-            TreeNode node = new TreeNode(item);
+            KeyValueTreeNode node = new KeyValueTreeNode(key, value);
             this.Add(node);
         }
 
-        protected override TreeNode Add(TreeNode node)
+        protected override KeyValueTreeNode Add(KeyValueTreeNode node)
         {
             int depth = 0;
             this.Count++;
@@ -43,11 +42,11 @@ namespace Utility
                 this.size++;
                 return node;
             }
-            TreeNode current = this.root;
+            KeyValueTreeNode current = (KeyValueTreeNode)this.root;
             while (current != null)
             {
                 depth++;
-                if (node.Value.CompareTo(current.Value) < 0)
+                if (node.Key.CompareTo(current.Key) < 0)
                 {
                     if (current.Left != null)
                         current = current.Left;
@@ -57,7 +56,7 @@ namespace Utility
                         break;
                     }
                 }
-                else if (node.Value.CompareTo(current.Value) > 0)
+                else if (node.Key.CompareTo(current.Key) > 0)
                 {
                     if (current.Right != null)
                         current = current.Right;
@@ -68,10 +67,7 @@ namespace Utility
                     }
                 }
                 else
-                {
-                    current.Count++;
-                    return current;
-                }
+                    return null;
             }
             this.size++;
             this.maxSize = Math.Max(size, maxSize);
@@ -83,23 +79,23 @@ namespace Utility
             return node;
         }
 
-        public override bool Remove(T item)
+        public override bool Remove(TKey key)
         {
             int count = this.Count;
-            bool removed = base.Remove(item);
+            bool removed = base.Remove(key);
             if (count != this.Count)
             {
                 this.size--;
                 if (this.size <= this.maxSize / 2)
                 {
-                    this.Flatten(this.root, this.size);
+                    this.Flatten((KeyValueTreeNode)this.root, this.size);
                     this.maxSize = this.size;
                 }
             }
             return removed;
         }
 
-        private void Rebalance(TreeNode node)
+        private void Rebalance(KeyValueTreeNode node)
         {
             int size = 1, leftSize, rightSize;
             bool leftC;
@@ -127,15 +123,15 @@ namespace Utility
             }
         }
 
-        private void Flatten(TreeNode node, int size)
+        private void Flatten(KeyValueTreeNode node, int size)
         {
-            TreeNode[] nodes = new TreeNode[size];
+            KeyValueTreeNode[] nodes = new KeyValueTreeNode[size];
             int index = 0;
             this.Flatten(node, nodes, ref index);
             this.InsertMedians(nodes, node.Parent);
         }
 
-        private void Flatten(TreeNode node, TreeNode[] array, ref int index)
+        private void Flatten(KeyValueTreeNode node, KeyValueTreeNode[] array, ref int index)
         {
             if (node == null)
                 return;
@@ -144,15 +140,14 @@ namespace Utility
             this.Flatten(node.Right, array, ref index);
         }
 
-        private void InsertMedians(TreeNode[] array, TreeNode root)
+        private void InsertMedians(KeyValueTreeNode[] array, KeyValueTreeNode root)
         {
             int median = array.Length / 2;
-            TreeNode medianNode = new TreeNode(array[median].Value);
-            medianNode.Count = array[median].Count;
+            KeyValueTreeNode medianNode = new KeyValueTreeNode(array[median].Key, array[median].Value);
             medianNode.Parent = root;
             if (root == null)
                 this.root = medianNode;
-            else if (medianNode.Value.CompareTo(root.Value) < 0)
+            else if (medianNode.Key.CompareTo(root.Key) < 0)
                 root.Left = medianNode;
             else
                 root.Right = medianNode;
@@ -160,19 +155,18 @@ namespace Utility
             this.InsertMedians(array, medianNode, median + 1, array.Length, false);
         }
 
-        private void InsertMedians(TreeNode[] array, TreeNode root, int start, int end, bool left)
+        private void InsertMedians(KeyValueTreeNode[] array, KeyValueTreeNode root, int start, int end, bool left)
         {
             if (end == start)
                 return;
             int median = (end - start) / 2 + start;
-            TreeNode  node = new TreeNode(array[median].Value);
-            node.Count = array[median].Count;
+            KeyValueTreeNode node = new KeyValueTreeNode(array[median].Key, array[median].Value);
             this.AddAt(node, root, left);
             this.InsertMedians(array, node, start, median, true);
             this.InsertMedians(array, node, median + 1, end, false);
         }
 
-        private void AddAt(TreeNode node, TreeNode root, bool left)
+        private void AddAt(KeyValueTreeNode node, KeyValueTreeNode root, bool left)
         {
             if (left)
                 root.Left = node;
@@ -181,7 +175,7 @@ namespace Utility
             node.Parent = root;
         }
 
-        private int Size(TreeNode node)
+        private int Size(KeyValueTreeNode node)
         {
             if (node == null)
                 return 0;

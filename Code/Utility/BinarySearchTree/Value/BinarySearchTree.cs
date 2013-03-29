@@ -4,11 +4,9 @@ using System.Collections.Generic;
 
 namespace Utility
 {
-    public class BinarySearchTree<T> : ICollection<T>
+    public class BinarySearchTree<T> : BinaryTree, ICollection<T>
         where T : IComparable<T>
     {
-        protected TreeNode root;
-
         public BinarySearchTree() { }
 
         public BinarySearchTree(IEnumerable<T> collection)
@@ -19,22 +17,12 @@ namespace Utility
 
         public virtual void Add(T item)
         {
-            this.Add(new TreeNode(item));
+            this.Add(new ValueTreeNode(item));
         }
 
         public virtual bool Remove(T item)
         {
-            TreeNode current = this.root;
-            while (current != null)
-            {
-                int c = item.CompareTo(current.Value);
-                if (c < 0)
-                    current = current.Left;
-                else if (c > 0)
-                    current = current.Right;
-                else
-                    break;
-            }
+            ValueTreeNode current = this.Find(item);
 
             if (current == null)
                 return false;
@@ -50,9 +38,9 @@ namespace Utility
                 this.Delete(current);
             else
             {
-                TreeNode replace = this.Predecessor(current);
+                ValueTreeNode replace = (ValueTreeNode)this.Predecessor(current);
                 if (replace == null)
-                    replace = this.Successor(current);
+                    replace = (ValueTreeNode)this.Successor(current);
 
                 current.Value = replace.Value;
                 current.Count = replace.Count;
@@ -64,15 +52,7 @@ namespace Utility
             return true;
         }
 
-        public virtual bool Contains(T item)
-        {
-            return this.Find(item) != null;
-        }
-
-        public virtual void Clear()
-        {
-            this.root = null;
-        }
+        public virtual bool Contains(T item) { return this.Find(item) != null; }
 
         public virtual void CopyTo(T[] array, int arrayIndex)
         {
@@ -81,7 +61,7 @@ namespace Utility
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException("arrayIndex");
             if (array.Length - arrayIndex < this.Count)
-                throw new ArgumentException("The number of elements in the AVLTree is greater than the available space from arrayIndex to the end of the destination array.");
+                throw new ArgumentException("The number of elements in the BinarySearchTree is greater than the available space from arrayIndex to the end of the destination array.");
 
             foreach (T t in this)
                 array[arrayIndex++] = t;
@@ -91,31 +71,7 @@ namespace Utility
 
         IEnumerator IEnumerable.GetEnumerator() { return new BSTEnumerator(this); }
 
-        public virtual int Count { get; protected set; }
-
-        public virtual bool IsReadOnly { get { return false; } }
-
-        public virtual bool Successor(T item, out T result)
-        {
-            result = default(T);
-            TreeNode successor = this.Successor(this.Find(item));
-            if (successor == null)
-                return false;
-            result = successor.Value;
-            return true;
-        }
-
-        public virtual bool Predecessor(T item, out T result)
-        {
-            result = default(T);
-            TreeNode predecessor = this.Predecessor(this.Find(item));
-            if (predecessor == null)
-                return false;
-            result = predecessor.Value;
-            return true;
-        }
-
-        protected virtual TreeNode Add(TreeNode node)
+        protected virtual ValueTreeNode Add(ValueTreeNode node)
         {
             this.Count++;
             if (this.root == null)
@@ -123,7 +79,7 @@ namespace Utility
                 this.root = node;
                 return node;
             }
-            TreeNode current = this.root;
+            ValueTreeNode current = (ValueTreeNode)this.root;
             while (current != null)
             {
                 int c = node.Value.CompareTo(current.Value);
@@ -157,9 +113,9 @@ namespace Utility
             return node;
         }
 
-        protected virtual TreeNode Find(T item)
+        protected virtual ValueTreeNode Find(T item)
         {
-            TreeNode current = this.root;
+            ValueTreeNode current = (ValueTreeNode)this.root;
             while (current != null)
             {
                 int c = item.CompareTo(current.Value);
@@ -173,6 +129,87 @@ namespace Utility
 
             return current;
         }
+
+        protected class ValueTreeNode : TreeNode
+        {
+            public ValueTreeNode(T value)
+            {
+                this.Value = value;
+                this.Count = 1;
+            }
+
+            public int Count { get; set; }
+            public T Value { get; set; }
+            public new ValueTreeNode Parent { get { return (ValueTreeNode)base.Parent; } set { base.Parent = value; } }
+            public new ValueTreeNode Left { get { return (ValueTreeNode)base.Left; } set { base.Left = value; } }
+            public new ValueTreeNode Right { get { return (ValueTreeNode)base.Right; } set { base.Right = value; } }
+        }
+
+        private class BSTEnumerator : IEnumerator<T>
+        {
+            private BinarySearchTree<T> tree;
+            private ValueTreeNode currentNode;
+            private int currentCount;
+
+            public BSTEnumerator(BinarySearchTree<T> tree)
+            {
+                this.tree = tree;
+                this.currentNode = null;
+                this.currentCount = 1;
+            }
+
+            public bool MoveNext()
+            {
+                ValueTreeNode successor;
+                if (tree.root == null)
+                    return false;
+                if (currentNode == null)
+                {
+                    currentNode = (ValueTreeNode)tree.root;
+                    while (currentNode.Left != null)
+                        currentNode = (ValueTreeNode)currentNode.Left;
+                    return true;
+                }
+
+                if (currentNode.Count > currentCount)
+                {
+                    currentCount++;
+                    return true;
+                }
+
+                if ((successor = (ValueTreeNode)tree.Successor(currentNode)) != null)
+                {
+                    currentNode = successor;
+                    currentCount = 1;
+                    return true;
+                }
+
+                return false;
+            }
+
+            public void Reset()
+            {
+                this.currentNode = null;
+                this.currentCount = 1;
+            }
+
+            void IDisposable.Dispose() { }
+
+            public T Current { get { return currentNode.Value; } }
+
+            object IEnumerator.Current { get { return currentNode.Value; } }
+        }
+    }
+
+    public abstract class BinaryTree
+    {
+        protected TreeNode root;
+
+        public virtual int Count { get; protected set; }
+
+        public virtual bool IsReadOnly { get { return false; } }
+
+        public virtual void Clear() { this.root = null; }
 
         protected virtual void Delete(TreeNode current)
         {
@@ -270,72 +307,9 @@ namespace Utility
 
         protected class TreeNode
         {
-            public TreeNode(T value)
-            {
-                this.Value = value;
-                this.Count = 1;
-            }
-
-            public int Count { get; set; }
-            public T Value { get; set; }
             public TreeNode Parent { get; set; }
             public TreeNode Left { get; set; }
             public TreeNode Right { get; set; }
-        }
-
-        private class BSTEnumerator : IEnumerator<T>
-        {
-            private BinarySearchTree<T> tree;
-            private TreeNode currentNode;
-            private int currentCount;
-
-            public BSTEnumerator(BinarySearchTree<T> tree)
-            {
-                this.tree = tree;
-                this.currentNode = null;
-                this.currentCount = 1;
-            }
-
-            public bool MoveNext()
-            {
-                TreeNode successor;
-                if (tree.root == null)
-                    return false;
-                if (currentNode == null)
-                {
-                    currentNode = tree.root;
-                    while (currentNode.Left != null)
-                        currentNode = currentNode.Left;
-                    return true;
-                }
-
-                if (currentNode.Count > currentCount)
-                {
-                    currentCount++;
-                    return true;
-                }
-
-                if ((successor = tree.Successor(currentNode)) != null)
-                {
-                    currentNode = successor;
-                    currentCount = 1;
-                    return true;
-                }
-
-                return false;
-            }
-
-            public void Reset()
-            {
-                this.currentNode = null;
-                this.currentCount = 1;
-            }
-
-            void IDisposable.Dispose() { }
-
-            public T Current { get { return currentNode.Value; } }
-
-            object IEnumerator.Current { get { return currentNode.Value; } }
         }
     }
 }

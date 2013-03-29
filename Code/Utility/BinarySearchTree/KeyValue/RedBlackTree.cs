@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Utility;
 
 namespace Utility
 {
-    public class RedBlackTree<T> : BinarySearchTree<T>, IEnumerable<T>
-        where T : IComparable<T>
+    public class RedBlackTree<TKey, TValue> : BinarySearchTree<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>
+        where TKey : IComparable<TKey>
     {
         public RedBlackTree() { }
 
-        public RedBlackTree(IEnumerable<T> collection) : base(collection) { }
+        public RedBlackTree(IDictionary<TKey, TValue> collection) : base(collection) { }
 
-        public override void Add(T element)
+        public override void Add(TKey key, TValue value)
         {
-            RBNode node = new RBNode(element);
+            RBNode node = new RBNode(key, value);
             this.Count++;
             if (this.root == null)
             {
@@ -25,7 +24,7 @@ namespace Utility
             RBNode current = (RBNode)this.root;
             while (!current.IsLeaf)
             {
-                int c = node.Value.CompareTo(current.Value);
+                int c = node.Key.CompareTo(current.Key);
                 if (c < 0)
                 {
                     if (!current.Left.IsLeaf)
@@ -47,21 +46,18 @@ namespace Utility
                     }
                 }
                 else
-                {
-                    current.Count++;
-                    return;
-                }
+                    throw new ArgumentException("An item with the same key already exists in the collection.");
             }
             node.Parent = current;
             this.InsertRebalance(node);
         }
 
-        public override bool Remove(T item)
+        public override bool Remove(TKey key)
         {
             RBNode current = (RBNode)this.root;
             while (!current.IsLeaf)
             {
-                int c = item.CompareTo(current.Value);
+                int c = key.CompareTo(current.Key);
                 if (c < 0)
                     current = current.Left;
                 else if (c > 0)
@@ -73,13 +69,6 @@ namespace Utility
             if (current.IsLeaf)
                 return false;
 
-            if (current.Count > 1)
-            {
-                current.Count--;
-                this.Count--;
-                return true;
-            }
-
             if (current.Left.IsLeaf || current.Right.IsLeaf)
                 this.Delete(current);
             else
@@ -89,8 +78,6 @@ namespace Utility
                     replace = (RBNode)this.Successor(current);
 
                 current.Value = replace.Value;
-                current.Count = replace.Count;
-
                 this.Delete(replace);
             }
 
@@ -98,9 +85,9 @@ namespace Utility
             return true;
         }
 
-        protected override TreeNode Find(T item)
+        protected override KeyValueTreeNode Find(TKey key)
         {
-            RBNode node = (RBNode)base.Find(item);
+            RBNode node = (RBNode)base.Find(key);
             if (node.IsLeaf)
                 return null;
             return node;
@@ -322,20 +309,20 @@ namespace Utility
             return node;
         }
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator() { return new RBEnumerator(this); }
+        IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() { return new RBEnumerator(this); }
 
         IEnumerator IEnumerable.GetEnumerator() { return new RBEnumerator(this); }
 
-        protected class RBNode : TreeNode
+        protected class RBNode : KeyValueTreeNode
         {
             public RBNode()
-                : base(default(T))
+                : base(default(TKey), default(TValue))
             {
                 this.Black = true;
             }
 
-            public RBNode(T value)
-                : base(value)
+            public RBNode(TKey key, TValue value)
+                : base(key, value)
             {
                 this.Black = false;
                 this.Left = new RBNode();
@@ -387,22 +374,20 @@ namespace Utility
             public bool IsLeaf { get { return this.Left == null; } }
         }
 
-        private class RBEnumerator : IEnumerator<T>
+        private class RBEnumerator : IEnumerator<KeyValuePair<TKey, TValue>>
         {
-            private RedBlackTree<T> tree;
+            private RedBlackTree<TKey, TValue> tree;
             private RBNode currentNode;
-            private int currentCount;
 
-            public RBEnumerator(RedBlackTree<T> tree)
+            public RBEnumerator(RedBlackTree<TKey, TValue> tree)
             {
                 this.tree = tree;
                 this.currentNode = null;
-                this.currentCount = 1;
             }
 
             public bool MoveNext()
             {
-                TreeNode successor;
+                RBNode successor;
                 if (tree.root == null)
                     return false;
                 if (currentNode == null)
@@ -413,33 +398,22 @@ namespace Utility
                     return true;
                 }
 
-                if (currentNode.Count > currentCount)
+                if ((successor = (RBNode)tree.Successor(currentNode)) != null)
                 {
-                    currentCount++;
-                    return true;
-                }
-
-                if ((successor = tree.Successor(currentNode)) != null)
-                {
-                    currentNode = (RBNode)successor;
-                    currentCount = 1;
+                    currentNode = successor;
                     return true;
                 }
 
                 return false;
             }
 
-            public void Reset()
-            {
-                this.currentNode = null;
-                this.currentCount = 1;
-            }
+            public void Reset() { this.currentNode = null; }
 
             void IDisposable.Dispose() { }
 
-            public T Current { get { return currentNode.Value; } }
+            public KeyValuePair<TKey, TValue> Current { get { return currentNode.KeyValuePair; } }
 
-            object IEnumerator.Current { get { return currentNode.Value; } }
+            object IEnumerator.Current { get { return currentNode.KeyValuePair; } }
         }
     }
 }

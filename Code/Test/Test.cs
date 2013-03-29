@@ -38,7 +38,7 @@ class Test
         //Console.BufferHeight = 11000;
         //Console.BufferWidth = 100;
 
-        string testSize = "Large";
+        string testSize = "Medium";
         string testDir = "Random\\";
         string test = testDir + testSize;
 
@@ -65,7 +65,7 @@ class Test
         //RunTest(input, test, true, new SortMethod(Sort<int>.StrandSort), "Strand Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.Timsort), "Timsort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
+        RunTest(input, test, true, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
 
         File.Delete("TestData\\" + test + ".in");
         File.Delete("TestData\\" + test + ".out");
