@@ -114,6 +114,8 @@
     <Compile Include="BinarySearchTree\Value\SplayTree.cs" />
     <Compile Include="Graph\GraphInterfaces.cs" />
     <Compile Include="BinarySearchTree\Value\RedBlackTree.cs" />
+    <Compile Include="Graph\MaxFlowMinCut.cs" />
+    <Compile Include="Graph\MinimumSpanningTree.cs" />
     <Compile Include="PriorityQueue\DHeap.cs" />
     <Compile Include="ProbabilisticStructures\SkipList.cs" />
     <Compile Include="Sort\BinaryInsertionSort.cs" />

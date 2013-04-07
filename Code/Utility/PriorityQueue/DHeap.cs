@@ -166,7 +166,7 @@ namespace Utility
         }
     }
 
-    abstract class DHeap<T> : ICollection<T>
+    public abstract class DHeap<T> : ICollection<T>
         where T : IComparable<T>
     {
         protected List<T> heap = new List<T>();

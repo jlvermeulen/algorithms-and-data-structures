@@ -6,8 +6,13 @@ Currently has:
 
 # ALGORITHMS
 
+## Graphs
+- Minimum cut — calculates the lightest set of edges that would divide the graph in two components should they be removed
+- Minimum spanning tree — calculates the lightest tree that connects all the node in the graph using Kruskal's algorithm
+- Maximum flow — calculates the maximum amount of flow that can move from the source to the sink
+
 ## Sorting
-- Binary Insertion sort — performs a binary search on the sorted part to determine where to place the next element
+- Binary insertion sort — performs a binary search on the sorted part to determine where to place the next element
 - Bubble sort — optimised by keeping track of the place of the last swap, everything after that is sorted
 - Cocktail sort — one pass of Bubble sort left-to-right, followed by a pass right-to-left
 - Comb sort — repeated Bubble sort with decreasing gaps, calls to Bubble sort when the gap reaches 1 for final sorting
