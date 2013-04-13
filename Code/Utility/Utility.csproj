@@ -116,8 +116,14 @@
     <Compile Include="BinarySearchTree\Value\RedBlackTree.cs" />
     <Compile Include="Graph\MaxFlowMinCut.cs" />
     <Compile Include="Graph\MinimumSpanningTree.cs" />
+    <Compile Include="Graph\ShortestPath.cs" />
     <Compile Include="PriorityQueue\DHeap.cs" />
     <Compile Include="ProbabilisticStructures\SkipList.cs" />
+    <Compile Include="Search\BinaryInterpolationSearch.cs" />
+    <Compile Include="Search\BinarySearch.cs" />
+    <Compile Include="Search\Interpolator.cs" />
+    <Compile Include="Search\InterpolationSearch.cs" />
+    <Compile Include="Search\RandomSearch.cs" />
     <Compile Include="Sort\BinaryInsertionSort.cs" />
     <Compile Include="Sort\BubbleSort.cs" />
     <Compile Include="Sort\CocktailSort.cs" />

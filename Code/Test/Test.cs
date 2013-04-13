@@ -38,12 +38,12 @@ class Test
         //Console.BufferHeight = 11000;
         //Console.BufferWidth = 100;
 
-        //string testSize = "Medium";
-        //string testDir = "Random\\";
-        //string test = testDir + testSize;
+        string testSize = "Large";
+        string testDir = "Sorted\\";
+        string test = testDir + testSize;
 
-        //UnzipTestData(test, testDir);
-        //int[] input = LoadTestData(test);
+        UnzipTestData(test, testDir);
+        int[] input = LoadTestData(test);
         
         //ReferenceTest(input, test, true);
 
@@ -56,7 +56,7 @@ class Test
         //RunTest(input, test, true, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.Heapsort), "Heapsort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
-        //RunTest(input, test, false, new SortMethod(Sort<int>.JSort), "JSort");
+        //RunTest(input, test, true, new SortMethod(Sort<int>.JSort), "JSort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.OddEvenSort), "Odd-Even Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.PatienceSort), "Patience Sort");
@@ -71,30 +71,94 @@ class Test
         //File.Delete("TestData\\" + test + ".out");
 
         DateTime start, end;
-        WeightGraph wGraph = new WeightGraph();
-        FlowGraph fGraph = new FlowGraph();
-        List<IFlowGraphEdge> cut;
-        List<IWeightedGraphEdge> mst;
+        //WeightGraph wGraph = new WeightGraph();
+        //FlowGraph fGraph = new FlowGraph();
+        //List<IFlowGraphEdge> cut;
+        //List<IWeightedGraphEdge> mst;
 
+        //start = DateTime.Now;
+        //Console.WriteLine(Graph.MaxFlow(fGraph, 0, 15));
+        //end = DateTime.Now;
+        //Console.WriteLine("Calculated max flow in {0} seconds.", (end - start).TotalSeconds);
+
+        //start = DateTime.Now;
+        //cut = Graph.MinCut(fGraph, 0, 15);
+        //end = DateTime.Now;
+        //foreach (IFlowGraphEdge e in cut)
+        //    Console.WriteLine(e.From + " " + e.To);
+        //Console.WriteLine("Calculated min cut in {0} seconds.", (end - start).TotalSeconds);
+
+        //Console.WriteLine();
+        //start = DateTime.Now;
+        //mst = Graph.MinimumSpanningTree(wGraph);
+        //end = DateTime.Now;
+        //foreach (IWeightedGraphEdge e in mst)
+        //    Console.WriteLine(((char)e.From).ToString() + ((char)e.To).ToString());
+        //Console.WriteLine("Calculated MST in {0} seconds.", (end - start).TotalSeconds);
+
+        Interpolation<int> interpolate = new Interpolation<int>((x, y, z) => { return (double)(x - y) / (z - y); });
+        Interpolator<int> interpolator = Interpolator<int>.Create(interpolate);
+
+        Console.WriteLine("Using C# Search.");
+        int pos;
         start = DateTime.Now;
-        Console.WriteLine(Graph.MaxFlow(fGraph, 0, 15));
+        for (int i = 0; i < input.Length; i++)
+        {
+            pos = Array.BinarySearch<int>(input, input[i]);
+            if (input[pos] != input[i])
+                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        }
         end = DateTime.Now;
-        Console.WriteLine("Calculated max flow in {0} seconds.", (end - start).TotalSeconds);
-
-        start = DateTime.Now;
-        cut = Graph.MinCut(fGraph, 0, 15);
-        end = DateTime.Now;
-        foreach (IFlowGraphEdge e in cut)
-            Console.WriteLine(e.From + " " + e.To);
-        Console.WriteLine("Calculated min cut in {0} seconds.", (end - start).TotalSeconds);
-
+        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
         Console.WriteLine();
+
+        Console.WriteLine("Using Binary Search.");
         start = DateTime.Now;
-        mst = Graph.MinimumSpanningTree(wGraph);
+        for (int i = 0; i < input.Length; i++)
+        {
+            pos = Search<int>.BinarySearch(input, input[i]);
+            if (input[pos] != input[i])
+                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        }
         end = DateTime.Now;
-        foreach (IWeightedGraphEdge e in mst)
-            Console.WriteLine(((char)e.From).ToString() + ((char)e.To).ToString());
-        Console.WriteLine("Calculated MST in {0} seconds.", (end - start).TotalSeconds);
+        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        Console.WriteLine();
+
+        Console.WriteLine("Using Interpolation Search.");
+        start = DateTime.Now;
+        for (int i = 0; i < input.Length; i++)
+        {
+            pos = Search<int>.InterpolationSearch(input, input[i], interpolate);
+            if (input[pos] != input[i])
+                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        }
+        end = DateTime.Now;
+        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        Console.WriteLine();
+
+        Console.WriteLine("Using Random Search.");
+        start = DateTime.Now;
+        for (int i = 0; i < input.Length; i++)
+        {
+            pos = Search<int>.RandomSearch(input, input[i]);
+            if (input[pos] != input[i])
+                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        }
+        end = DateTime.Now;
+        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        Console.WriteLine();
+
+        Console.WriteLine("Using Binary Interpolation Search.");
+        start = DateTime.Now;
+        for (int i = 0; i < input.Length; i++)
+        {
+            pos = Search<int>.BinaryInterpolationSearch(input, input[i], interpolate);
+            if (input[pos] != input[i])
+                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        }
+        end = DateTime.Now;
+        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        Console.WriteLine();
 
         Console.ReadLine();
     }
