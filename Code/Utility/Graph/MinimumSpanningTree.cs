@@ -13,11 +13,14 @@ namespace Utility
         public static List<IWeightedGraphEdge> MinimumSpanningTree(IGraph<IWeightedGraphEdge> graph)
         {
             List<IWeightedGraphEdge> mst = new List<IWeightedGraphEdge>();
-            List<IWeightedGraphEdge> edges = new List<IWeightedGraphEdge>(graph.Edges);
+            List<IWeightedGraphEdge> edges = new List<IWeightedGraphEdge>();
             UnionFind<uint> unionFind = new UnionFind<uint>();
+            foreach (Dictionary<uint, IWeightedGraphEdge> dict in graph.Edges.Values)
+                foreach (IWeightedGraphEdge e in dict.Values)
+                    edges.Add(e);
 
             edges.Sort((x, y) => { return x.Weight.CompareTo(y.Weight); });
-            foreach (IGraphNode<IWeightedGraphEdge> n in graph.Nodes)
+            foreach (IGraphNode<IWeightedGraphEdge> n in graph.Nodes.Values)
                 unionFind.Make(n.ID);
 
             foreach (IWeightedGraphEdge e in edges)

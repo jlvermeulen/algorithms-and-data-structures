@@ -13,11 +13,11 @@ namespace Utility
         /// <summary>
         /// The nodes in the graph.
         /// </summary>
-        IEnumerable<IGraphNode<T>> Nodes { get; }
+        Dictionary<uint, IGraphNode<T>> Nodes { get; }
         /// <summary>
         /// The edges in the graph.
         /// </summary>
-        IEnumerable<T> Edges { get; }
+        Dictionary<uint, Dictionary<uint, T>> Edges { get; }
     }
 
     /// <summary>

@@ -63,7 +63,8 @@ namespace Utility
         {
             Dictionary<uint, Dictionary<uint, FlowEdge>> flowGraph = new Dictionary<uint, Dictionary<uint, FlowEdge>>();
             Dictionary<uint, FlowEdge> dict;
-            foreach (IGraphNode<IFlowGraphEdge> n in graph.Nodes)
+
+            foreach (IGraphNode<IFlowGraphEdge> n in graph.Nodes.Values)
                 foreach (IFlowGraphEdge e in n.Neighbours)
                 {
                     if (!flowGraph.TryGetValue(e.From, out dict))
@@ -86,7 +87,7 @@ namespace Utility
 
         private static ulong MaxFlow(Dictionary<uint, Dictionary<uint, FlowEdge>> neighbours, uint source, uint sink)
         {
-            BFSNode path;
+            FlowNode path;
             ulong maxFlow = 0;
             uint flow;
             FlowEdge e1, e2;
@@ -106,14 +107,16 @@ namespace Utility
             return maxFlow;
         }
 
-        private static bool BFS(Dictionary<uint, Dictionary<uint, FlowEdge>> neighbours, uint source, uint sink, out BFSNode path)
+        private static bool BFS(Dictionary<uint, Dictionary<uint, FlowEdge>> neighbours, uint source, uint sink, out FlowNode path)
         {
             path = null;
-            Queue<BFSNode> open = new Queue<BFSNode>();
+            Queue<FlowNode> open = new Queue<FlowNode>();
+            open.Enqueue(new FlowNode(source, null, int.MaxValue));
+
             HashSet<uint> done = new HashSet<uint>();
-            open.Enqueue(new BFSNode(source, null, int.MaxValue));
             done.Add(source);
-            BFSNode node;
+
+            FlowNode node;
             while (open.Count > 0)
             {
                 node = open.Dequeue();
@@ -123,13 +126,14 @@ namespace Utility
                         continue;
                     if (i == sink)
                     {
-                        path = new BFSNode(i, node, Math.Min(neighbours[node.Node][i].Residual, node.Capacity));
+                        path = new FlowNode(i, node, Math.Min(neighbours[node.Node][i].Residual, node.Capacity));
                         return true;
                     }
-                    open.Enqueue(new BFSNode(i, node, Math.Min(neighbours[node.Node][i].Residual, node.Capacity)));
+                    open.Enqueue(new FlowNode(i, node, Math.Min(neighbours[node.Node][i].Residual, node.Capacity)));
                     done.Add(i);
                 }
             }
+
             return false;
         }
 
@@ -151,9 +155,9 @@ namespace Utility
             public IFlowGraphEdge Original { get; private set; }
         }
 
-        private class BFSNode
+        private class FlowNode
         {
-            public BFSNode(uint node, BFSNode parent, uint capacity)
+            public FlowNode(uint node, FlowNode parent, uint capacity)
             {
                 this.Node = node;
                 this.Parent = parent;
@@ -161,7 +165,7 @@ namespace Utility
             }
 
             public uint Node { get; private set; }
-            public BFSNode Parent { get; private set; }
+            public FlowNode Parent { get; private set; }
             public uint Capacity { get; private set; }
         }
     }

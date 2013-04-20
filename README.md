@@ -10,6 +10,13 @@ Currently has:
 - Minimum cut — calculates the lightest set of edges that would divide the graph in two components should they be removed
 - Minimum spanning tree — calculates the lightest tree that connects all the node in the graph using Kruskal's algorithm
 - Maximum flow — calculates the maximum amount of flow that can move from the source to the sink
+- Shortest path — find the shortest path between to nodes in a graph using Dijkstra's algorithm for weighted graphs and a simple breadth-first search for unweigthed graphs
+
+## Searching
+- Binary-Interpolation search — alternating passes of binary search and interpolation search
+- Binary search — find an item by repeatedly halving the range it could be in
+- Interpolation search — find an item by interpolation between the upper and lower bound of the search, giving O(log log n) search time for evenly distributed arrays
+- Random search — find an item by repeatedly splitting the range it could be in at a random point
 
 ## Sorting
 - Binary insertion sort — performs a binary search on the sorted part to determine where to place the next element
@@ -49,4 +56,5 @@ Currently has:
 - d-ary heap — generalisation of a binary heap with d children, uses Floyd's method for constructing a heap in O(n) time, implements ICollection&lt;T>
 
 ## Probabilistic structures
+- Bloom filter — test whether an element might be in a set (with a known margin of error), or that it is definitely not in the set, without storing the actual elements
 - Skip list — an alternative to balanced BSTs, offers average case O(log n) operations, but worst case O(n)

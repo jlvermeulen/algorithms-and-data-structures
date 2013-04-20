@@ -118,6 +118,7 @@
     <Compile Include="Graph\MinimumSpanningTree.cs" />
     <Compile Include="Graph\ShortestPath.cs" />
     <Compile Include="PriorityQueue\DHeap.cs" />
+    <Compile Include="ProbabilisticStructures\BloomFilter.cs" />
     <Compile Include="ProbabilisticStructures\SkipList.cs" />
     <Compile Include="Search\BinaryInterpolationSearch.cs" />
     <Compile Include="Search\BinarySearch.cs" />

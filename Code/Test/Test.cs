@@ -38,12 +38,12 @@ class Test
         //Console.BufferHeight = 11000;
         //Console.BufferWidth = 100;
 
-        string testSize = "Large";
-        string testDir = "Sorted\\";
-        string test = testDir + testSize;
+        //string testSize = "Large";
+        //string testDir = "Sorted\\";
+        //string test = testDir + testSize;
 
-        UnzipTestData(test, testDir);
-        int[] input = LoadTestData(test);
+        //UnzipTestData(test, testDir);
+        //int[] input = LoadTestData(test);
         
         //ReferenceTest(input, test, true);
 
@@ -70,7 +70,7 @@ class Test
         //File.Delete("TestData\\" + test + ".in");
         //File.Delete("TestData\\" + test + ".out");
 
-        DateTime start, end;
+        //DateTime start, end;
         //WeightGraph wGraph = new WeightGraph();
         //FlowGraph fGraph = new FlowGraph();
         //List<IFlowGraphEdge> cut;
@@ -96,69 +96,100 @@ class Test
         //    Console.WriteLine(((char)e.From).ToString() + ((char)e.To).ToString());
         //Console.WriteLine("Calculated MST in {0} seconds.", (end - start).TotalSeconds);
 
-        Interpolation<int> interpolate = new Interpolation<int>((x, y, z) => { return (double)(x - y) / (z - y); });
-        Interpolator<int> interpolator = Interpolator<int>.Create(interpolate);
+        //Interpolation<int> interpolate = new Interpolation<int>((x, y, z) => { return (double)(x - y) / (z - y); });
+        //Interpolator<int> interpolator = Interpolator<int>.Create(interpolate);
 
-        Console.WriteLine("Using C# Search.");
-        int pos;
-        start = DateTime.Now;
-        for (int i = 0; i < input.Length; i++)
-        {
-            pos = Array.BinarySearch<int>(input, input[i]);
-            if (input[pos] != input[i])
-                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
-        }
-        end = DateTime.Now;
-        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
-        Console.WriteLine();
+        //Console.WriteLine("Using C# Search.");
+        //int pos;
+        //start = DateTime.Now;
+        //for (int i = 0; i < input.Length; i++)
+        //{
+        //    pos = Array.BinarySearch<int>(input, input[i]);
+        //    if (input[pos] != input[i])
+        //        Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        //}
+        //end = DateTime.Now;
+        //Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        //Console.WriteLine();
 
-        Console.WriteLine("Using Binary Search.");
-        start = DateTime.Now;
-        for (int i = 0; i < input.Length; i++)
-        {
-            pos = Search<int>.BinarySearch(input, input[i]);
-            if (input[pos] != input[i])
-                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
-        }
-        end = DateTime.Now;
-        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
-        Console.WriteLine();
+        //Console.WriteLine("Using Binary Search.");
+        //start = DateTime.Now;
+        //for (int i = 0; i < input.Length; i++)
+        //{
+        //    pos = Search<int>.BinarySearch(input, input[i]);
+        //    if (input[pos] != input[i])
+        //        Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        //}
+        //end = DateTime.Now;
+        //Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        //Console.WriteLine();
 
-        Console.WriteLine("Using Interpolation Search.");
-        start = DateTime.Now;
-        for (int i = 0; i < input.Length; i++)
-        {
-            pos = Search<int>.InterpolationSearch(input, input[i], interpolate);
-            if (input[pos] != input[i])
-                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
-        }
-        end = DateTime.Now;
-        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
-        Console.WriteLine();
+        //Console.WriteLine("Using Interpolation Search.");
+        //start = DateTime.Now;
+        //for (int i = 0; i < input.Length; i++)
+        //{
+        //    pos = Search<int>.InterpolationSearch(input, input[i], interpolate);
+        //    if (input[pos] != input[i])
+        //        Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        //}
+        //end = DateTime.Now;
+        //Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        //Console.WriteLine();
 
-        Console.WriteLine("Using Random Search.");
-        start = DateTime.Now;
-        for (int i = 0; i < input.Length; i++)
-        {
-            pos = Search<int>.RandomSearch(input, input[i]);
-            if (input[pos] != input[i])
-                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
-        }
-        end = DateTime.Now;
-        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
-        Console.WriteLine();
+        //Console.WriteLine("Using Random Search.");
+        //start = DateTime.Now;
+        //for (int i = 0; i < input.Length; i++)
+        //{
+        //    pos = Search<int>.RandomSearch(input, input[i]);
+        //    if (input[pos] != input[i])
+        //        Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        //}
+        //end = DateTime.Now;
+        //Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        //Console.WriteLine();
 
-        Console.WriteLine("Using Binary Interpolation Search.");
-        start = DateTime.Now;
-        for (int i = 0; i < input.Length; i++)
+        //Console.WriteLine("Using Binary Interpolation Search.");
+        //start = DateTime.Now;
+        //for (int i = 0; i < input.Length; i++)
+        //{
+        //    pos = Search<int>.BinaryInterpolationSearch(input, input[i], interpolate);
+        //    if (input[pos] != input[i])
+        //        Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        //}
+        //end = DateTime.Now;
+        //Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        //Console.WriteLine();
+
+        BloomFilter<string> filter = new BloomFilter<string>(1000, 0.001, PrimaryHash, SecondaryHash);
+        HashSet<string> elems = new HashSet<string>();
+        Random random = new Random();
+        byte[] buffer = new byte[10];
+        string item;
+        int size = 1000, falsePositives = 0, testSize = 1000000;
+
+        for (int i = 0; i < size; i++)
         {
-            pos = Search<int>.BinaryInterpolationSearch(input, input[i], interpolate);
-            if (input[pos] != input[i])
-                Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+            random.NextBytes(buffer);
+            item = System.Text.Encoding.ASCII.GetString(buffer);
+            filter.Add(item);
+            elems.Add(item);
         }
-        end = DateTime.Now;
-        Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
-        Console.WriteLine();
+        Console.WriteLine("Confidence after adding {0} elements is {1}.", size, filter.Confidence);
+        Console.WriteLine("Expected false positives: {0}/{1}.", (int)((1 - filter.Confidence) * testSize), testSize);
+
+        for (int i = 0; i < testSize; i++)
+        {
+            random.NextBytes(buffer);
+            item = System.Text.Encoding.ASCII.GetString(buffer);
+            if (filter.Contains(item) != elems.Contains(item))
+            {
+                falsePositives++;
+                filter.Contains(item);
+            }
+        }
+        
+        Console.WriteLine("Actual false positives: {0}/{1}.", falsePositives, testSize);
+        Console.WriteLine("Performance factor: {0}.", (1 - filter.Confidence) * testSize / falsePositives);
 
         Console.ReadLine();
     }
@@ -241,6 +272,29 @@ class Test
         return true;
     }
 
+    static uint PrimaryHash(string item)
+    {
+        uint hash = 0;
+        for (int i = 0; i < item.Length; i++)
+        {
+            hash += item[i];
+            hash += (hash << 10);
+            hash ^= (hash >> 6);
+        }
+        hash += (hash << 3);
+        hash ^= (hash >> 11);
+        hash += (hash << 15);
+        return hash;
+    }
+
+    static uint SecondaryHash(string item)
+    {
+        uint hash = 5381;
+        for (int i = 0; i < item.Length; i++)
+            hash = ((hash << 5) + hash) + item[i];
+        return hash;
+    }
+
     class FlowGraph : IGraph<IFlowGraphEdge>
     {
         public FlowGraph()
@@ -290,12 +344,28 @@ class Test
             n14 = new FlowNode(14, new FlowEdge[] { });
             n15 = new FlowNode(15, new FlowEdge[] { });
 
-            this.Nodes = new FlowNode[] { n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15 };
-            this.Edges = new FlowEdge[] { e01, e02, e03, e04, e15, e25, e26, e38, e313, e48, e410, e57, e67, e79, e810, e813, e911, e912, e913, e1015, e1114, e1214, e1215, e1315 };
+            this.Nodes = new Dictionary<uint, IGraphNode<IFlowGraphEdge>>() { { 0, n0 }, { 1, n1 }, { 2, n2 }, { 3, n3 }, { 4, n4 }, { 5, n5 }, { 6, n6 }, { 7, n7 }, { 8, n8 }, { 9, n9 }, { 10, n10 }, { 11, n11 }, { 12, n12 }, { 13, n13 }, { 14, n14 }, { 15, n15 } };
+            this.Edges = new Dictionary<uint, Dictionary<uint, IFlowGraphEdge>>()
+            {
+                { 0, new Dictionary<uint, IFlowGraphEdge>() { { 1, e01 }, { 2, e02 }, { 3, e03 }, { 4, e04 } } },
+                { 1, new Dictionary<uint, IFlowGraphEdge>() { { 5, e15 } } },
+                { 2, new Dictionary<uint, IFlowGraphEdge>() { { 5, e25 }, { 6, e26 } } },
+                { 3, new Dictionary<uint, IFlowGraphEdge>() { { 8, e38 }, { 13, e313 } } },
+                { 4, new Dictionary<uint, IFlowGraphEdge>() { { 8, e48 }, { 10, e410 } } },
+                { 5, new Dictionary<uint, IFlowGraphEdge>() { { 7, e57 } } },
+                { 6, new Dictionary<uint, IFlowGraphEdge>() { { 7, e67 } } },
+                { 7, new Dictionary<uint, IFlowGraphEdge>() { { 9, e79 } } },
+                { 8, new Dictionary<uint, IFlowGraphEdge>() { { 10, e810 }, { 13, e813 } } },
+                { 9, new Dictionary<uint, IFlowGraphEdge>() { { 11, e911 }, { 12, e912 }, { 13, e913 } } },
+                { 10, new Dictionary<uint, IFlowGraphEdge>() { { 15, e1015 } } },
+                { 11, new Dictionary<uint, IFlowGraphEdge>() { { 14, e1114 } } },
+                { 12, new Dictionary<uint, IFlowGraphEdge>() { { 14, e1214 }, { 15, e1215 } } },
+                { 13, new Dictionary<uint, IFlowGraphEdge>() { { 15, e1315 } } }
+            };
         }
 
-        public IEnumerable<IGraphNode<IFlowGraphEdge>> Nodes { get; private set; }
-        public IEnumerable<IFlowGraphEdge> Edges { get; private set; }
+        public Dictionary<uint, IGraphNode<IFlowGraphEdge>> Nodes { get; private set; }
+        public Dictionary<uint, Dictionary<uint, IFlowGraphEdge>> Edges { get; private set; }
     }
 
     class FlowNode : IGraphNode<IFlowGraphEdge>
@@ -331,37 +401,47 @@ class Test
             WeightNode a, b, c, d, e, f, g, h, i;
             WeightEdge ab, ah, bc, bh, cd, cf, ci, de, df, ef, fg, gh, gi, hi;
 
-            ab = new WeightEdge((int)'A', (int)'B', 4);
-            ah = new WeightEdge((int)'A', (int)'H', 8);
-            bc = new WeightEdge((int)'B', (int)'C', 8);
-            bh = new WeightEdge((int)'B', (int)'H', 11);
-            cd = new WeightEdge((int)'C', (int)'D', 7);
-            cf = new WeightEdge((int)'C', (int)'F', 4);
-            ci = new WeightEdge((int)'C', (int)'I', 2);
-            de = new WeightEdge((int)'D', (int)'E', 9);
-            df = new WeightEdge((int)'D', (int)'F', 14);
-            ef = new WeightEdge((int)'E', (int)'F', 10);
-            fg = new WeightEdge((int)'F', (int)'G', 2);
-            gh = new WeightEdge((int)'G', (int)'H', 1);
-            gi = new WeightEdge((int)'G', (int)'I', 6);
-            hi = new WeightEdge((int)'H', (int)'I', 7);
+            ab = new WeightEdge((uint)'A', (uint)'B', 4);
+            ah = new WeightEdge((uint)'A', (uint)'H', 8);
+            bc = new WeightEdge((uint)'B', (uint)'C', 8);
+            bh = new WeightEdge((uint)'B', (uint)'H', 11);
+            cd = new WeightEdge((uint)'C', (uint)'D', 7);
+            cf = new WeightEdge((uint)'C', (uint)'F', 4);
+            ci = new WeightEdge((uint)'C', (uint)'I', 2);
+            de = new WeightEdge((uint)'D', (uint)'E', 9);
+            df = new WeightEdge((uint)'D', (uint)'F', 14);
+            ef = new WeightEdge((uint)'E', (uint)'F', 10);
+            fg = new WeightEdge((uint)'F', (uint)'G', 2);
+            gh = new WeightEdge((uint)'G', (uint)'H', 1);
+            gi = new WeightEdge((uint)'G', (uint)'I', 6);
+            hi = new WeightEdge((uint)'H', (uint)'I', 7);
 
-            a = new WeightNode((int)'A', new WeightEdge[] { ab, ah });
-            b = new WeightNode((int)'B', new WeightEdge[] { bc, bh });
-            c = new WeightNode((int)'C', new WeightEdge[] { cd, cf, ci });
-            d = new WeightNode((int)'D', new WeightEdge[] { de, df });
-            e = new WeightNode((int)'E', new WeightEdge[] { ef });
-            f = new WeightNode((int)'F', new WeightEdge[] { fg });
-            g = new WeightNode((int)'G', new WeightEdge[] { gh, gi });
-            h = new WeightNode((int)'H', new WeightEdge[] { hi });
-            i = new WeightNode((int)'I', new WeightEdge[] { });
+            a = new WeightNode((uint)'A', new WeightEdge[] { ab, ah });
+            b = new WeightNode((uint)'B', new WeightEdge[] { bc, bh });
+            c = new WeightNode((uint)'C', new WeightEdge[] { cd, cf, ci });
+            d = new WeightNode((uint)'D', new WeightEdge[] { de, df });
+            e = new WeightNode((uint)'E', new WeightEdge[] { ef });
+            f = new WeightNode((uint)'F', new WeightEdge[] { fg });
+            g = new WeightNode((uint)'G', new WeightEdge[] { gh, gi });
+            h = new WeightNode((uint)'H', new WeightEdge[] { hi });
+            i = new WeightNode((uint)'I', new WeightEdge[] { });
 
-            this.Nodes = new WeightNode[] { a, b, c, d, e, f, g, h, i };
-            this.Edges = new WeightEdge[] { ab, ah, bc, bh, cd, cf, ci, de, df, ef, fg, gh, gi, hi };
+            this.Nodes = new Dictionary<uint, IGraphNode<IWeightedGraphEdge>>() { { a.ID, a }, { b.ID, b }, { c.ID, c }, { d.ID, d }, { e.ID, e }, { f.ID, f }, { g.ID, g }, { h.ID, h }, { i.ID, i } };
+            this.Edges = new Dictionary<uint, Dictionary<uint, IWeightedGraphEdge>>()
+            {
+                { a.ID, new Dictionary<uint, IWeightedGraphEdge>() { { b.ID, ab }, { h.ID, ah } } },
+                { b.ID, new Dictionary<uint, IWeightedGraphEdge>() { { c.ID, bc }, { h.ID, bh } } },
+                { c.ID, new Dictionary<uint, IWeightedGraphEdge>() { { d.ID, cd }, { f.ID, cf }, { i.ID, ci } } },
+                { d.ID, new Dictionary<uint, IWeightedGraphEdge>() { { e.ID, de }, { f.ID, df } } },
+                { e.ID, new Dictionary<uint, IWeightedGraphEdge>() { { f.ID, ef } } },
+                { f.ID, new Dictionary<uint, IWeightedGraphEdge>() { { g.ID, fg } } },
+                { g.ID, new Dictionary<uint, IWeightedGraphEdge>() { { h.ID, gh }, { i.ID, gi } } },
+                { h.ID, new Dictionary<uint, IWeightedGraphEdge>() { { i.ID, hi } } }
+            };
         }
 
-        public IEnumerable<IGraphNode<IWeightedGraphEdge>> Nodes { get; private set; }
-        public IEnumerable<IWeightedGraphEdge> Edges { get; private set; }
+        public Dictionary<uint, IGraphNode<IWeightedGraphEdge>> Nodes { get; private set; }
+        public Dictionary<uint, Dictionary<uint, IWeightedGraphEdge>> Edges { get; private set; }
     }
 
     class WeightNode : IGraphNode<IWeightedGraphEdge>
