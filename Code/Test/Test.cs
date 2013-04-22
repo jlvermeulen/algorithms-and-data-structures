@@ -10,6 +10,8 @@ class Test
 
     static void Main()
     {
+        #region MakeTest
+
         //StreamWriter writer;
         //Random random = new Random();
         //List<int> list = new List<int>();
@@ -37,40 +39,45 @@ class Test
         //return;
         //Console.BufferHeight = 11000;
         //Console.BufferWidth = 100;
+        DateTime start, end;
 
-        //string testSize = "Large";
-        //string testDir = "Sorted\\";
-        //string test = testDir + testSize;
+        #endregion
 
-        //UnzipTestData(test, testDir);
-        //int[] input = LoadTestData(test);
+        #region Sort
+
+        string testSize = "Medium";
+        string testDir = "Random\\";
+        string test = testDir + testSize;
+
+        UnzipTestData(test, testDir);
+        int[] input = LoadTestData(test);
         
         //ReferenceTest(input, test, true);
 
-        //RunTest(input, test, true, new SortMethod(Sort<int>.BinaryInsertionSort), "Binary Insertion Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.BubbleSort), "Bubble Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.CocktailSort), "Cocktail Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.CombSort), "Comb Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.CombInsertionSort), "Comb-Insertion Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.CycleSort), "Cycle Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.Heapsort), "Heapsort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.JSort), "JSort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.OddEvenSort), "Odd-Even Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.PatienceSort), "Patience Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.Quicksort), "Quicksort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.StrandSort), "Strand Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.Timsort), "Timsort");
-        //RunTest(input, test, true, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.BinaryInsertionSort), "Binary Insertion Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.BubbleSort), "Bubble Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.CocktailSort), "Cocktail Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.CombSort), "Comb Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.CombInsertionSort), "Comb-Insertion Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.CycleSort), "Cycle Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.GnomeSort), "Gnome Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.Heapsort), "Heapsort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.InsertionSort), "Insertion Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.JSort), "JSort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.MergeSort), "Merge Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.OddEvenSort), "Odd-Even Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.PatienceSort), "Patience Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.Quicksort), "Quicksort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.SelectionSort), "Selection Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.ShellSort), "Shell Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.StrandSort), "Strand Sort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.Timsort), "Timsort");
+        //RunTest(input, test, false, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
 
-        //File.Delete("TestData\\" + test + ".in");
-        //File.Delete("TestData\\" + test + ".out");
+        #endregion
 
-        //DateTime start, end;
+        #region Graph
+
         //WeightGraph wGraph = new WeightGraph();
         //FlowGraph fGraph = new FlowGraph();
         //List<IFlowGraphEdge> cut;
@@ -96,6 +103,10 @@ class Test
         //    Console.WriteLine(((char)e.From).ToString() + ((char)e.To).ToString());
         //Console.WriteLine("Calculated MST in {0} seconds.", (end - start).TotalSeconds);
 
+        #endregion
+
+        #region Search
+
         //Interpolation<int> interpolate = new Interpolation<int>((x, y, z) => { return (double)(x - y) / (z - y); });
         //Interpolator<int> interpolator = Interpolator<int>.Create(interpolate);
 
@@ -117,6 +128,18 @@ class Test
         //for (int i = 0; i < input.Length; i++)
         //{
         //    pos = Search<int>.BinarySearch(input, input[i]);
+        //    if (input[pos] != input[i])
+        //        Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
+        //}
+        //end = DateTime.Now;
+        //Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
+        //Console.WriteLine();
+
+        //Console.WriteLine("Using Gallop Search.");
+        //start = DateTime.Now;
+        //for (int i = 0; i < input.Length; i++)
+        //{
+        //    pos = Search<int>.GallopSearch(input, input[i]);
         //    if (input[pos] != input[i])
         //        Console.WriteLine("Wrong position for {0}: returned {1}, should be {2}.", input[i], pos, i);
         //}
@@ -160,36 +183,45 @@ class Test
         //Console.WriteLine("Searched and found {0} items in {1} seconds.", input.Length, (end - start).TotalSeconds);
         //Console.WriteLine();
 
-        BloomFilter<string> filter = new BloomFilter<string>(1000, 0.001, PrimaryHash, SecondaryHash);
-        HashSet<string> elems = new HashSet<string>();
-        Random random = new Random();
-        byte[] buffer = new byte[10];
-        string item;
-        int size = 1000, falsePositives = 0, testSize = 1000000;
+        #endregion
 
-        for (int i = 0; i < size; i++)
-        {
-            random.NextBytes(buffer);
-            item = System.Text.Encoding.ASCII.GetString(buffer);
-            filter.Add(item);
-            elems.Add(item);
-        }
-        Console.WriteLine("Confidence after adding {0} elements is {1}.", size, filter.Confidence);
-        Console.WriteLine("Expected false positives: {0}/{1}.", (int)((1 - filter.Confidence) * testSize), testSize);
+        #region Probabilistic
 
-        for (int i = 0; i < testSize; i++)
-        {
-            random.NextBytes(buffer);
-            item = System.Text.Encoding.ASCII.GetString(buffer);
-            if (filter.Contains(item) != elems.Contains(item))
-            {
-                falsePositives++;
-                filter.Contains(item);
-            }
-        }
+        //BloomFilter<string> filter = new BloomFilter<string>(1000, 0.001, PrimaryHash, SecondaryHash);
+        //HashSet<string> elems = new HashSet<string>();
+        //Random random = new Random();
+        //byte[] buffer = new byte[10];
+        //string item;
+        //int size = 1000, falsePositives = 0, testSize = 1000000;
+
+        //for (int i = 0; i < size; i++)
+        //{
+        //    random.NextBytes(buffer);
+        //    item = System.Text.Encoding.ASCII.GetString(buffer);
+        //    filter.Add(item);
+        //    elems.Add(item);
+        //}
+        //Console.WriteLine("Confidence after adding {0} elements is {1}.", size, filter.Confidence);
+        //Console.WriteLine("Expected false positives: {0}/{1}.", (int)((1 - filter.Confidence) * testSize), testSize);
+
+        //for (int i = 0; i < testSize; i++)
+        //{
+        //    random.NextBytes(buffer);
+        //    item = System.Text.Encoding.ASCII.GetString(buffer);
+        //    if (filter.Contains(item) != elems.Contains(item))
+        //    {
+        //        falsePositives++;
+        //        filter.Contains(item);
+        //    }
+        //}
         
-        Console.WriteLine("Actual false positives: {0}/{1}.", falsePositives, testSize);
-        Console.WriteLine("Performance factor: {0}.", (1 - filter.Confidence) * testSize / falsePositives);
+        //Console.WriteLine("Actual false positives: {0}/{1}.", falsePositives, testSize);
+        //Console.WriteLine("Performance factor: {0}.", (1 - filter.Confidence) * testSize / falsePositives);
+
+        #endregion
+
+        File.Delete("TestData\\" + test + ".in");
+        File.Delete("TestData\\" + test + ".out");
 
         Console.ReadLine();
     }

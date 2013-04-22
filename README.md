@@ -15,6 +15,7 @@ Currently has:
 ## Searching
 - Binary-Interpolation search — alternating passes of binary search and interpolation search
 - Binary search — find an item by repeatedly halving the range it could be in
+- Gallop search — search that favours finding elements close to the start of the search, looks for exponentially increasing ranges and then performs binary search on the range that contains the item
 - Interpolation search — find an item by interpolation between the upper and lower bound of the search, giving O(log log n) search time for evenly distributed arrays
 - Random search — find an item by repeatedly splitting the range it could be in at a random point
 
@@ -36,6 +37,7 @@ Currently has:
 - Selection sort — uses an optimisation that finds the two smallest elements in 3n/2 - 2 comparisons
 - Shellsort — repeated Insertion sort over decreasing gaps, using the gap sequence h(n) = ⌈2.25 * h(n - 1)⌉, with h(0) = 1
 - Strand sort — looks for sequences of input that are already sorted and merges them with the sorted part of the array
+- Timsort — highly adaptive merge sort, builds runs out of data already in order and merges those
 - Tree sort — uses an AVL Tree, adds all elements and retrieves them in order
 
 ---

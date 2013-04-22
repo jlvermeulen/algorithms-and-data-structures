@@ -5,22 +5,23 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] MergeSort(T[] input)
-        {
-            return MergeSort(input, new T[input.Length]);
-        }
+        public static T[] MergeSort(T[] input) { return MergeSort(input, 0, input.Length); }
 
-        private static T[] MergeSort(T[] input, T[] output)
+        public static T[] MergeSort(T[] input, int start) { return MergeSort(input, start, input.Length - start); }
+
+        public static T[] MergeSort(T[] input, int start, int length)
         {
-            T[] temp;
-            int p1, p2, pLeft, pRight, pEnd;
-            for (int i = 1; i < input.Length; i *= 2)
+            CheckArguments(input, start, length);
+
+            T[] temp, output = new T[input.Length];
+            int p1, p2, pLeft, pRight, pEnd, end = start + length;
+            for (int i = start + 1; i < end; i *= 2)
             {
-                for (int j = 0; j < input.Length; j += 2 * i)
+                for (int j = start; j < end; j += 2 * i)
                 {
                     pLeft = p1 = j;
-                    pRight = p2 = Math.Min(i + j, input.Length);
-                    pEnd = Math.Min(2 * i + j, input.Length);
+                    pRight = p2 = Math.Min(i + j, end);
+                    pEnd = Math.Min(2 * i + j, end);
 
                     for (int k = p1; k < pEnd; k++)
                     {

@@ -122,6 +122,7 @@
     <Compile Include="ProbabilisticStructures\SkipList.cs" />
     <Compile Include="Search\BinaryInterpolationSearch.cs" />
     <Compile Include="Search\BinarySearch.cs" />
+    <Compile Include="Search\GallopSearch.cs" />
     <Compile Include="Search\Interpolator.cs" />
     <Compile Include="Search\InterpolationSearch.cs" />
     <Compile Include="Search\RandomSearch.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="DisjointSet\UnionFind.cs" />
     <Compile Include="Sort\ShellSort.cs" />
+    <Compile Include="Sort\Sort.cs" />
     <Compile Include="Sort\StrandSort.cs" />
     <Compile Include="Sort\Timsort.cs" />
     <Compile Include="Sort\TreeSort.cs" />

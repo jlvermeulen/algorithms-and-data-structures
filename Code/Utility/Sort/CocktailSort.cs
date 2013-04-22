@@ -5,15 +5,20 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] CocktailSort(T[] input)
-        {
-            T temp;
-            int length = input.Length - 1;
-            int newlength, i = 0, j = input.Length - 1;
+        public static T[] CocktailSort(T[] input) { return CocktailSort(input, 0, input.Length); }
 
-            while (length > 0)
+        public static T[] CocktailSort(T[] input, int start) { return CocktailSort(input, start, input.Length - start); }
+
+        public static T[] CocktailSort(T[] input, int start, int length)
+        {
+            CheckArguments(input, start, length);
+
+            T temp;
+            int newLength, i = start, j = start + length - 1;
+
+            while (length > 1)
             {
-                newlength = 0;
+                newLength = 0;
                 for (int k = i; k < j; k++)
                 {
                     if (input[k].CompareTo(input[k + 1]) > 0)
@@ -21,11 +26,11 @@ namespace Utility
                         temp = input[k];
                         input[k] = input[k + 1];
                         input[k + 1] = temp;
-                        newlength = k - i;
+                        newLength = k - i;
                     }
                 }
-                length = newlength;
-                if (length == 0)
+                length = newLength;
+                if (length == 1)
                     break;
                 j = i + length;
                 for (int l = j; l > 0; l--)
@@ -35,10 +40,10 @@ namespace Utility
                         temp = input[l];
                         input[l] = input[l - 1];
                         input[l - 1] = temp;
-                        newlength = j - l - 1;
+                        newLength = j - l - 1;
                     }
                 }
-                length = newlength;
+                length = newLength;
                 i = j - length;
             }
 

@@ -5,31 +5,23 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] Quicksort(T[] input)
+        public static T[] Quicksort(T[] input) { return Quicksort(input, 0, input.Length); }
+
+        public static T[] Quicksort(T[] input, int start) { return Quicksort(input, start, input.Length - start); }
+
+        public static T[] Quicksort(T[] input, int start, int length)
         {
-            Random random = new Random();
-            Quicksort(input, 0, input.Length - 1, random);
+            CheckArguments(input, start, length);
+
+            Quicksort(input, start, start + length - 1, new Random());
             return input;
         }
 
-        public static void Quicksort(T[] input, int start, int end, Random random)
+        private static void Quicksort(T[] input, int start, int end, Random random)
         {
             if (end - start < 20)
             {
-                T current;
-                int j;
-                for (int i = start + 1; i < end + 1; i++)
-                {
-                    current = input[i];
-                    for (j = i; j > start; j--)
-                    {
-                        if (input[j - 1].CompareTo(current) > 0)
-                            input[j] = input[j - 1];
-                        else
-                            break;
-                    }
-                    input[j] = current;
-                }
+                InsertionSort(input, start, end - start + 1);
                 return;
             }
 

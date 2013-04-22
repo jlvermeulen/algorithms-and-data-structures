@@ -5,20 +5,26 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] JSort(T[] input)
+        public static T[] JSort(T[] input) { return JSort(input, 0, input.Length); }
+
+        public static T[] JSort(T[] input, int start) { return JSort(input, start, input.Length - start); }
+
+        public static T[] JSort(T[] input, int start, int length)
         {
-            int l, r, s, start = (input.Length - 2) / 2, root;
+            CheckArguments(input, start, length);
+
+            int l, r, s, startHeapify = (input.Length - 2) / 2, root, end = start + length;
             T temp;
-            for (; start >= 0; start--)
+            for (; startHeapify >= start; startHeapify--)
             {
-                root = start;
-                while ((l = (root + 1) * 2 - 1) < input.Length)
+                root = startHeapify;
+                while ((l = (root + 1) * 2 - 1) < end)
                 {
                     r = l + 1;
                     s = root;
                     if (input[s].CompareTo(input[l]) > 0)
                         s = l;
-                    if (r < input.Length && input[s].CompareTo(input[r]) > 0)
+                    if (r < end && input[s].CompareTo(input[r]) > 0)
                         s = r;
                     if (s != root)
                     {
@@ -32,11 +38,11 @@ namespace Utility
                 }
             }
 
-            start = input.Length - (input.Length - 2) / 2 - 1;
-            for (; start < input.Length; start++)
+            startHeapify = end - (end - 2) / 2 - 1;
+            for (; startHeapify < end; startHeapify++)
             {
-                root = start;
-                while ((l = input.Length - (input.Length - root - 1) * 2 - 2) >= 0)
+                root = startHeapify;
+                while ((l = end - (end - root - 1) * 2 - 2) >= 0)
                 {
                     r = l - 1;
                     s = root;

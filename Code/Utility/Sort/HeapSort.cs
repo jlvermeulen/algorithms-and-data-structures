@@ -5,10 +5,19 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] Heapsort(T[] input)
+        public static T[] Heapsort(T[] input) { return Heapsort(input, 0, input.Length); }
+
+        public static T[] Heapsort(T[] input, int start) { return Heapsort(input, start, input.Length - start); }
+
+        public static T[] Heapsort(T[] input, int start, int length)
         {
-            Heapify(input);
-            int length = input.Length;
+            CheckArguments(input, start, length);
+
+            int startHeapify = start + (length - 2) / 5;
+
+            for (; startHeapify >= start; startHeapify--)
+                PushDown(input, start + length, startHeapify);
+
             while (length > 0)
             {
                 Switch(input, 0, --length);
@@ -17,18 +26,10 @@ namespace Utility
             return input;
         }
 
-        private static void Heapify(T[] heap)
-        {
-            int start = (heap.Length - 2) / 5;
-
-            for (; start >= 0; start--)
-                PushDown(heap, heap.Length, start);
-        }
-
-        private static void PushDown(T[] heap, int length, int root)
+        private static void PushDown(T[] heap, int end, int root)
         {
             int l, c1, c2, c3, c4, s;
-            while ((l = Left(root, length)) != -1)
+            while ((l = Left(root, end)) != -1)
             {
                 c1 = l + 1;
                 c2 = l + 2;
@@ -37,13 +38,13 @@ namespace Utility
                 s = root;
                 if (heap[s].CompareTo(heap[l]) < 0)
                     s = l;
-                if (c1 < length && heap[s].CompareTo(heap[c1]) < 0)
+                if (c1 < end && heap[s].CompareTo(heap[c1]) < 0)
                     s = c1;
-                if (c2 < length && heap[s].CompareTo(heap[c2]) < 0)
+                if (c2 < end && heap[s].CompareTo(heap[c2]) < 0)
                     s = c2;
-                if (c3 < length && heap[s].CompareTo(heap[c3]) < 0)
+                if (c3 < end && heap[s].CompareTo(heap[c3]) < 0)
                     s = c3;
-                if (c4 < length && heap[s].CompareTo(heap[c4]) < 0)
+                if (c4 < end && heap[s].CompareTo(heap[c4]) < 0)
                     s = c4;
                 if (s != root)
                 {
@@ -55,10 +56,10 @@ namespace Utility
             }
         }
 
-        private static int Left(int node, int length)
+        private static int Left(int node, int end)
         {
             int l = node * 5 + 1;
-            if (l < length)
+            if (l < end)
                 return l;
             return -1;
         }

@@ -5,12 +5,18 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] GnomeSort(T[] input)
+        public static T[] GnomeSort(T[] input) { return GnomeSort(input, 0, input.Length); }
+
+        public static T[] GnomeSort(T[] input, int start) { return GnomeSort(input, start, input.Length - start); }
+
+        public static T[] GnomeSort(T[] input, int start, int length)
         {
-            int position = 1, previous = 0;
+            CheckArguments(input, start, length);
+
+            int position = start + 1, previous = start;
             T temp;
 
-            while (position < input.Length)
+            while (position < start + length)
             {
                 if (input[position].CompareTo(input[position - 1]) >= 0)
                 {

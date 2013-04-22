@@ -5,26 +5,32 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] BubbleSort(T[] input)
-        {
-            T temp;
-            int length = input.Length - 1;
-            int newlength;
+        public static T[] BubbleSort(T[] input) { return BubbleSort(input, 0, input.Length); }
 
-            while (length > 0)
+        public static T[] BubbleSort(T[] input, int start) { return BubbleSort(input, start, input.Length - start); }
+
+        public static T[] BubbleSort(T[] input, int start, int length)
+        {
+            CheckArguments(input, start, length);
+
+            T temp;
+            int newEnd, end;
+
+            while (length > 1)
             {
-                newlength = 0;
-                for (int i = 0; i < length; i++)
+                newEnd = 0;
+                end = start + length - 1;
+                for (int i = start; i < end; i++)
                 {
                     if (input[i].CompareTo(input[i + 1]) > 0)
                     {
                         temp = input[i];
                         input[i] = input[i + 1];
                         input[i + 1] = temp;
-                        newlength = i;
+                        newEnd = i;
                     }
                 }
-                length = newlength;
+                length = newEnd - start + 1;
             }
 
             return input;

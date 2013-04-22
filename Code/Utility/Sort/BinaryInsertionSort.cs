@@ -5,34 +5,43 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] BinaryInsertionSort(T[] input)
+        public static T[] BinaryInsertionSort(T[] input) { return BinaryInsertionSort(input, 0, input.Length); }
+
+        public static T[] BinaryInsertionSort(T[] input, int start) { return BinaryInsertionSort(input, start, input.Length - start); }
+
+        public static T[] BinaryInsertionSort(T[] input, int start, int length)
         {
+            CheckArguments(input, start, length);
+
             T current;
             int upper, lower, half = 0;
 
-            if (input.Length > 1 && input[0].CompareTo(input[1]) > 0)
+            if (length <= 1)
+                return input;
+
+            if (length > 1 && input[start].CompareTo(input[start + 1]) > 0)
             {
-                current = input[0];
-                input[0] = input[1];
-                input[1] = current;
+                current = input[start];
+                input[start] = input[start + 1];
+                input[start + 1] = current;
             }
 
-            for (int i = 2; i < input.Length; i++)
+            for (int i = start + 2; i < start + length; i++)
             {
                 current = input[i];
-                lower = 0;
-                upper = i - 1;
-                while (upper >= lower)
+                upper = i;
+                lower = start - 1;
+                while (upper > lower + 1)
                 {
-                    half = (upper - lower) / 2 + lower;
-                    if (current.CompareTo(input[half]) < 0)
-                        upper = half - 1;
+                    half = (upper + lower) / 2;
+                    if (input[half].CompareTo(current) <= 0)
+                        lower = half;
                     else
-                        lower = ++half;
+                        upper = half;
                 }
 
-                Buffer.BlockCopy(input, half * sizeof(int), input, (half + 1) * sizeof(int), (i - half) * sizeof(int));
-                input[half] = current;
+                Buffer.BlockCopy(input, (lower + 1) * sizeof(int), input, (lower + 2) * sizeof(int), (i - lower - 1) * sizeof(int));
+                input[lower + 1] = current;
             }
 
             return input;

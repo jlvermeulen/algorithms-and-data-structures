@@ -7,11 +7,17 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] PatienceSort(T[] input)
+        public static T[] PatienceSort(T[] input) { return PatienceSort(input, 0, input.Length); }
+
+        public static T[] PatienceSort(T[] input, int start) { return PatienceSort(input, start, input.Length - start); }
+
+        public static T[] PatienceSort(T[] input, int start, int length)
         {
+            CheckArguments(input, start, length);
+
             List<ComparableStack> stacks = new List<ComparableStack>();
 
-            for (int i = 0; i < input.Length; i++)
+            for (int i = start; i < start + length; i++)
             {
                 ComparableStack stack = new ComparableStack();
                 stack.Push(input[i]);
@@ -25,7 +31,7 @@ namespace Utility
             }
 
             DMinHeap<ComparableStack> heap = new DMinHeap<ComparableStack>(stacks, 3);
-            for (int i = 0; i < input.Length; i++)
+            for (int i = start; i < start + length; i++)
             {
                 ComparableStack stack = heap.Extract();
                 input[i] = stack.Pop();

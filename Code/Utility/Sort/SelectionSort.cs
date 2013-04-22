@@ -5,13 +5,19 @@ namespace Utility
     public static partial class Sort<T>
         where T : IComparable<T>
     {
-        public static T[] SelectionSort(T[] input)
+        public static T[] SelectionSort(T[] input) { return SelectionSort(input, 0, input.Length); }
+
+        public static T[] SelectionSort(T[] input, int start) { return SelectionSort(input, start, input.Length - start); }
+
+        public static T[] SelectionSort(T[] input, int start, int length)
         {
+            CheckArguments(input, start, length);
+
             int p, q;
             T temp1, temp2;
-            bool odd = input.Length % 2 == 1;
+            bool odd = length % 2 == 1;
 
-            for (int i = 0; i < input.Length - 1; i += 2)
+            for (int i = start; i < start + length - 1; i += 2)
             {
                 p = i;
                 q = i + 1;
@@ -20,7 +26,7 @@ namespace Utility
                     p = i + 1;
                     q = i;
                 }
-                for (int j = i + 2; j < input.Length - 1; j += 2)
+                for (int j = i + 2; j < start + length - 1; j += 2)
                 {
                     if (input[j].CompareTo(input[j + 1]) > 0)
                     {
@@ -42,12 +48,12 @@ namespace Utility
 
                 if (odd)
                 {
-                    if (input[input.Length - 1].CompareTo(input[p]) < 0)
+                    if (input[start + length - 1].CompareTo(input[p]) < 0)
                     {
                         q = p;
                         p = input.Length - 1;
                     }
-                    else if (input[input.Length - 1].CompareTo(input[q]) < 0)
+                    else if (input[start + length - 1].CompareTo(input[q]) < 0)
                         q = input.Length - 1;
                 }
 
