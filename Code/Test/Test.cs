@@ -45,7 +45,7 @@ class Test
 
         #region Sort
 
-        string testSize = "Medium";
+        string testSize = "Small";
         string testDir = "Random\\";
         string test = testDir + testSize;
 
@@ -102,6 +102,88 @@ class Test
         //foreach (IWeightedGraphEdge e in mst)
         //    Console.WriteLine(((char)e.From).ToString() + ((char)e.To).ToString());
         //Console.WriteLine("Calculated MST in {0} seconds.", (end - start).TotalSeconds);
+
+        #endregion
+
+        #region Geometry
+
+        List<Vector2D> list = new List<Vector2D>();
+        list.Add(new Vector2D(0, 0));
+        list.Add(new Vector2D(1, 2));
+        list.Add(new Vector2D(-2, 1));
+        list.Add(new Vector2D(-1, -1));
+        list.Add(new Vector2D(3, 4));
+        list.Add(new Vector2D(4, 3));
+        list.Add(new Vector2D(-5, 4));
+        list.Add(new Vector2D(6, 5));
+        list.Add(new Vector2D(7, 7));
+        list.Add(new Vector2D(7, -7));
+        list.Add(new Vector2D(-7, -7));
+        list.Add(new Vector2D(-7, 7));
+        list.Add(new Vector2D(9, 0));
+        list.Add(new Vector2D(-9, 0));
+        list.Add(new Vector2D(0, 9));
+        list.Add(new Vector2D(0, -9));
+        list.Add(new Vector2D(-8, 0));
+        list.Add(new Vector2D(8, 0));
+        list.Add(new Vector2D(-7, 0));
+        list.Add(new Vector2D(7, 0));
+        list.Add(new Vector2D(-6, 0));
+        list.Add(new Vector2D(6, 0));
+        list.Add(new Vector2D(-5, 0));
+        list.Add(new Vector2D(5, 0));
+        list.Add(new Vector2D(-4, 0));
+        list.Add(new Vector2D(4, 0));
+        list.Add(new Vector2D(-3, 0));
+        list.Add(new Vector2D(3, 0));
+        list.Add(new Vector2D(-2, 0));
+        list.Add(new Vector2D(2, 0));
+        list.Add(new Vector2D(-1, 0));
+        list.Add(new Vector2D(1, 0));
+        list.Add(new Vector2D(0, -8));
+        list.Add(new Vector2D(0, 8));
+        list.Add(new Vector2D(0, -7));
+        list.Add(new Vector2D(0, 7));
+        list.Add(new Vector2D(0, -6));
+        list.Add(new Vector2D(0, 6));
+        list.Add(new Vector2D(0, -5));
+        list.Add(new Vector2D(0, 5));
+        list.Add(new Vector2D(0, -4));
+        list.Add(new Vector2D(0, 4));
+        list.Add(new Vector2D(0, -3));
+        list.Add(new Vector2D(0, 3));
+        list.Add(new Vector2D(0, -2));
+        list.Add(new Vector2D(0, 2));
+        list.Add(new Vector2D(0, -1));
+        list.Add(new Vector2D(0, 1));
+        list.Add(new Vector2D(1, 1));
+        list.Add(new Vector2D(2, 2));
+        list.Add(new Vector2D(3, 3));
+        list.Add(new Vector2D(4, 4));
+        list.Add(new Vector2D(5,5));
+        list.Add(new Vector2D(6, 6));
+        list.Add(new Vector2D(1, -1));
+        list.Add(new Vector2D(2, -2));
+        list.Add(new Vector2D(3, -3));
+        list.Add(new Vector2D(4, -4));
+        list.Add(new Vector2D(5, -5));
+        list.Add(new Vector2D(6, -6));
+        list.Add(new Vector2D(-1, 1));
+        list.Add(new Vector2D(-2, 2));
+        list.Add(new Vector2D(-3, 3));
+        list.Add(new Vector2D(-4, 4));
+        list.Add(new Vector2D(-5, 5));
+        list.Add(new Vector2D(-6, 6));
+        list.Add(new Vector2D(-1, -1));
+        list.Add(new Vector2D(-2, -2));
+        list.Add(new Vector2D(-3, -3));
+        list.Add(new Vector2D(-4, -4));
+        list.Add(new Vector2D(-5, -5));
+        list.Add(new Vector2D(-6, -6));
+
+        list = Geometry.ConvexHull(list);
+        foreach (Vector2D v in list)
+            Console.WriteLine(v);
 
         #endregion
 

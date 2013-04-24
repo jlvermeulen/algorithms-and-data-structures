@@ -5,6 +5,14 @@ namespace Utility
 {
     public static partial class Graph
     {
+        /// <summary>
+        /// Returns <code>true</code> if there is a path between two given nodes in the given, unweighted graph; <code>false</code> otherwise.
+        /// </summary>
+        /// <param name="graph">The graph to find the path in.</param>
+        /// <param name="start">The start of the path.</param>
+        /// <param name="end">The end of the path.</param>
+        /// <param name="path">A list containing the edges of the path that was found, in order. Empty if there is no path.</param>
+        /// <returns><code>true</code> if there is a path; <code>false</code> otherwise.</returns>
         public static bool ShortestPath(IGraph<IGraphEdge> graph, IGraphNode<IGraphEdge> start, IGraphNode<IGraphEdge> end, out List<IGraphEdge> path)
         {
             path = new List<IGraphEdge>();
@@ -31,7 +39,6 @@ namespace Utility
                             node = node.Parent;
                         }
                         path.Reverse();
-
                         return true;
                     }
                     open.Enqueue(new BFSNode(graph.Nodes[e.To], e, node));
@@ -41,6 +48,14 @@ namespace Utility
             return false;
         }
 
+        /// <summary>
+        /// Returns <code>true</code> if there is a path between two given nodes in the given, weighted graph; <code>false</code> otherwise.
+        /// </summary>
+        /// <param name="graph">The graph to find the path in.</param>
+        /// <param name="start">The start of the path.</param>
+        /// <param name="end">The end of the path.</param>
+        /// <param name="path">A list containing the edges of the path that was found, in order. Empty if there is no path.</param>
+        /// <returns><code>true</code> if there is a path; <code>false</code> otherwise.</returns>
         public static bool ShortestPath(IGraph<IWeightedGraphEdge> graph, IGraphNode<IWeightedGraphEdge> start, IGraphNode<IWeightedGraphEdge> end, out List<IWeightedGraphEdge> path)
         {
             path = new List<IWeightedGraphEdge>();

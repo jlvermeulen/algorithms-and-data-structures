@@ -9,7 +9,7 @@ namespace Utility
     public static partial class Graph
     {
         /// <summary>
-        /// Calculates the lightest set of edges that would divide the graph in two components should they be removed.
+        /// Returns the lightest set of edges that would divide the graph in two components should they be removed.
         /// </summary>
         /// <param name="graph">The flow graph to calculate the minimum cut of.</param>
         /// <param name="source">The source of the flow.</param>
@@ -48,7 +48,7 @@ namespace Utility
         }
 
         /// <summary>
-        /// Calculates the maximum amount of flow that can move from the source to the sink.
+        /// Returns the maximum amount of flow that can move from the source to the sink.
         /// </summary>
         /// <param name="graph">The flow graph to calculate the maximum flow of.</param>
         /// <param name="source">The source of the flow.</param>

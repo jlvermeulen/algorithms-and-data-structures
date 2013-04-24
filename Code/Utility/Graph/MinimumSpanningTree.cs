@@ -6,7 +6,7 @@ namespace Utility
     public static partial class Graph
     {
         /// <summary>
-        /// Calculates the lightest tree that connects all the node in the graph.
+        /// Returns the lightest tree that connects all the node in the graph.
         /// </summary>
         /// <param name="graph">The graph to calculate the minimum spanning tree of.</param>
         /// <returns>A list of edges that make up the minimum spanning tree.</returns>

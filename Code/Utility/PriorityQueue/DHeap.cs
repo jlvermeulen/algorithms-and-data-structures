@@ -208,15 +208,12 @@ namespace Utility
         /// Returns the item at the top of the heap without removing it.
         /// </summary>
         /// <returns>The item at the top of the heap.</returns>
-        public T Peek()
-        {
-            return this.heap[0];
-        }
+        public T Peek() { return this.heap[0]; }
 
         /// <summary>
-        /// Merges two heaps into one.
+        /// Merges a heap into this one.
         /// </summary>
-        /// <param name="other">The heap to merge into the other.</param>
+        /// <param name="other">The heap to merge into this one.</param>
         public void Merge(DHeap<T> other)
         {
             this.heap.AddRange(other.heap);
@@ -269,7 +266,7 @@ namespace Utility
         /// Removes the first occurrence of a specific object from the DHeap&lt;T>.
         /// </summary>
         /// <param name="item">The object to be removed.</param>
-        /// <returns>true if item was successfully removed from the DHeap&lt;T>; otherwise, false.</returns>
+        /// <returns><code>true</code> if item was successfully removed from the DHeap&lt;T>; otherwise, <code>false</code>.</returns>
         public bool Remove(T item)
         {
             int index = this.heap.IndexOf(item);
@@ -292,7 +289,7 @@ namespace Utility
         /// Determines whether the DHeap&lt;T> contains a specific value.
         /// </summary>
         /// <param name="item">The object to locate in the DHeap&lt;T>.</param>
-        /// <returns>true if <paramref name="item"/> is found in the DHeap&lt;T>; false otherwise.</returns>
+        /// <returns><code>true</code> if <paramref name="item"/> is found in the DHeap&lt;T>; <code>false</code> otherwise.</returns>
         public bool Contains(T item) { return this.heap.Contains(item); }
 
         /// <summary>

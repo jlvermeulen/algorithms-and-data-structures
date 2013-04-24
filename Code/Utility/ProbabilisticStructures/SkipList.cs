@@ -150,7 +150,7 @@ namespace Utility
         /// Removes the first occurrence of a specific object from the SkipList&ltT>.
         /// </summary>
         /// <param name="item">The object to be removed.</param>
-        /// <returns>true if item was successfully removed from the SkipList&ltT>; otherwise, false.</returns>
+        /// <returns><code>true</code> if item was successfully removed from the SkipList&ltT>; otherwise, <code>false</code>.</returns>
         public bool Remove(T item)
         {
             SkipNode node = this.Find(item), pre = node;
@@ -176,7 +176,7 @@ namespace Utility
         /// Determines whether the SkipList&ltT> contains a specific value.
         /// </summary>
         /// <param name="item">The object to locate in the SkipList&ltT>.</param>
-        /// <returns>true if <paramref name="item"/> is found in the SkipList&ltT>; false otherwise.</returns>
+        /// <returns><code>true</code> if <paramref name="item"/> is found in the SkipList&ltT>; <code>false</code> otherwise.</returns>
         public bool Contains(T item) { return this.Find(item) != null; }
 
         /// <summary>

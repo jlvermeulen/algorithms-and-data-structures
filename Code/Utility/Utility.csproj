@@ -112,12 +112,15 @@
     <Compile Include="BinarySearchTree\KeyValue\SplayTree.cs" />
     <Compile Include="BinarySearchTree\Value\ScapegoatTree.cs" />
     <Compile Include="BinarySearchTree\Value\SplayTree.cs" />
+    <Compile Include="Geometry\ConvexHull.cs" />
+    <Compile Include="Geometry\Vector.cs" />
     <Compile Include="Graph\GraphInterfaces.cs" />
     <Compile Include="BinarySearchTree\Value\RedBlackTree.cs" />
     <Compile Include="Graph\MaxFlowMinCut.cs" />
     <Compile Include="Graph\MinimumSpanningTree.cs" />
     <Compile Include="Graph\ShortestPath.cs" />
     <Compile Include="PriorityQueue\DHeap.cs" />
+    <Compile Include="PriorityQueue\PairingHeap.cs" />
     <Compile Include="ProbabilisticStructures\BloomFilter.cs" />
     <Compile Include="ProbabilisticStructures\SkipList.cs" />
     <Compile Include="Search\BinaryInterpolationSearch.cs" />

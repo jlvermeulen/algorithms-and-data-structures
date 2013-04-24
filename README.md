@@ -6,6 +6,9 @@ Currently has:
 
 # ALGORITHMS
 
+## Computational geometry
+- Convex hull — uses Graham's scan to find the smallest polygon that contains all the points in a set
+
 ## Graphs
 - Minimum cut — calculates the lightest set of edges that would divide the graph in two components should they be removed
 - Minimum spanning tree — calculates the lightest tree that connects all the node in the graph using Kruskal's algorithm
