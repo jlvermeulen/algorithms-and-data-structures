@@ -31,7 +31,7 @@ namespace Utility
                 }
             }
 
-            return BubbleSort(input);
+            return BubbleSort(input, start, length);
         }
     }
 }

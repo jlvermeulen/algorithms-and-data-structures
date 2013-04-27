@@ -30,10 +30,7 @@ namespace Utility
         /// Adds the specified value to the BinarySearchTree&lt;T>.
         /// </summary>
         /// <param name="item">The value to add.</param>
-        public virtual void Add(T item)
-        {
-            this.Add(new ValueTreeNode(item));
-        }
+        public virtual void Add(T item) { this.Add(new ValueTreeNode(item)); }
 
         /// <summary>
         /// Adds the elements of the specified IEnumerable&lt;T> to the BinarySearchTree&lt;T>.
@@ -236,11 +233,7 @@ namespace Utility
                 return false;
             }
 
-            public void Reset()
-            {
-                this.currentNode = null;
-                this.currentCount = 1;
-            }
+            public void Reset() { this.currentNode = null; this.currentCount = 1; }
 
             void IDisposable.Dispose() { }
 

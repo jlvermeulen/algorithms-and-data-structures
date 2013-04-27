@@ -15,9 +15,9 @@ namespace Utility
         /// <returns>An unsigned integer containing the hash value of <paramref name="item"/>.</returns>
         public delegate uint HashFunction(T item);
 
-        uint[] filter;
-        uint size, hashCount;
-        HashFunction primaryHash, secondaryHash;
+        private uint[] filter;
+        private uint size, hashCount;
+        private HashFunction primaryHash, secondaryHash;
 
         /// <summary>
         /// Initialises a new BloomFilter&ltT> with an optimal size and number of hash functions given the desired capacity and error rate.

@@ -31,7 +31,7 @@ namespace Utility
                 }
             }
 
-            return InsertionSort(input);
+            return InsertionSort(input, start, length);
         }
     }
 }

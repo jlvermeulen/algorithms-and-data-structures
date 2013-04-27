@@ -47,7 +47,7 @@ namespace Utility
                         if (i == input.Length - 1)
                             break;
                     }
-                    ReverseSection(input, runStart, runStart + runLength - 1);
+                    Array.Reverse(input, runStart, runLength);
                 }
 
                 maxMinRun = Math.Min(start + length - runStart, minrun);
@@ -267,17 +267,6 @@ namespace Utility
                 while (acount >= MIN_GALLOP || bcount >= MIN_GALLOP);
                 currgallop++;
                 mingallop = currgallop;
-            }
-        }
-
-        private static void ReverseSection(T[] input, int start, int end)
-        {
-            T temp;
-            while (start < end)
-            {
-                temp = input[start];
-                input[start++] = input[end];
-                input[end--] = temp;
             }
         }
     }

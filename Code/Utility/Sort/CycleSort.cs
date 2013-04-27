@@ -14,14 +14,14 @@ namespace Utility
             CheckArguments(input, start, length);
 
             T item, temp;
-            int pos;
+            int pos, end = start + length;
 
             for (int i = start; i < start + length - 1; i++)
             {
                 item = input[i];
                 pos = i;
 
-                for (int j = i + 1; j < input.Length; j++)
+                for (int j = i + 1; j < end; j++)
                     if (input[j].CompareTo(item) < 0)
                         pos++;
 
@@ -38,7 +38,7 @@ namespace Utility
                 while (pos != i)
                 {
                     pos = i;
-                    for (int j = i + 1; j < input.Length; j++)
+                    for (int j = i + 1; j < end; j++)
                         if (input[j].CompareTo(item) < 0)
                             pos++;
 

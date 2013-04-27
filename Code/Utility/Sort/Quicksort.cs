@@ -21,7 +21,19 @@ namespace Utility
         {
             if (end - start < 20)
             {
-                InsertionSort(input, start, end - start + 1);
+                T current;
+                int j;
+                for (int i = start + 1; i <= end; i++)
+                {
+                    current = input[i];
+                    for (j = i; j > start; j--)
+                    {
+                        if (input[j - 1].CompareTo(current) <= 0)
+                            break;
+                    }
+                    Buffer.BlockCopy(input, j * sizeof(int), input, (j + 1) * sizeof(int), (i - j) * sizeof(int));
+                    input[j] = current;
+                }
                 return;
             }
 

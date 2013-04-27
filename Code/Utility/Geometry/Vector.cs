@@ -3,7 +3,7 @@
 namespace Utility
 {
     /// <summary>
-    /// Defines a point in 2D space.
+    /// Defines a two-dimensional vector.
     /// </summary>
     public struct Vector2D
     {
@@ -78,5 +78,13 @@ namespace Utility
         /// Returns a vector with both coordinates set to zero.
         /// </summary>
         public static Vector2D Zero { get { return new Vector2D(0, 0); } }
+
+        public override bool Equals(object obj)
+        {
+            try { return this == (Vector2D)obj; }
+            catch { return base.Equals(obj); }
+        }
+
+        public override int GetHashCode() { return this.X.GetHashCode() ^ this.Y.GetHashCode(); }
     }
 }

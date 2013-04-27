@@ -166,6 +166,10 @@ namespace Utility
         }
     }
 
+    /// <summary>
+    /// Represents the abstract d-ary heap that all other d-ary heaps derive from.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in the DHeap&ltT>.</typeparam>
     public abstract class DHeap<T> : ICollection<T>
         where T : IComparable<T>
     {
@@ -182,7 +186,7 @@ namespace Utility
         }
 
         /// <summary>
-        /// Adds the specified value to the heap.
+        /// Adds the specified value to the DHeap&lt;T>.
         /// </summary>
         /// <param name="item">The value to add.</param>
         public void Add(T item)
@@ -192,9 +196,19 @@ namespace Utility
         }
 
         /// <summary>
-        /// Extracts the item at the top of the heap.
+        /// Adds the elements of the specified IEnumerable&lt;T> to the DHeap&lt;T>.
         /// </summary>
-        /// <returns>The item at the top of the heap.</returns>
+        /// <param name="collection">The IEnumerable&lt;T> whose values should be added to the DHeap&lt;T>.</param>
+        public void AddRange(IEnumerable<T> collection)
+        {
+            this.heap.AddRange(collection);
+            this.Heapify();
+        }
+
+        /// <summary>
+        /// Extracts the item at the top of the DHeap&lt;T>.
+        /// </summary>
+        /// <returns>The item at the top of the DHeap&lt;T>.</returns>
         public T Extract()
         {
             T top = this.heap[0];
@@ -205,15 +219,15 @@ namespace Utility
         }
 
         /// <summary>
-        /// Returns the item at the top of the heap without removing it.
+        /// Returns the item at the top of the DHeap&lt;T> without removing it.
         /// </summary>
-        /// <returns>The item at the top of the heap.</returns>
+        /// <returns>The item at the top of the DHeap&lt;T>.</returns>
         public T Peek() { return this.heap[0]; }
 
         /// <summary>
-        /// Merges a heap into this one.
+        /// Merges a DHeap&lt;T> into this one.
         /// </summary>
-        /// <param name="other">The heap to merge into this one.</param>
+        /// <param name="other">The DHeap&lt;T> to merge into this one.</param>
         public void Merge(DHeap<T> other)
         {
             this.heap.AddRange(other.heap);

@@ -11,9 +11,9 @@ namespace Utility
     public class SkipList<T> : ICollection<T>
         where T : IComparable<T>
     {
-        SkipNode head;
-        float p;
-        Random random;
+        private SkipNode head;
+        private float p;
+        private Random random;
 
         /// <summary>
         /// Initializes a new instance of the SkipList&lt;T> class that is empty.

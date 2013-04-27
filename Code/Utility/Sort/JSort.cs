@@ -13,7 +13,7 @@ namespace Utility
         {
             CheckArguments(input, start, length);
 
-            int l, r, s, startHeapify = (input.Length - 2) / 2, root, end = start + length;
+            int l, r, s, end = start + length, startHeapify = (end - 2) / 2, root;
             T temp;
             for (; startHeapify >= start; startHeapify--)
             {
@@ -62,7 +62,7 @@ namespace Utility
                 }
             }
 
-            return BinaryInsertionSort(input);
+            return BinaryInsertionSort(input, start, length);
         }
     }
 }

@@ -59,6 +59,7 @@ Currently has:
 
 ## Priority queue
 - d-ary heap — generalisation of a binary heap with d children, uses Floyd's method for constructing a heap in O(n) time, implements ICollection&lt;T>
+- Pairing heap — heap with amortised O(log n) extraction, O(1) merge and insertion, and amortised Ω(log log n) change key, implements ICollection&lt;T>
 
 ## Probabilistic structures
 - Bloom filter — test whether an element might be in a set (with a known margin of error), or that it is definitely not in the set, without storing the actual elements
