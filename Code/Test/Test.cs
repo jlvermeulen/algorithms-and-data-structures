@@ -45,7 +45,7 @@ class Test
 
         #region Sort
 
-        string testSize = "Small";
+        string testSize = "Large";
         string testDir = "Random\\";
         string test = testDir + testSize;
 
@@ -73,6 +73,7 @@ class Test
         //RunTest(input, test, true, new SortMethod(Sort<int>.StrandSort), "Strand Sort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.Timsort), "Timsort");
         //RunTest(input, test, true, new SortMethod(Sort<int>.TreeSort), "Tree Sort");
+        RunTest(input, test, false, new SortMethod(Sort), "Test");
 
         #endregion
 
@@ -306,6 +307,17 @@ class Test
         File.Delete("TestData\\" + test + ".out");
 
         Console.ReadLine();
+    }
+
+    static int[] Sort(int[] input)
+    {
+        PairingMinHeap<int> heap = new PairingMinHeap<int>(input);
+
+        int i = 0;
+        while (heap.Count > 0)
+            input[i++] = heap.Extract();
+
+        return input;
     }
 
     static void RunTest(int[] input, string test, bool benchmark, SortMethod Sort, string sortName)

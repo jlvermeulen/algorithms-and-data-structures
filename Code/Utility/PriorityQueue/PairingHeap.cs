@@ -24,7 +24,7 @@ namespace Utility
 
         private PairingMaxHeap(T item) : base(item) { }
 
-        private PairingMaxHeap(T root, LinkedList<PairingHeap<T>> children) : base(root, children) { }
+        private PairingMaxHeap(T root, LinkedList<PairingHeap<T>> children, int count) : base(root, children, count) { }
 
         /// <summary>
         /// Adds the specified value to the PairingMaxHeap&lt;T>.
@@ -64,7 +64,7 @@ namespace Utility
             }
             else
             {
-                PairingMaxHeap<T> newHeap = new PairingMaxHeap<T>(this.root, this.children);
+                PairingMaxHeap<T> newHeap = new PairingMaxHeap<T>(this.root, this.children, this.Count);
                 this.root = heap.root;
                 this.children = heap.children;
                 this.children.AddFirst(newHeap);
@@ -125,7 +125,7 @@ namespace Utility
 
         private PairingMinHeap(T item) : base(item) { }
 
-        private PairingMinHeap(T root, LinkedList<PairingHeap<T>> children) : base(root, children) { }
+        private PairingMinHeap(T root, LinkedList<PairingHeap<T>> children, int count) : base(root, children, count) { }
 
         /// <summary>
         /// Adds the specified value to the PairingMinHeap&lt;T>.
@@ -165,7 +165,7 @@ namespace Utility
             }
             else
             {
-                PairingMinHeap<T> newHeap = new PairingMinHeap<T>(this.root, this.children);
+                PairingMinHeap<T> newHeap = new PairingMinHeap<T>(this.root, this.children, this.Count - heap.Count);
                 this.root = heap.root;
                 this.children = heap.children;
                 this.children.AddFirst(newHeap);
@@ -223,12 +223,7 @@ namespace Utility
             this.Count = 0;
         }
 
-        protected PairingHeap(IEnumerable<T> collection)
-            : this()
-        {
-            foreach (T t in collection)
-                this.Add(t);
-        }
+        protected PairingHeap(IEnumerable<T> collection) : this() { this.AddRange(collection); }
 
         protected PairingHeap(T item)
             : this()
@@ -237,13 +232,11 @@ namespace Utility
             this.Count = 1;
         }
 
-        protected PairingHeap(T root, LinkedList<PairingHeap<T>> children)
+        protected PairingHeap(T root, LinkedList<PairingHeap<T>> children, int count)
         {
             this.root = root;
             this.children = children;
-            this.Count = 1;
-            foreach (PairingHeap<T> h in children)
-                this.Count += h.Count;
+            this.Count = count;
         }
 
         public abstract void Add(T item);
