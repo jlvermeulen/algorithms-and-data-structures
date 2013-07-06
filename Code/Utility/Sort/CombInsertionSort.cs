@@ -2,36 +2,42 @@
 
 namespace Utility
 {
-    public static partial class Sort<T>
-        where T : IComparable<T>
+    namespace Algorithms
     {
-        public static T[] CombInsertionSort(T[] input) { return CombInsertionSort(input, 0, input.Length); }
-
-        public static T[] CombInsertionSort(T[] input, int start) { return CombInsertionSort(input, start, input.Length - start); }
-
-        public static T[] CombInsertionSort(T[] input, int start, int length)
+        namespace Sort
         {
-            CheckArguments(input, start, length);
-
-            int gap = length;
-            T temp;
-
-            while (gap > 1)
+            public static partial class Sort<T>
+                where T : IComparable<T>
             {
-                gap = Math.Max(1, (int)(gap / 1.3f));
+                public static T[] CombInsertionSort(T[] input) { return CombInsertionSort(input, 0, input.Length); }
 
-                for (int i = start; i < start + length - gap; i++)
+                public static T[] CombInsertionSort(T[] input, int start) { return CombInsertionSort(input, start, input.Length - start); }
+
+                public static T[] CombInsertionSort(T[] input, int start, int length)
                 {
-                    if (input[i].CompareTo(input[i + gap]) > 0)
+                    CheckArguments(input, start, length);
+
+                    int gap = length;
+                    T temp;
+
+                    while (gap > 1)
                     {
-                        temp = input[i];
-                        input[i] = input[i + gap];
-                        input[i + gap] = temp;
+                        gap = Math.Max(1, (int)(gap / 1.3f));
+
+                        for (int i = start; i < start + length - gap; i++)
+                        {
+                            if (input[i].CompareTo(input[i + gap]) > 0)
+                            {
+                                temp = input[i];
+                                input[i] = input[i + gap];
+                                input[i + gap] = temp;
+                            }
+                        }
                     }
+
+                    return InsertionSort(input, start, length);
                 }
             }
-
-            return InsertionSort(input, start, length);
         }
     }
 }

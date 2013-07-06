@@ -2,67 +2,73 @@
 
 namespace Utility
 {
-    public static partial class Sort<T>
-        where T : IComparable<T>
+    namespace Algorithms
     {
-        public static T[] JSort(T[] input) { return JSort(input, 0, input.Length); }
-
-        public static T[] JSort(T[] input, int start) { return JSort(input, start, input.Length - start); }
-
-        public static T[] JSort(T[] input, int start, int length)
+        namespace Sort
         {
-            CheckArguments(input, start, length);
-
-            int l, r, s, end = start + length, startHeapify = (end - 2) / 2, root;
-            T temp;
-            for (; startHeapify >= start; startHeapify--)
+            public static partial class Sort<T>
+                where T : IComparable<T>
             {
-                root = startHeapify;
-                while ((l = (root + 1) * 2 - 1) < end)
+                public static T[] JSort(T[] input) { return JSort(input, 0, input.Length); }
+
+                public static T[] JSort(T[] input, int start) { return JSort(input, start, input.Length - start); }
+
+                public static T[] JSort(T[] input, int start, int length)
                 {
-                    r = l + 1;
-                    s = root;
-                    if (input[s].CompareTo(input[l]) > 0)
-                        s = l;
-                    if (r < end && input[s].CompareTo(input[r]) > 0)
-                        s = r;
-                    if (s != root)
+                    CheckArguments(input, start, length);
+
+                    int l, r, s, end = start + length, startHeapify = (end - 2) / 2, root;
+                    T temp;
+                    for (; startHeapify >= start; startHeapify--)
                     {
-                        temp = input[s];
-                        input[s] = input[root];
-                        input[root] = temp;
-                        root = s;
+                        root = startHeapify;
+                        while ((l = (root + 1) * 2 - 1) < end)
+                        {
+                            r = l + 1;
+                            s = root;
+                            if (input[s].CompareTo(input[l]) > 0)
+                                s = l;
+                            if (r < end && input[s].CompareTo(input[r]) > 0)
+                                s = r;
+                            if (s != root)
+                            {
+                                temp = input[s];
+                                input[s] = input[root];
+                                input[root] = temp;
+                                root = s;
+                            }
+                            else
+                                break;
+                        }
                     }
-                    else
-                        break;
+
+                    startHeapify = end - (end - 2) / 2 - 1;
+                    for (; startHeapify < end; startHeapify++)
+                    {
+                        root = startHeapify;
+                        while ((l = end - (end - root - 1) * 2 - 2) >= 0)
+                        {
+                            r = l - 1;
+                            s = root;
+                            if (input[s].CompareTo(input[l]) < 0)
+                                s = l;
+                            if (r >= 0 && input[s].CompareTo(input[r]) < 0)
+                                s = r;
+                            if (s != root)
+                            {
+                                temp = input[s];
+                                input[s] = input[root];
+                                input[root] = temp;
+                                root = s;
+                            }
+                            else
+                                break;
+                        }
+                    }
+
+                    return BinaryInsertionSort(input, start, length);
                 }
             }
-
-            startHeapify = end - (end - 2) / 2 - 1;
-            for (; startHeapify < end; startHeapify++)
-            {
-                root = startHeapify;
-                while ((l = end - (end - root - 1) * 2 - 2) >= 0)
-                {
-                    r = l - 1;
-                    s = root;
-                    if (input[s].CompareTo(input[l]) < 0)
-                        s = l;
-                    if (r >= 0 && input[s].CompareTo(input[r]) < 0)
-                        s = r;
-                    if (s != root)
-                    {
-                        temp = input[s];
-                        input[s] = input[root];
-                        input[root] = temp;
-                        root = s;
-                    }
-                    else
-                        break;
-                }
-            }
-
-            return BinaryInsertionSort(input, start, length);
         }
     }
 }

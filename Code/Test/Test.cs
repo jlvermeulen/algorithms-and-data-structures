@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Utility;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using Utility.Algorithms.ComputationalGeometry;
+using Utility.Algorithms.Graph;
+using Utility.Algorithms.Search;
+using Utility.Algorithms.Sort;
+using Utility.DataStructures.BinarySearchTree;
+using Utility.DataStructures.DisjointSet;
+using Utility.DataStructures.PriorityQueue;
+using Utility.DataStructures.Probabilistic;
 
 class Test
 {

@@ -112,8 +112,9 @@
     <Compile Include="BinarySearchTree\KeyValue\SplayTree.cs" />
     <Compile Include="BinarySearchTree\Value\ScapegoatTree.cs" />
     <Compile Include="BinarySearchTree\Value\SplayTree.cs" />
-    <Compile Include="Geometry\ConvexHull.cs" />
-    <Compile Include="Geometry\Vector.cs" />
+    <Compile Include="ComputationalGeometry\ConvexHull.cs" />
+    <Compile Include="ComputationalGeometry\Mesh.cs" />
+    <Compile Include="ComputationalGeometry\Vector.cs" />
     <Compile Include="Graph\GraphInterfaces.cs" />
     <Compile Include="BinarySearchTree\Value\RedBlackTree.cs" />
     <Compile Include="Graph\MaxFlowMinCut.cs" />
