@@ -70,6 +70,13 @@ namespace Utility
                     if (current == null)
                         return false;
 
+                    if (current.Count > 1)
+                    {
+                        current.Count--;
+                        this.Count--;
+                        return true;
+                    }
+
                     if (current.Left == null || current.Right == null)
                         this.Delete(current);
                     else
@@ -79,6 +86,8 @@ namespace Utility
                             replace = (KeyValueTreeNode)this.Successor(current);
 
                         current.KeyValuePair = replace.KeyValuePair;
+                        current.Count = replace.Count;
+
                         this.Delete(replace);
                     }
 
@@ -147,7 +156,10 @@ namespace Utility
                             }
                         }
                         else
-                            return null;
+                        {
+                            current.Count++;
+                            return current;
+                        }
                     }
                     node.Parent = current;
                     return node;
@@ -247,8 +259,13 @@ namespace Utility
 
                 protected class KeyValueTreeNode : TreeNode
                 {
-                    public KeyValueTreeNode(TKey key, TValue value) { this.KeyValuePair = new KeyValuePair<TKey, TValue>(key, value); }
+                    public KeyValueTreeNode(TKey key, TValue value)
+                    {
+                        this.KeyValuePair = new KeyValuePair<TKey, TValue>(key, value);
+                        this.Count = 1;
+                    }
 
+                    public int Count { get; set; }
                     public KeyValuePair<TKey, TValue> KeyValuePair { get; set; }
                     public TKey Key { get { return this.KeyValuePair.Key; } }
                     public TValue Value

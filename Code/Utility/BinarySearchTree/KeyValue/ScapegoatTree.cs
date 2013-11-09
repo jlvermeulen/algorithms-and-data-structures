@@ -58,7 +58,8 @@ namespace Utility
                     while (current != null)
                     {
                         depth++;
-                        if (node.Key.CompareTo(current.Key) < 0)
+                        int c = node.Key.CompareTo(current.Key);
+                        if (c < 0)
                         {
                             if (current.Left != null)
                                 current = current.Left;
@@ -68,7 +69,7 @@ namespace Utility
                                 break;
                             }
                         }
-                        else if (node.Key.CompareTo(current.Key) > 0)
+                        else if (c > 0)
                         {
                             if (current.Right != null)
                                 current = current.Right;
@@ -98,18 +99,42 @@ namespace Utility
                 /// <returns>true if the element is successfully found and removed; otherwise, false.</returns>
                 public override bool Remove(TKey key)
                 {
-                    int count = this.Count;
-                    bool removed = base.Remove(key);
-                    if (count != this.Count)
+                    KeyValueTreeNode current = this.Find(key);
+
+                    if (current == null)
+                        return false;
+
+                    if (current.Count > 1)
                     {
-                        this.size--;
-                        if (this.size <= this.maxSize / 2)
-                        {
-                            this.Flatten((KeyValueTreeNode)this.root, this.size);
-                            this.maxSize = this.size;
-                        }
+                        current.Count--;
+                        this.Count--;
+                        return true;
                     }
-                    return removed;
+
+                    if (current.Left == null || current.Right == null)
+                        this.Delete(current);
+                    else
+                    {
+                        KeyValueTreeNode replace = (KeyValueTreeNode)this.Predecessor(current);
+                        if (replace == null)
+                            replace = (KeyValueTreeNode)this.Successor(current);
+
+                        current.Value = replace.Value;
+                        current.Count = replace.Count;
+
+                        this.Delete(replace);
+                    }
+
+                    this.Count--;
+                    this.size--;
+
+                    if (this.size <= this.maxSize / 2)
+                    {
+                        this.Flatten((KeyValueTreeNode)this.root, this.size);
+                        this.maxSize = this.size;
+                    }
+
+                    return true;
                 }
 
                 private void Rebalance(KeyValueTreeNode node)
@@ -142,6 +167,9 @@ namespace Utility
 
                 private void Flatten(KeyValueTreeNode node, int size)
                 {
+                    if (node == null)
+                        return;
+
                     KeyValueTreeNode[] nodes = new KeyValueTreeNode[size];
                     int index = 0;
                     this.Flatten(node, nodes, ref index);
@@ -198,6 +226,8 @@ namespace Utility
                         return 0;
                     return this.Size(node.Left) + this.Size(node.Right) + 1;
                 }
+
+                public override void Clear() { base.Clear(); this.size = 0; }
             }
         }
     }

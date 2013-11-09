@@ -55,9 +55,6 @@ class Test
         string testSize = "Large";
         string testDir = "Random\\";
         string test = testDir + testSize;
-
-        UnzipTestData(test, testDir);
-        int[] input = LoadTestData(test);
         
         //ReferenceTest(input, test, true);
 
@@ -309,9 +306,6 @@ class Test
         //Console.WriteLine("Performance factor: {0}.", (1 - filter.Confidence) * testSize / falsePositives);
 
         #endregion
-
-        File.Delete("TestData\\" + test + ".in");
-        File.Delete("TestData\\" + test + ".out");
     }
 
     static int[] Sort(int[] input)
@@ -359,29 +353,6 @@ class Test
         if (!benchmark)
             Console.WriteLine("Output is {0}.", !benchmark && CheckOutput(input, test) ? "correct" : "incorrect");
         Console.WriteLine();
-    }
-
-    static int[] LoadTestData(string test)
-    {
-        StreamReader reader = new StreamReader("TestData\\" + test + ".in");
-        List<int> list = new List<int>();
-        string line;
-        while ((line = reader.ReadLine()) != null)
-            list.Add(int.Parse(line));
-        reader.Close();
-
-        return list.ToArray();
-    }
-
-    static void UnzipTestData(string test, string testDir)
-    {
-        Process p = new Process();
-        p.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\7za.exe";
-        p.StartInfo.Arguments = "x " + "TestData\\" + test + ".7z -aoa -o" + "TestData\\" + testDir;
-        p.StartInfo.CreateNoWindow = true;
-        p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
-        p.Start();
-        p.WaitForExit();
     }
 
     static bool CheckOutput(int[] output, string test)

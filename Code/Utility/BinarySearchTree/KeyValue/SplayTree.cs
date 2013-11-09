@@ -108,7 +108,7 @@ namespace Utility
                 {
                     bool leftC, leftPC;
 
-                    if (this.root == start)
+                    if (this.root == start || start == null)
                         return;
 
                     leftC = start == start.Parent.Left;
