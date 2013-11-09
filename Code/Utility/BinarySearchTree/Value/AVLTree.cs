@@ -58,13 +58,9 @@ namespace Utility
                             rightC = start.Right.Right != null ? start.Right.Right.Height : -1;
                             diffC = leftC - rightC;
 
-                            if (diffC == -1)
-                                this.RotateLeft(start);
-                            else if (diffC == 1)
-                            {
+                            if (diffC == 1)
                                 this.RotateRight(start.Right);
-                                this.RotateLeft(start);
-                            }
+                            this.RotateLeft(start);
 
                             start = start.Parent.Parent;
                             continue;
@@ -75,13 +71,9 @@ namespace Utility
                             rightC = start.Left.Right != null ? start.Left.Right.Height : -1;
                             diffC = leftC - rightC;
 
-                            if (diffC == 1)
-                                this.RotateRight(start);
-                            else if (diffC == -1)
-                            {
+                            if (diffC == -1)
                                 this.RotateLeft(start.Left);
-                                this.RotateRight(start);
-                            }
+                            this.RotateRight(start);
 
                             start = start.Parent.Parent;
                             continue;
@@ -125,11 +117,7 @@ namespace Utility
 
                 protected class AVLNode : ValueTreeNode
                 {
-                    public AVLNode(T value)
-                        : base(value)
-                    {
-                        this.Height = 0;
-                    }
+                    public AVLNode(T value) : base(value) { this.Height = 0; }
 
                     public int Height { get; set; }
                     public new AVLNode Parent { get { return (AVLNode)base.Parent; } set { base.Parent = value; } }

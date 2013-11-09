@@ -57,7 +57,8 @@ namespace Utility
                     while (current != null)
                     {
                         depth++;
-                        if (node.Value.CompareTo(current.Value) < 0)
+                        int c = node.Value.CompareTo(current.Value);
+                        if (c < 0)
                         {
                             if (current.Left != null)
                                 current = current.Left;
@@ -67,7 +68,7 @@ namespace Utility
                                 break;
                             }
                         }
-                        else if (node.Value.CompareTo(current.Value) > 0)
+                        else if (c > 0)
                         {
                             if (current.Right != null)
                                 current = current.Right;
@@ -100,18 +101,42 @@ namespace Utility
                 /// <returns>true if item was successfully removed from the ScapeGoatTree&lt;T>; otherwise, false.</returns>
                 public override bool Remove(T item)
                 {
-                    int count = this.Count;
-                    bool removed = base.Remove(item);
-                    if (count != this.Count)
+                    ValueTreeNode current = this.Find(item);
+
+                    if (current == null)
+                        return false;
+
+                    if (current.Count > 1)
                     {
-                        this.size--;
-                        if (this.size <= this.maxSize / 2)
-                        {
-                            this.Flatten((ValueTreeNode)this.root, this.size);
-                            this.maxSize = this.size;
-                        }
+                        current.Count--;
+                        this.Count--;
+                        return true;
                     }
-                    return removed;
+
+                    if (current.Left == null || current.Right == null)
+                        this.Delete(current);
+                    else
+                    {
+                        ValueTreeNode replace = (ValueTreeNode)this.Predecessor(current);
+                        if (replace == null)
+                            replace = (ValueTreeNode)this.Successor(current);
+
+                        current.Value = replace.Value;
+                        current.Count = replace.Count;
+
+                        this.Delete(replace);
+                    }
+
+                    this.Count--;
+                    this.size--;
+
+                    if (this.size <= this.maxSize / 2)
+                    {
+                        this.Flatten((ValueTreeNode)this.root, this.size);
+                        this.maxSize = this.size;
+                    }
+
+                    return true;
                 }
 
                 private void Rebalance(ValueTreeNode node)
@@ -144,6 +169,9 @@ namespace Utility
 
                 private void Flatten(ValueTreeNode node, int size)
                 {
+                    if (node == null)
+                        return;
+
                     ValueTreeNode[] nodes = new ValueTreeNode[size];
                     int index = 0;
                     this.Flatten(node, nodes, ref index);
@@ -202,6 +230,8 @@ namespace Utility
                         return 0;
                     return this.Size(node.Left) + this.Size(node.Right) + 1;
                 }
+
+                public override void Clear() { base.Clear(); this.size = 0; }
             }
         }
     }

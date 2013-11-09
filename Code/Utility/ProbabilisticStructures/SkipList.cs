@@ -45,7 +45,7 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Adds the specified value to the SkipList&ltT>.
+                /// Adds the specified value to the SkipList&lt;T>.
                 /// </summary>
                 /// <param name="item">The value to add.</param>
                 public void Add(T item)
@@ -91,7 +91,6 @@ namespace Utility
                                 previous = node;
                                 node = node.Down;
                             }
-
                         }
                         else
                         {
@@ -138,9 +137,9 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Adds the elements of the specified IEnumerable&ltT> to the SkipList&ltT>.
+                /// Adds the elements of the specified IEnumerable&lt;T> to the SkipList&lt;T>.
                 /// </summary>
-                /// <param name="collection">The IEnumerable&lt;T> whose values should be added to the SkipList&ltT>.</param>
+                /// <param name="collection">The IEnumerable&lt;T> whose values should be added to the SkipList&lt;T>.</param>
                 public void AddRange(IEnumerable<T> collection)
                 {
                     if (collection == null)
@@ -151,10 +150,10 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Removes the first occurrence of a specific object from the SkipList&ltT>.
+                /// Removes the first occurrence of a specific object from the SkipList&lt;T>.
                 /// </summary>
                 /// <param name="item">The object to be removed.</param>
-                /// <returns><code>true</code> if item was successfully removed from the SkipList&ltT>; otherwise, <code>false</code>.</returns>
+                /// <returns><code>true</code> if item was successfully removed from the SkipList&lt;T>; otherwise, <code>false</code>.</returns>
                 public bool Remove(T item)
                 {
                     SkipNode node = this.Find(item), pre = node;
@@ -164,29 +163,41 @@ namespace Utility
 
                     if (node.Count > 1)
                         while (pre != null)
+                        {
+                            pre.Count--;
                             pre = pre.Up;
+                        }
                     else
+                    {
                         while (pre != null)
                         {
-                            pre.Next.Previous = pre.Previous;
+                            if (pre.Next != null)
+                                pre.Next.Previous = pre.Previous;
+                            else if (pre.Previous.Previous == null)
+                            {
+                                this.head = pre.Previous.Down;
+                                this.head.Up = null;
+                                break;
+                            }
                             pre.Previous.Next = pre.Next;
                             pre = pre.Up;
                         }
+                    }
 
                     return true;
                 }
 
                 /// <summary>
-                /// Determines whether the SkipList&ltT> contains a specific value.
+                /// Determines whether the SkipList&lt;T> contains a specific value.
                 /// </summary>
-                /// <param name="item">The object to locate in the SkipList&ltT>.</param>
-                /// <returns><code>true</code> if <paramref name="item"/> is found in the SkipList&ltT>; <code>false</code> otherwise.</returns>
+                /// <param name="item">The object to locate in the SkipList&lt;T>.</param>
+                /// <returns><code>true</code> if <paramref name="item"/> is found in the SkipList&lt;T>; <code>false</code> otherwise.</returns>
                 public bool Contains(T item) { return this.Find(item) != null; }
 
                 /// <summary>
                 /// Removes all items from the SkipList&lt;T>.
                 /// </summary>
-                public void Clear() { this.head = null; }
+                public void Clear() { this.head = new SkipNode(default(T)); this.Count = 0; }
 
                 /// <summary>
                 /// Copies the elements of the SkipList&lt;T> to an Array, starting at a particular Array index.
@@ -238,6 +249,8 @@ namespace Utility
                             node = node.Next;
                             break;
                         }
+                        else
+                            node = node.Down;
 
                     while (node != null)
                     {

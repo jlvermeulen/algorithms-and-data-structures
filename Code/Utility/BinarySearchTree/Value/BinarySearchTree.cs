@@ -267,7 +267,7 @@ namespace Utility
                 /// <summary>
                 /// Removes all items from the BinaryTree.
                 /// </summary>
-                public virtual void Clear() { this.root = null; }
+                public virtual void Clear() { this.root = null; this.Count = 0; }
 
                 protected virtual void Delete(TreeNode current)
                 {

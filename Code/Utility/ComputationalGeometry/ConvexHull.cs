@@ -10,7 +10,7 @@ namespace Utility
             /// <summary>
             /// A class containing methods for computational geometry.
             /// </summary>
-            public static class ComputationalGeometry
+            public static partial class ComputationalGeometry
             {
                 /// <summary>
                 /// Returns the smallest polygon that contains all the points in the input.
