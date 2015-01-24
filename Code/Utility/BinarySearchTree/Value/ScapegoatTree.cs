@@ -18,7 +18,7 @@ namespace Utility
                 private int size, maxSize;
 
                 /// <summary>
-                /// Initializes a new instance of the ScapeGoatTree&lt;T> class that is empty.
+                /// Initialises a new instance of the ScapeGoatTree&lt;T&gt; class that is empty.
                 /// </summary>
                 /// <param name="alpha">The weight factor that is used when balancing the tree.</param>
                 public ScapegoatTree(float alpha = 0.75f)
@@ -29,9 +29,9 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Initializes a new instance of the ScapeGoatTree&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+                /// Initialises a new instance of the ScapeGoatTree&lt;T&gt; class that contains elements copied from the specified IEnumerable&lt;T&gt;.
                 /// </summary>
-                /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new ScapeGoatTree&lt;T>.</param>
+                /// <param name="collection">The IEnumerable&lt;T&gt; whose elements are copied to the new ScapeGoatTree&lt;T&gt;.</param>
                 /// <param name="alpha">The weight factor that is used when balancing the tree.</param>
                 public ScapegoatTree(IEnumerable<T> collection, float alpha = 0.75f)
                     : base()
@@ -95,10 +95,10 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Removes the specified value from the ScapeGoatTree&lt;T>.
+                /// Removes the specified value from the ScapeGoatTree&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The value to remove.</param>
-                /// <returns>true if item was successfully removed from the ScapeGoatTree&lt;T>; otherwise, false.</returns>
+                /// <returns>true if item was successfully removed from the ScapeGoatTree&lt;T&gt;; otherwise, false.</returns>
                 public override bool Remove(T item)
                 {
                     ValueTreeNode current = this.Find(item);

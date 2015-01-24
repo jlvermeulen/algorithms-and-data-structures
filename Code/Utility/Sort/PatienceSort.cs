@@ -19,11 +19,11 @@ namespace Utility
                 {
                     CheckArguments(input, start, length);
 
-                    List<ComparableStack> stacks = new List<ComparableStack>();
+                    List<Stack<T>> stacks = new List<Stack<T>>();
 
                     for (int i = start; i < start + length; i++)
                     {
-                        ComparableStack stack = new ComparableStack();
+                        Stack<T> stack = new Stack<T>();
                         stack.Push(input[i]);
                         int index = stacks.BinarySearch(stack);
                         if (index < 0)
@@ -34,24 +34,19 @@ namespace Utility
                             stacks.Add(stack);
                     }
 
-                    DMinHeap<ComparableStack> heap = new DMinHeap<ComparableStack>(stacks, 3);
+                    DMinHeap<T, Stack<T>> heap = new DMinHeap<T, Stack<T>>(3);
+                    foreach (Stack<T> s in stacks)
+                        heap.Add(s, s.Peek());
+
                     for (int i = start; i < start + length; i++)
                     {
-                        ComparableStack stack = heap.Extract();
+                        Stack<T> stack = heap.Extract();
                         input[i] = stack.Pop();
                         if (stack.Count != 0)
-                            heap.Add(stack);
+                            heap.Add(stack, stack.Peek());
                     }
 
                     return input;
-                }
-
-                private class ComparableStack : Stack<T>, IComparable<ComparableStack>
-                {
-                    public int CompareTo(ComparableStack other)
-                    {
-                        return this.Peek().CompareTo(other.Peek());
-                    }
                 }
             }
         }

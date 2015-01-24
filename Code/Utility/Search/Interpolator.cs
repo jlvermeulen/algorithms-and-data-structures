@@ -27,10 +27,10 @@ namespace Utility
                 protected Interpolator() { }
 
                 /// <summary>
-                /// Creates an instance of Interpolator&lt;T> with the specified interpolation method.
+                /// Creates an instance of Interpolator&lt;T&gt; with the specified interpolation method.
                 /// </summary>
                 /// <param name="interpolation">The function to use for interpolation.</param>
-                /// <returns>An instance of Interpolator&lt;T> with the specified interpolation method.</returns>
+                /// <returns>An instance of Interpolator&lt;T&gt; with the specified interpolation method.</returns>
                 public static Interpolator<T> Create(Interpolation<T> interpolation)
                 {
                     return new InterpolatorImplementation(interpolation);

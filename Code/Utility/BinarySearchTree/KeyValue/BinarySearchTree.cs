@@ -17,14 +17,14 @@ namespace Utility
                 where TKey : IComparable<TKey>
             {
                 /// <summary>
-                /// Initializes a new instance of the BinarySearchTree&lt;TKey, TValue> class that is empty.
+                /// Initialises a new instance of the BinarySearchTree&lt;TKey, TValue&gt; class that is empty.
                 /// </summary>
                 public BinarySearchTree() { }
 
                 /// <summary>
-                /// Initializes a new instance of the BinarySearchTree&lt;TKey, TValue> class that contains elements copied from the specified IDictionary&lt;TKey, TValue>.
+                /// Initialises a new instance of the BinarySearchTree&lt;TKey, TValue&gt; class that contains elements copied from the specified IDictionary&lt;TKey, TValue&gt;.
                 /// </summary>
-                /// <param name="collection">The IDictionary&lt;TKey, TValue> whose elements are copied to the new BinarySearchTree&lt;TKey, TValue>.</param>
+                /// <param name="collection">The IDictionary&lt;TKey, TValue&gt; whose elements are copied to the new BinarySearchTree&lt;TKey, TValue&gt;.</param>
                 public BinarySearchTree(IDictionary<TKey, TValue> collection)
                 {
                     foreach (KeyValuePair<TKey, TValue> t in collection)
@@ -32,7 +32,7 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Adds the specified key and value to the RedBlackTree&lt;TKey, TValue>.
+                /// Adds the specified key and value to the RedBlackTree&lt;TKey, TValue&gt;.
                 /// </summary>
                 /// <param name="key">The key of the element to add.</param>
                 /// <param name="value">The value of the element to add.</param>
@@ -46,9 +46,9 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Adds the elements of the specified IDictionary&lt;TKey, TValue> to the BinarySearchTree&lt;TKey, TValue>.
+                /// Adds the elements of the specified IDictionary&lt;TKey, TValue&gt; to the BinarySearchTree&lt;TKey, TValue&gt;.
                 /// </summary>
-                /// <param name="collection">The IDictionary&lt;TKey, TValue> whose keys and values should be added to the BinarySearchTree&lt;TKey, TValue>.</param>
+                /// <param name="collection">The IDictionary&lt;TKey, TValue&gt; whose keys and values should be added to the BinarySearchTree&lt;TKey, TValue&gt;.</param>
                 public virtual void AddRange(IDictionary<TKey, TValue> collection)
                 {
                     if (collection == null)
@@ -59,7 +59,7 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Removes the value with the specified key from the RedBlackTree&lt;TKey, TValue>.
+                /// Removes the value with the specified key from the RedBlackTree&lt;TKey, TValue&gt;.
                 /// </summary>
                 /// <param name="key">The key of the element to remove.</param>
                 /// <returns>true if the element is successfully found and removed; otherwise, false.</returns>
@@ -96,12 +96,12 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Determines whether the BinarySearchTree&lt;TKey, TValue> contains a specific key.
+                /// Determines whether the BinarySearchTree&lt;TKey, TValue&gt; contains a specific key.
                 /// </summary>
                 public virtual bool ContainsKey(TKey key) { return this.Find(key) != null; }
 
                 /// <summary>
-                /// Determines whether the BinarySearchTree&lt;TKey, TValue> contains a specific value.
+                /// Determines whether the BinarySearchTree&lt;TKey, TValue&gt; contains a specific value.
                 /// </summary>
                 public virtual bool ContainsValue(TValue value)
                 {
@@ -114,7 +114,7 @@ namespace Utility
                 /// <summary>
                 /// Returns an enumerator that iterates through the collection.
                 /// </summary>
-                /// <returns>An IEnumerator&lt;T> that can be used to iterate through the collection.</returns>
+                /// <returns>An IEnumerator&lt;T&gt; that can be used to iterate through the collection.</returns>
                 IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() { return new BSTEnumerator(this); }
 
                 /// <summary>
@@ -183,7 +183,7 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Gets a collection containing the keys in the BinarySearchTree&lt;TKey, TValue>.
+                /// Gets a collection containing the keys in the BinarySearchTree&lt;TKey, TValue&gt;.
                 /// </summary>
                 public ICollection<TKey> Keys
                 {
@@ -197,7 +197,7 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Gets a collection containing the values in the BinarySearchTree&lt;TKey, TValue>.
+                /// Gets a collection containing the values in the BinarySearchTree&lt;TKey, TValue&gt;.
                 /// </summary>
                 public ICollection<TValue> Values
                 {
@@ -242,7 +242,7 @@ namespace Utility
                 /// </summary>
                 /// <param name="key">The key of the value to get.</param>
                 /// <param name="value">When this method returns, contains the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter.</param>
-                /// <returns>true if the BinarySearchTree&lt;TKey, TValue> contains an element with the specified key; otherwise, false.</returns>
+                /// <returns>true if the BinarySearchTree&lt;TKey, TValue&gt; contains an element with the specified key; otherwise, false.</returns>
                 public bool TryGetValue(TKey key, out TValue value)
                 {
                     if (key == null)

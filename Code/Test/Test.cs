@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Utility.Algorithms.ComputationalGeometry;
 using Utility.Algorithms.Graph;
+using Utility.Algorithms.Hash;
 using Utility.Algorithms.Search;
+using Utility.Algorithms.Select;
 using Utility.Algorithms.Sort;
 using Utility.DataStructures.BinarySearchTree;
 using Utility.DataStructures.DisjointSet;
 using Utility.DataStructures.PriorityQueue;
 using Utility.DataStructures.Probabilistic;
+using Utility.DataStructures.Trees;
 
 class Test
 {
@@ -17,44 +20,11 @@ class Test
 
     static void Main()
     {
-        #region MakeTest
-
-        //StreamWriter writer;
-        //Random random = new Random();
-        //List<int> list = new List<int>();
-        //writer = new StreamWriter("VeryLarge.in");
-        //int j = 100000000;
-        //for (int i = 0; i < 100000000; i++)
-        //{
-        //    if (random.NextDouble() <= 0.8)
-        //        j--;
-        //    else
-        //        j++;
-        //    list.Add(j);
-        //}
-
-        //for(int i = 0; i < list.Count; i++)
-        //    writer.WriteLine(list[i]);
-        //writer.Close();
-
-        //list.Sort();
-
-        //writer = new StreamWriter("VeryLarge.out");
-        //for (int i = 0; i < list.Count; i++)
-        //    writer.WriteLine(list[i]);
-        //writer.Close();
-        //return;
-        //Console.BufferHeight = 11000;
-        //Console.BufferWidth = 100;
-        DateTime start, end;
-
-        #endregion
-
         #region Sort
 
-        string testSize = "Large";
-        string testDir = "Random\\";
-        string test = testDir + testSize;
+        //string testSize = "Large";
+        //string testDir = "Random\\";
+        //string test = testDir + testSize;
         
         //ReferenceTest(input, test, true);
 
@@ -306,72 +276,224 @@ class Test
         //Console.WriteLine("Performance factor: {0}.", (1 - filter.Confidence) * testSize / falsePositives);
 
         #endregion
-    }
 
-    static int[] Sort(int[] input)
-    {
-        PairingMinHeap<int> heap = new PairingMinHeap<int>(input);
+        #region Trie
 
-        int i = 0;
-        while (heap.Count > 0)
-            input[i++] = heap.Extract();
+        //Trie<string, bool> trie2 = new Trie<string, bool>(new bool[] { false, true }, SplitIP, JoinIP, (x => x ? 1 : 0));
 
-        return input;
-    }
+        //trie2.Add("192.168.20.16");
+        //trie2.Add("192.168.0.0");
+        //Console.WriteLine(trie2.LongestPrefixMatch("192.168.20.19"));
 
-    static void RunTest(int[] input, string test, bool benchmark, SortMethod Sort, string sortName)
-    {
-        int[] data = new int[input.Length];
-        input.CopyTo(data, 0);
-        Console.WriteLine("Using {0}.", sortName);
+        //Console.ReadLine();
+        //Trie<string, char> trie = new Trie<string, char>("abcdefghijklmnopqrstuvwxyz".ToCharArray(), (x => x.ToCharArray()), (x => new string(x)), (x => (int)x - (int)'a'));
+        //Dictionary<string, uint> dict = new Dictionary<string, uint>();
 
-        DateTime start = DateTime.Now;
-        data = Sort(data);
-        DateTime end = DateTime.Now;
+        //Regex regex = new Regex(@"\b[a-z]+\b");
+        //DirectoryInfo d = new DirectoryInfo(@"E:\Books");
+        //string line;
 
-        Console.WriteLine("Sorted {0} numbers in {1} seconds.", data.Length, (end - start).TotalSeconds);
-        if (!benchmark)
-            Console.WriteLine("Output is {0}.", CheckOutput(data, test) ? "correct" : "incorrect");
+        //Stopwatch sw = new Stopwatch();
+        //sw.Start();
+        //foreach (FileInfo f in d.GetFiles())
+        //{
+        //    StreamReader reader = new StreamReader(f.FullName);
+        //    while ((line = reader.ReadLine()) != null)
+        //    {
+        //        line = line.ToLower();
+        //        MatchCollection matches = regex.Matches(line);
+        //        foreach (Match m in matches)
+        //            trie.Add(m.Value);
+        //    }
+        //    break;
+        //}
+        //sw.Stop();
 
-        //for (int i = 0; i < data.Length; i++)
-        //    Console.WriteLine(i + ": " + data[i]);
+        //Console.WriteLine("Added {0} words to the Trie in {1} seconds.", trie.Count, sw.Elapsed.TotalSeconds);
 
+        //int prevCount = trie.Count;
+        //sw.Start();
+        //foreach (FileInfo f in d.GetFiles())
+        //{
+        //    StreamReader reader = new StreamReader(f.FullName);
+        //    while ((line = reader.ReadLine()) != null)
+        //    {
+        //        line = line.ToLower();
+        //        MatchCollection matches = regex.Matches(line);
+        //        foreach (Match m in matches)
+        //            trie.Remove(m.Value);
+        //    }
+        //    reader.Close();
+        //}
+        //sw.Stop();
+
+        //Console.WriteLine("Removed {0} words from the Trie in {1} seconds.", prevCount - trie.Count, sw.Elapsed.TotalSeconds);
+        //Console.ReadLine();
+
+        //sw.Start();
+        //foreach (FileInfo f in d.GetFiles())
+        //{
+        //    StreamReader reader = new StreamReader(f.FullName);
+        //    while ((line = reader.ReadLine()) != null)
+        //    {
+        //        line = line.ToLower();
+        //        MatchCollection matches = regex.Matches(line);
+        //        foreach (Match m in matches)
+        //        {
+        //            uint c;
+        //            if (dict.TryGetValue(m.Value, out c))
+        //                dict[m.Value] = c + 1;
+        //            else
+        //                dict[m.Value] = 1;
+        //        }
+        //    }
+        //    reader.Close();
+        //}
+        //sw.Stop();
+
+        //long count = 0;
+        //foreach (KeyValuePair<string, uint> kvp in dict)
+        //    count += kvp.Value;
+        //Console.WriteLine("Added {0} words to the Dictionary in {1} seconds.", count, sw.Elapsed.TotalSeconds);
+
+        //sw.Start();
+        //foreach (FileInfo f in d.GetFiles())
+        //{
+        //    StreamReader reader = new StreamReader(f.FullName);
+        //    while ((line = reader.ReadLine()) != null)
+        //    {
+        //        line = line.ToLower();
+        //        MatchCollection matches = regex.Matches(line);
+        //        foreach (Match m in matches)
+        //        {
+        //            uint c = dict[m.Value];
+        //            if (c > 1)
+        //                dict[m.Value] = c - 1;
+        //            else
+        //                dict.Remove(m.Value);
+        //        }
+        //    }
+        //    reader.Close();
+        //}
+        //sw.Stop();
+
+        //Console.WriteLine("Removed {0} words from the Dictionary in {1} seconds.", count, sw.Elapsed.TotalSeconds);
+
+        //Console.ReadLine();
+
+        #endregion
+
+        #region Hash
+
+        //string file = @"G:\a.txt";
+
+        //Stopwatch sw = new Stopwatch();
+        //sw.Start();
+        //Console.WriteLine("Adler-32: {0}", Hash.Adler32(file).ToString("X"));
+        //sw.Stop();
+        //Console.WriteLine("Hashed in {0} ms.", sw.ElapsedMilliseconds);
+        //Console.WriteLine();
+
+        //sw.Reset();
+        //sw.Start();
+        //Console.WriteLine("CRC-32: {0}", Hash.CRC32(file).ToString("X"));
+        //sw.Stop();
+        //Console.WriteLine("Hashed in {0} ms.", sw.ElapsedMilliseconds);
+        //Console.WriteLine();
+
+        //sw.Reset();
+        //sw.Start();
+        //byte[] md5 = Hash.MD5(file);
+        //Console.Write("MD5: ");
+        //foreach (byte b in md5)
+        //    Console.Write(b.ToString("X"));
+        //Console.WriteLine();
+        //sw.Stop();
+        //Console.WriteLine("Hashed in {0} ms.", sw.ElapsedMilliseconds);
+        //Console.WriteLine();
+
+        //Console.ReadLine();
+
+        #endregion
+
+        #region Select
+
+        //int size = 10;
+        //Random random = new Random();
+
+        //for (int i = 0; i < 100; i++)
+        //{
+        //    Console.WriteLine("Test {0}.", i + 1);
+
+        //    int[] data1 = new int[size], data2 = new int[size];
+        //    for (int j = 0; j < size; j++)
+        //        data1[j] = data2[j] = random.Next();
+
+        //    Array.Sort(data2);
+        //    for (int j = 0; j < size; j++)
+        //    {
+        //        Console.ForegroundColor = ConsoleColor.Green;
+        //        int val = Select<int>.MedianOf3Quickselect(data1, j);
+        //        if (data2[j] != val)
+        //            Console.ForegroundColor = ConsoleColor.Red;
+        //        Console.WriteLine("{0}:\t\t{1}\t\t==\t\t{2}", j, data2[j], val);
+        //    }
+        //}
+
+        #endregion
+
+        Graph g = new Graph();
+        g.AddEdge(0, 1, true, 4);
+        g.AddEdge(0, 2, false, 3);
+        g.AddEdge(0, 4, true, 7);
+        g.AddEdge(1, 3, true, 1);
+        g.AddEdge(2, 4, true, 4);
+        g.AddEdge(3, 4, true, 3);
+        g.AddEdge(3, 5, true, 1);
+        g.AddEdge(4, 5, true, 1);
+        g.AddEdge(4, 6, true, 5);
+        g.AddEdge(4, 8, true, 3);
+        g.AddEdge(5, 7, false, 2);
+        g.AddEdge(5, 8, true, 4);
+        g.AddEdge(7, 8, true, 3);
+        g.AddEdge(8, 6, true, 5);
+
+        Path path0;
+        g.Dijkstra(0, 8, out path0);
+
+        Dictionary<uint, Dictionary<uint, int>> lengths1;
+        Dictionary<uint, Dictionary<uint, uint>> parents1;
+        g.FloydWarshall(out lengths1, out parents1);
+        Path path1 = Path.FromParents(0, 8, parents1, g);
+
+        Dictionary<uint, int> lengths2;
+        Dictionary<uint, uint> parents2;
+        g.BellmanFord(0, out lengths2, out parents2);
+        Path path2 = Path.FromParents(0, 8, parents2, g);
+
+        Dictionary<uint, Dictionary<uint, int>> lengths3;
+        Dictionary<uint, Dictionary<uint, uint>> parents3;
+        g.FloydWarshall(out lengths3, out parents3);
+        Path path3 = Path.FromParents(0, 8, parents3, g);
+
+        Console.WriteLine("Length Dijkstra:\t{0}", path0.Weight);
+        Console.WriteLine("Length Floyd-Warshall:\t{0}", path1.Weight);
+        Console.WriteLine("Length Bellman-Ford:\t{0}", path2.Weight);
+        Console.WriteLine("Length Johnshon:\t{0}", path3.Weight);
+
+        foreach (Edge e in path0.Edges)
+            Console.WriteLine("{0} -> {1}", e.From, e.To);
         Console.WriteLine();
-    }
-
-    static void ReferenceTest(int[] input, string test, bool benchmark)
-    {
-        Console.WriteLine("Using C# Sort.");
-        List<int> list = new List<int>(input);
-
-        DateTime start = DateTime.Now;
-        list.Sort();
-        DateTime end = DateTime.Now;
-
-        input = list.ToArray();
-        Console.WriteLine("Sorted {0} numbers in {1} seconds.", input.Length, (end - start).TotalSeconds);
-        if (!benchmark)
-            Console.WriteLine("Output is {0}.", !benchmark && CheckOutput(input, test) ? "correct" : "incorrect");
+        foreach (Edge e in path1.Edges)
+            Console.WriteLine("{0} -> {1}", e.From, e.To);
         Console.WriteLine();
-    }
+        foreach (Edge e in path2.Edges)
+            Console.WriteLine("{0} -> {1}", e.From, e.To);
+        Console.WriteLine();
+        foreach (Edge e in path3.Edges)
+            Console.WriteLine("{0} -> {1}", e.From, e.To);
 
-    static bool CheckOutput(int[] output, string test)
-    {
-        StreamReader reader = new StreamReader("TestData/" + test + ".out");
-        List<int> list = new List<int>();
-        string line;
-        while ((line = reader.ReadLine()) != null)
-            list.Add(int.Parse(line));
-        reader.Close();
-
-        if (output.Length != list.Count)
-            return false;
-
-        for (int i = 0; i < output.Length; i++)
-            if (output[i] != list[i])
-                return false;
-
-        return true;
+        Console.ReadLine();
     }
 
     static uint PrimaryHash(string item)
@@ -504,178 +626,39 @@ class Test
         return matrix;
     }
 
-    class FlowGraph : IGraph<IFlowGraphEdge>
+    static bool[] SplitIP(string ip)
     {
-        public FlowGraph()
+        string[] ss = ip.Split('.');
+        List<bool> bools = new List<bool>();
+        uint value = 0;
+        for (int i = 3; i >= 0; i--)
+            value += uint.Parse(ss[3 - i]) << (8 * i);
+
+        int falseCount = 0;
+        for (int i = 0; i < 32; i++)
         {
-            FlowNode n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15;
-            FlowEdge e01, e02, e03, e04, e15, e25, e26, e38, e313, e48, e410, e57, e67, e79, e810, e813, e911, e912, e913, e1015, e1114, e1214, e1215, e1315;
-
-            e01 = new FlowEdge(0, 1, 90);
-            e02 = new FlowEdge(0, 2, 160);
-            e03 = new FlowEdge(0, 3, 320);
-            e04 = new FlowEdge(0, 4, 45);
-            e15 = new FlowEdge(1, 5, 30);
-            e25 = new FlowEdge(2, 5, 20);
-            e26 = new FlowEdge(2, 6, 260);
-            e38 = new FlowEdge(3, 8, 100);
-            e313 = new FlowEdge(3, 13, 240);
-            e48 = new FlowEdge(4, 8, 50);
-            e410 = new FlowEdge(4, 10, 180);
-            e57 = new FlowEdge(5, 7, 135);
-            e67 = new FlowEdge(6, 7, 55);
-            e79 = new FlowEdge(7, 9, 250);
-            e810 = new FlowEdge(8, 10, 20);
-            e813 = new FlowEdge(8, 13, 360);
-            e911 = new FlowEdge(9, 11, 5);
-            e912 = new FlowEdge(9, 12, 30);
-            e913 = new FlowEdge(9, 13, 110);
-            e1015 = new FlowEdge(10, 15, 175);
-            e1114 = new FlowEdge(11, 14, 10);
-            e1214 = new FlowEdge(12, 14, 25);
-            e1215 = new FlowEdge(12, 15, 140);
-            e1315 = new FlowEdge(13, 15, 60);
-
-            n0 = new FlowNode(0, new FlowEdge[] { e01, e02, e03, e04 });
-            n1 = new FlowNode(1, new FlowEdge[] { e15 });
-            n2 = new FlowNode(2, new FlowEdge[] { e25, e26 });
-            n3 = new FlowNode(3, new FlowEdge[] { e38, e313 });
-            n4 = new FlowNode(4, new FlowEdge[] { e48, e410 });
-            n5 = new FlowNode(5, new FlowEdge[] { e57 });
-            n6 = new FlowNode(6, new FlowEdge[] { e67 });
-            n7 = new FlowNode(7, new FlowEdge[] { e79 });
-            n8 = new FlowNode(8, new FlowEdge[] { e810, e813 });
-            n9 = new FlowNode(9, new FlowEdge[] { e911, e912, e913 });
-            n10 = new FlowNode(10, new FlowEdge[] { e1015 });
-            n11 = new FlowNode(11, new FlowEdge[] { e1114 });
-            n12 = new FlowNode(12, new FlowEdge[] { e1214, e1215 });
-            n13 = new FlowNode(13, new FlowEdge[] { e1315 });
-            n14 = new FlowNode(14, new FlowEdge[] { });
-            n15 = new FlowNode(15, new FlowEdge[] { });
-
-            this.Nodes = new Dictionary<uint, IGraphNode<IFlowGraphEdge>>() { { 0, n0 }, { 1, n1 }, { 2, n2 }, { 3, n3 }, { 4, n4 }, { 5, n5 }, { 6, n6 }, { 7, n7 }, { 8, n8 }, { 9, n9 }, { 10, n10 }, { 11, n11 }, { 12, n12 }, { 13, n13 }, { 14, n14 }, { 15, n15 } };
-            this.Edges = new Dictionary<uint, Dictionary<uint, IFlowGraphEdge>>()
+            if (((value >> (31 - i)) & 1) == 1)
             {
-                { 0, new Dictionary<uint, IFlowGraphEdge>() { { 1, e01 }, { 2, e02 }, { 3, e03 }, { 4, e04 } } },
-                { 1, new Dictionary<uint, IFlowGraphEdge>() { { 5, e15 } } },
-                { 2, new Dictionary<uint, IFlowGraphEdge>() { { 5, e25 }, { 6, e26 } } },
-                { 3, new Dictionary<uint, IFlowGraphEdge>() { { 8, e38 }, { 13, e313 } } },
-                { 4, new Dictionary<uint, IFlowGraphEdge>() { { 8, e48 }, { 10, e410 } } },
-                { 5, new Dictionary<uint, IFlowGraphEdge>() { { 7, e57 } } },
-                { 6, new Dictionary<uint, IFlowGraphEdge>() { { 7, e67 } } },
-                { 7, new Dictionary<uint, IFlowGraphEdge>() { { 9, e79 } } },
-                { 8, new Dictionary<uint, IFlowGraphEdge>() { { 10, e810 }, { 13, e813 } } },
-                { 9, new Dictionary<uint, IFlowGraphEdge>() { { 11, e911 }, { 12, e912 }, { 13, e913 } } },
-                { 10, new Dictionary<uint, IFlowGraphEdge>() { { 15, e1015 } } },
-                { 11, new Dictionary<uint, IFlowGraphEdge>() { { 14, e1114 } } },
-                { 12, new Dictionary<uint, IFlowGraphEdge>() { { 14, e1214 }, { 15, e1215 } } },
-                { 13, new Dictionary<uint, IFlowGraphEdge>() { { 15, e1315 } } }
-            };
+                while (falseCount-- > 0)
+                    bools.Add(false);
+                bools.Add(true);
+                falseCount = 0;
+            }
+            else
+                falseCount++;
         }
 
-        public Dictionary<uint, IGraphNode<IFlowGraphEdge>> Nodes { get; private set; }
-        public Dictionary<uint, Dictionary<uint, IFlowGraphEdge>> Edges { get; private set; }
+        return bools.ToArray();
     }
 
-    class FlowNode : IGraphNode<IFlowGraphEdge>
+    static string JoinIP(bool[] bits)
     {
-        public FlowNode(uint id, IEnumerable<IFlowGraphEdge> neighbours)
-        {
-            this.ID = id;
-            this.Neighbours = neighbours;
-        }
+        uint value = 0;
+        for (int i = 0; i < bits.Length; i++)
+            value += (uint)(bits[i] ? 1 : 0) << (31 - i);
 
-        public uint ID { get; set; }
-        public IEnumerable<IFlowGraphEdge> Neighbours { get; set; }
-    }
+        byte[] bytes = BitConverter.GetBytes(value);
 
-    class FlowEdge : IFlowGraphEdge
-    {
-        public FlowEdge(uint from, uint to, uint capacity)
-        {
-            this.From = from;
-            this.To = to;
-            this.Capacity = capacity;
-        }
-
-        public uint From { get; private set; }
-        public uint To { get; private set; }
-        public uint Capacity { get; private set; }
-    }
-
-    class WeightGraph : IGraph<IWeightedGraphEdge>
-    {
-        public WeightGraph()
-        {
-            WeightNode a, b, c, d, e, f, g, h, i;
-            WeightEdge ab, ah, bc, bh, cd, cf, ci, de, df, ef, fg, gh, gi, hi;
-
-            ab = new WeightEdge((uint)'A', (uint)'B', 4);
-            ah = new WeightEdge((uint)'A', (uint)'H', 8);
-            bc = new WeightEdge((uint)'B', (uint)'C', 8);
-            bh = new WeightEdge((uint)'B', (uint)'H', 11);
-            cd = new WeightEdge((uint)'C', (uint)'D', 7);
-            cf = new WeightEdge((uint)'C', (uint)'F', 4);
-            ci = new WeightEdge((uint)'C', (uint)'I', 2);
-            de = new WeightEdge((uint)'D', (uint)'E', 9);
-            df = new WeightEdge((uint)'D', (uint)'F', 14);
-            ef = new WeightEdge((uint)'E', (uint)'F', 10);
-            fg = new WeightEdge((uint)'F', (uint)'G', 2);
-            gh = new WeightEdge((uint)'G', (uint)'H', 1);
-            gi = new WeightEdge((uint)'G', (uint)'I', 6);
-            hi = new WeightEdge((uint)'H', (uint)'I', 7);
-
-            a = new WeightNode((uint)'A', new WeightEdge[] { ab, ah });
-            b = new WeightNode((uint)'B', new WeightEdge[] { bc, bh });
-            c = new WeightNode((uint)'C', new WeightEdge[] { cd, cf, ci });
-            d = new WeightNode((uint)'D', new WeightEdge[] { de, df });
-            e = new WeightNode((uint)'E', new WeightEdge[] { ef });
-            f = new WeightNode((uint)'F', new WeightEdge[] { fg });
-            g = new WeightNode((uint)'G', new WeightEdge[] { gh, gi });
-            h = new WeightNode((uint)'H', new WeightEdge[] { hi });
-            i = new WeightNode((uint)'I', new WeightEdge[] { });
-
-            this.Nodes = new Dictionary<uint, IGraphNode<IWeightedGraphEdge>>() { { a.ID, a }, { b.ID, b }, { c.ID, c }, { d.ID, d }, { e.ID, e }, { f.ID, f }, { g.ID, g }, { h.ID, h }, { i.ID, i } };
-            this.Edges = new Dictionary<uint, Dictionary<uint, IWeightedGraphEdge>>()
-            {
-                { a.ID, new Dictionary<uint, IWeightedGraphEdge>() { { b.ID, ab }, { h.ID, ah } } },
-                { b.ID, new Dictionary<uint, IWeightedGraphEdge>() { { c.ID, bc }, { h.ID, bh } } },
-                { c.ID, new Dictionary<uint, IWeightedGraphEdge>() { { d.ID, cd }, { f.ID, cf }, { i.ID, ci } } },
-                { d.ID, new Dictionary<uint, IWeightedGraphEdge>() { { e.ID, de }, { f.ID, df } } },
-                { e.ID, new Dictionary<uint, IWeightedGraphEdge>() { { f.ID, ef } } },
-                { f.ID, new Dictionary<uint, IWeightedGraphEdge>() { { g.ID, fg } } },
-                { g.ID, new Dictionary<uint, IWeightedGraphEdge>() { { h.ID, gh }, { i.ID, gi } } },
-                { h.ID, new Dictionary<uint, IWeightedGraphEdge>() { { i.ID, hi } } }
-            };
-        }
-
-        public Dictionary<uint, IGraphNode<IWeightedGraphEdge>> Nodes { get; private set; }
-        public Dictionary<uint, Dictionary<uint, IWeightedGraphEdge>> Edges { get; private set; }
-    }
-
-    class WeightNode : IGraphNode<IWeightedGraphEdge>
-    {
-        public WeightNode(uint id, IEnumerable<IWeightedGraphEdge> neighbours)
-        {
-            this.ID = id;
-            this.Neighbours = neighbours;
-        }
-
-        public uint ID { get; set; }
-        public IEnumerable<IWeightedGraphEdge> Neighbours { get; set; }
-    }
-
-    class WeightEdge : IWeightedGraphEdge
-    {
-        public WeightEdge(uint from, uint to, uint weight)
-        {
-            this.From = from;
-            this.To = to;
-            this.Weight = weight;
-        }
-
-        public uint From { get; private set; }
-        public uint To { get; private set; }
-        public uint Weight { get; private set; }
+        return bytes[3].ToString() + "." + bytes[2].ToString() + "." + bytes[1].ToString() + "." + bytes[0].ToString();
     }
 }

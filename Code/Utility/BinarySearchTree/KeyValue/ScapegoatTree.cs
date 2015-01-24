@@ -19,7 +19,7 @@ namespace Utility
                 private int size, maxSize;
 
                 /// <summary>
-                /// Initializes a new instance of the ScapeGoatTree&lt;TKey, TValue> class that is empty.
+                /// Initialises a new instance of the ScapeGoatTree&lt;TKey, TValue&gt; class that is empty.
                 /// </summary>
                 /// <param name="alpha">The weight factor that is used when balancing the tree.</param>
                 public ScapegoatTree(float alpha = 0.75f)
@@ -30,9 +30,9 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Initializes a new instance of the ScapeGoatTree&lt;TKey, TValue> class that contains elements copied from the specified IDictionary&lt;TKey, TValue>.
+                /// Initialises a new instance of the ScapeGoatTree&lt;TKey, TValue&gt; class that contains elements copied from the specified IDictionary&lt;TKey, TValue&gt;.
                 /// </summary>
-                /// <param name="collection">The IDictionary&lt;TKey, TValue> whose elements are copied to the new ScapeGoatTree&lt;TKey, TValue>.</param>
+                /// <param name="collection">The IDictionary&lt;TKey, TValue&gt; whose elements are copied to the new ScapeGoatTree&lt;TKey, TValue&gt;.</param>
                 /// <param name="alpha">The weight factor that is used when balancing the tree.</param>
                 public ScapegoatTree(IDictionary<TKey, TValue> collection, float alpha = 0.75f)
                     : base()
@@ -93,7 +93,7 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Removes the value with the specified key from the ScapeGoatTree&lt;TKey, TValue>.
+                /// Removes the value with the specified key from the ScapeGoatTree&lt;TKey, TValue&gt;.
                 /// </summary>
                 /// <param name="key">The key of the element to remove.</param>
                 /// <returns>true if the element is successfully found and removed; otherwise, false.</returns>

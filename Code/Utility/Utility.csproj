@@ -113,13 +113,19 @@
     <Compile Include="BinarySearchTree\Value\ScapegoatTree.cs" />
     <Compile Include="BinarySearchTree\Value\SplayTree.cs" />
     <Compile Include="ComputationalGeometry\ConvexHull.cs" />
+    <Compile Include="ComputationalGeometry\Matrix.cs" />
     <Compile Include="ComputationalGeometry\Mesh.cs" />
     <Compile Include="ComputationalGeometry\Vector.cs" />
-    <Compile Include="Graph\GraphInterfaces.cs" />
+    <Compile Include="Graph\Path.cs" />
+    <Compile Include="Graph\ShortestPath\BellmanFord.cs" />
+    <Compile Include="Graph\ShortestPath\Dijkstra.cs" />
+    <Compile Include="Graph\Graph.cs" />
     <Compile Include="BinarySearchTree\Value\RedBlackTree.cs" />
-    <Compile Include="Graph\MaxFlowMinCut.cs" />
-    <Compile Include="Graph\MinimumSpanningTree.cs" />
-    <Compile Include="Graph\ShortestPath.cs" />
+    <Compile Include="Graph\MaximumFlow\MaxFlowMinCut.cs" />
+    <Compile Include="Graph\MinimumSpanningTree\Kruskal.cs" />
+    <Compile Include="Graph\ShortestPath\BreadthFirstSearch.cs" />
+    <Compile Include="Graph\ShortestPath\FloydWarshall.cs" />
+    <Compile Include="Graph\ShortestPath\Johnson.cs" />
     <Compile Include="PriorityQueue\DHeap.cs" />
     <Compile Include="PriorityQueue\PairingHeap.cs" />
     <Compile Include="ProbabilisticStructures\BloomFilter.cs" />
@@ -152,6 +158,7 @@
     <Compile Include="Sort\StrandSort.cs" />
     <Compile Include="Sort\Timsort.cs" />
     <Compile Include="Sort\TreeSort.cs" />
+    <Compile Include="Trees\Trie.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

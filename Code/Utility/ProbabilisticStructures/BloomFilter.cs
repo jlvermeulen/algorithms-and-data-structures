@@ -24,9 +24,9 @@ namespace Utility
                 private HashFunction primaryHash, secondaryHash;
 
                 /// <summary>
-                /// Initialises a new BloomFilter&ltT> with an optimal size and number of hash functions given the desired capacity and error rate.
+                /// Initialises a new BloomFilter&lt;T&gt; with an optimal size and number of hash functions given the desired capacity and error rate.
                 /// </summary>
-                /// <param name="capacity">The expected number of items that will be stored in the BloomFilter&ltT>.</param>
+                /// <param name="capacity">The expected number of items that will be stored in the BloomFilter&lt;T&gt;.</param>
                 /// <param name="errorRate">The desired probability of false positives occurring when the capacity has been filled.</param>
                 /// <param name="primaryHash">The first hash function.</param>
                 /// <param name="secondaryHash">The second hash function.</param>
@@ -42,9 +42,9 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Initialises a new BloomFilter&ltT> with the given size and number of hash functions.
+                /// Initialises a new BloomFilter&lt;T&gt; with the given size and number of hash functions.
                 /// </summary>
-                /// <param name="arraySize">The size of the BloomFilter&ltT>.</param>
+                /// <param name="arraySize">The size of the BloomFilter&lt;T&gt;.</param>
                 /// <param name="numberOfHashFunctions">The number of hash functions to use.</param>
                 /// <param name="primaryHash">The first hash function.</param>
                 /// <param name="secondaryHash">The second hash function.</param>
@@ -60,7 +60,7 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Adds a new item to the BloomFilter&lt;T>.
+                /// Adds a new item to the BloomFilter&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The item to add.</param>
                 public void Add(T item)
@@ -72,10 +72,10 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Tries to delete an item from the BloomFilter&lt;T>.
+                /// Tries to delete an item from the BloomFilter&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The item that should be deleted.</param>
-                /// <returns><code>true</code> if the item might have been in the BloomFilter&lt;T> and was deleted; <code>false</code> if the item was definitely not in the BloomFilter&lt;T>.</returns>
+                /// <returns><code>true</code> if the item might have been in the BloomFilter&lt;T&gt; and was deleted; <code>false</code> if the item was definitely not in the BloomFilter&lt;T&gt;.</returns>
                 public bool Delete(T item)
                 {
                     double conf;
@@ -83,11 +83,11 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Tries to delete an item from the BloomFilter&lt;T>.
+                /// Tries to delete an item from the BloomFilter&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The item that should be deleted.</param>
-                /// <param name="confidence">The confidence that <paramref name="item"/> was in the BloomFilter&lt;T> before deletion.</param>
-                /// <returns><code>true</code> if the item might have been in the BloomFilter&lt;T> and was deleted; <code>false</code> if the item was definitely not in the BloomFilter&lt;T>.</returns>
+                /// <param name="confidence">The confidence that <paramref name="item"/> was in the BloomFilter&lt;T&gt; before deletion.</param>
+                /// <returns><code>true</code> if the item might have been in the BloomFilter&lt;T&gt; and was deleted; <code>false</code> if the item was definitely not in the BloomFilter&lt;T&gt;.</returns>
                 public bool Delete(T item, out double confidence)
                 {
                     uint[] hashes;
@@ -105,10 +105,10 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Determines if an element possibly is or definitely is not contained in the BloomFilter&lt;T>.
+                /// Determines if an element possibly is or definitely is not contained in the BloomFilter&lt;T&gt;.
                 /// </summary>
-                /// <param name="item">The item to locate in the BloomFilter&lt;T>.</param>
-                /// <returns><code>true</code> if the BloomFilter&lt;T> possibly contains <paramref name="item"/>, <code>false</code> if it definitely does not.</returns>
+                /// <param name="item">The item to locate in the BloomFilter&lt;T&gt;.</param>
+                /// <returns><code>true</code> if the BloomFilter&lt;T&gt; possibly contains <paramref name="item"/>, <code>false</code> if it definitely does not.</returns>
                 public bool Contains(T item)
                 {
                     double conf;
@@ -116,11 +116,11 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Determines if an element possibly is or definitely is not contained in the BloomFilter&lt;T>.
+                /// Determines if an element possibly is or definitely is not contained in the BloomFilter&lt;T&gt;.
                 /// </summary>
-                /// <param name="item">The item to locate in the BloomFilter&lt;T>.</param>
-                /// <param name="confidence">The confidence that <paramref name="item"/> is in the BloomFilter&lt;T>.</param>
-                /// <returns><code>true</code> if the BloomFilter&lt;T> possibly contains <paramref name="item"/>, <code>false</code> if it definitely does not.</returns>
+                /// <param name="item">The item to locate in the BloomFilter&lt;T&gt;.</param>
+                /// <param name="confidence">The confidence that <paramref name="item"/> is in the BloomFilter&lt;T&gt;.</param>
+                /// <returns><code>true</code> if the BloomFilter&lt;T&gt; possibly contains <paramref name="item"/>, <code>false</code> if it definitely does not.</returns>
                 public bool Contains(T item, out double confidence)
                 {
                     uint[] hashes;
@@ -142,12 +142,12 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// The confidence that when an item is found, it is actually contained in the BloomFilter&lt;T>.
+                /// The confidence that when an item is found, it is actually contained in the BloomFilter&lt;T&gt;.
                 /// </summary>
                 public double Confidence { get { return 1 - Math.Pow(1 - Math.Pow(1 - 1.0 / size, hashCount * this.Count), hashCount); } }
 
                 /// <summary>
-                /// The number of items in the BloomFilter&lt;T>.
+                /// The number of items in the BloomFilter&lt;T&gt;.
                 /// </summary>
                 public int Count { get; private set; }
 
@@ -165,8 +165,8 @@ namespace Utility
                 /// <summary>
                 /// Returns the optimal number of hash functions for the given capacity and size.
                 /// </summary>
-                /// <param name="capacity">The expected number of items that will be stored in the BloomFilter&ltT>.</param>
-                /// <param name="size">The size of the BloomFilter&lt;T>.</param>
+                /// <param name="capacity">The expected number of items that will be stored in the BloomFilter&lt;T&gt;.</param>
+                /// <param name="size">The size of the BloomFilter&lt;T&gt;.</param>
                 /// <returns>The number of hash functions that minimise the probability of false positives.</returns>
                 public static uint OptimalHashCount(uint capacity, uint size)
                 {
@@ -174,9 +174,9 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Returns the optimal size of the BloomFilter&lt;T> for the given capacity and error rate.
+                /// Returns the optimal size of the BloomFilter&lt;T&gt; for the given capacity and error rate.
                 /// </summary>
-                /// <param name="capacity">The expected number of items that will be stored in the BloomFilter&ltT>.</param>
+                /// <param name="capacity">The expected number of items that will be stored in the BloomFilter&lt;T&gt;.</param>
                 /// <param name="errorRate">The probability of false positives occurring when the capacity has been filled.</param>
                 /// <returns>The smallest size for which the desired error rate can be achieved when the capacity has been filled.</returns>
                 public static uint OptimalSize(uint capacity, double errorRate)
@@ -185,11 +185,11 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Returns the probability of false positives occurring for a BloomFilter&lt;T> with a given size and number of hash functions when the capacity has been filled.
+                /// Returns the probability of false positives occurring for a BloomFilter&lt;T&gt; with a given size and number of hash functions when the capacity has been filled.
                 /// </summary>
-                /// <param name="capacity">The expected number of items that will be stored in the BloomFilter&ltT>.</param>
-                /// <param name="size">The size of the BloomFilter&lt;T>.</param>
-                /// <param name="hashCount">The number of hash functions the BloomFilter&lt;T> uses.</param>
+                /// <param name="capacity">The expected number of items that will be stored in the BloomFilter&lt;T&gt;.</param>
+                /// <param name="size">The size of the BloomFilter&lt;T&gt;.</param>
+                /// <param name="hashCount">The number of hash functions the BloomFilter&lt;T&gt; uses.</param>
                 /// <returns>The probability of false positives occurring when the capacity has been filled.</returns>
                 public static double ErrorRate(uint capacity, uint size, uint hashCount)
                 {

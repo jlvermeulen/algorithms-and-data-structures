@@ -16,30 +16,26 @@ namespace Utility
                 where T : IComparable<T>
             {
                 /// <summary>
-                /// Initializes a new instance of the BinarySearchTree&lt;T> class that is empty.
+                /// Initialises a new instance of the BinarySearchTree&lt;T&gt; class that is empty.
                 /// </summary>
                 public BinarySearchTree() { }
 
                 /// <summary>
-                /// Initializes a new instance of the BinarySearchTree&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+                /// Initialises a new instance of the BinarySearchTree&lt;T&gt; class that contains elements copied from the specified IEnumerable&lt;T&gt;.
                 /// </summary>
-                /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new BinarySearchTree&lt;T>.</param>
-                public BinarySearchTree(IEnumerable<T> collection)
-                {
-                    foreach (T t in collection)
-                        this.Add(t);
-                }
+                /// <param name="collection">The IEnumerable&lt;T&gt; whose elements are copied to the new BinarySearchTree&lt;T&gt;.</param>
+                public BinarySearchTree(IEnumerable<T> collection) { this.AddRange(collection); }
 
                 /// <summary>
-                /// Adds the specified value to the BinarySearchTree&lt;T>.
+                /// Adds the specified value to the BinarySearchTree&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The value to add.</param>
                 public virtual void Add(T item) { this.Add(new ValueTreeNode(item)); }
 
                 /// <summary>
-                /// Adds the elements of the specified IEnumerable&lt;T> to the BinarySearchTree&lt;T>.
+                /// Adds the elements of the specified IEnumerable&lt;T&gt; to the BinarySearchTree&lt;T&gt;.
                 /// </summary>
-                /// <param name="collection">The IEnumerable&lt;T> whose values should be added to the BinarySearchTree&lt;T>.</param>
+                /// <param name="collection">The IEnumerable&lt;T&gt; whose values should be added to the BinarySearchTree&lt;T&gt;.</param>
                 public virtual void AddRange(IEnumerable<T> collection)
                 {
                     if (collection == null)
@@ -50,10 +46,10 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Removes the first occurrence of a specific object from the BinarySearchTree&lt;T>.
+                /// Removes the first occurrence of a specific object from the BinarySearchTree&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The object to be removed.</param>
-                /// <returns>true if item was successfully removed from the BinarySearchTree&lt;T>; otherwise, false.</returns>
+                /// <returns>true if item was successfully removed from the BinarySearchTree&lt;T&gt;; otherwise, false.</returns>
                 public virtual bool Remove(T item)
                 {
                     ValueTreeNode current = this.Find(item);
@@ -87,14 +83,14 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Determines whether the BinarySearchTree&lt;T> contains a specific value.
+                /// Determines whether the BinarySearchTree&lt;T&gt; contains a specific value.
                 /// </summary>
                 public virtual bool Contains(T item) { return this.Find(item) != null; }
 
                 /// <summary>
-                /// Copies the entire BinarySearchTree&lt;T> to a compatible one-dimensional array, starting at the specified index of the target array.
+                /// Copies the entire BinarySearchTree&lt;T&gt; to a compatible one-dimensional array, starting at the specified index of the target array.
                 /// </summary>
-                /// <param name="array">The one-dimensional Array that is the destination of the elements copied from BinarySearchTree&lt;T>.</param>
+                /// <param name="array">The one-dimensional Array that is the destination of the elements copied from BinarySearchTree&lt;T&gt;.</param>
                 /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
                 public virtual void CopyTo(T[] array, int arrayIndex)
                 {
@@ -112,7 +108,7 @@ namespace Utility
                 /// <summary>
                 /// Returns an enumerator that iterates through the collection.
                 /// </summary>
-                /// <returns>An IEnumerator&lt;T> that can be used to iterate through the collection.</returns>
+                /// <returns>An IEnumerator&lt;T&gt; that can be used to iterate through the collection.</returns>
                 IEnumerator<T> IEnumerable<T>.GetEnumerator() { return new BSTEnumerator(this); }
 
                 /// <summary>

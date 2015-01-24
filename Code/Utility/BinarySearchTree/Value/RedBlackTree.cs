@@ -16,18 +16,18 @@ namespace Utility
                 where T : IComparable<T>
             {
                 /// <summary>
-                /// Initializes a new instance of the RedBlackTree&lt;T> class that is empty.
+                /// Initialises a new instance of the RedBlackTree&lt;T&gt; class that is empty.
                 /// </summary>
                 public RedBlackTree() { }
 
                 /// <summary>
-                /// Initializes a new instance of the RedBlackTree&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+                /// Initialises a new instance of the RedBlackTree&lt;T&gt; class that contains elements copied from the specified IEnumerable&lt;T&gt;.
                 /// </summary>
-                /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new RedBlackTree&lt;T>.</param>
+                /// <param name="collection">The IEnumerable&lt;T&gt; whose elements are copied to the new RedBlackTree&lt;T&gt;.</param>
                 public RedBlackTree(IEnumerable<T> collection) : base(collection) { }
 
                 /// <summary>
-                /// Adds the specified value to the RedBlackTree&lt;T>.
+                /// Adds the specified value to the RedBlackTree&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The value to add.</param>
                 public override void Add(T item)
@@ -75,10 +75,10 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Removes the first occurrence of a specific object from the RedBlackTree&lt;T>.
+                /// Removes the first occurrence of a specific object from the RedBlackTree&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The object to be removed.</param>
-                /// <returns>true if item was successfully removed from the RedBlackTree&lt;T>; otherwise, false.</returns>
+                /// <returns>true if item was successfully removed from the RedBlackTree&lt;T&gt;; otherwise, false.</returns>
                 public override bool Remove(T item)
                 {
                     RBNode current = (RBNode)this.root;
@@ -348,7 +348,7 @@ namespace Utility
                 /// <summary>
                 /// Returns an enumerator that iterates through the collection.
                 /// </summary>
-                /// <returns>An IEnumerator&lt;T> that can be used to iterate through the collection.</returns>
+                /// <returns>An IEnumerator&lt;T&gt; that can be used to iterate through the collection.</returns>
                 IEnumerator<T> IEnumerable<T>.GetEnumerator() { return new RBEnumerator(this); }
 
                 /// <summary>

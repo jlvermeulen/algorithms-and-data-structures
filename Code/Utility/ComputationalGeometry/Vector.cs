@@ -66,6 +66,15 @@ namespace Utility
 
                 public static Vector2D operator *(Vector2D vector, double scalar) { return new Vector2D(vector.X * scalar, vector.Y * scalar); }
 
+                public static Vector2D operator *(Matrix left, Vector2D right)
+                {
+                    if (!left.IsSquare || left.Columns != 2)
+                        throw new ArgumentException("Matrix must be 2x2.");
+
+                    return new Vector2D(left[0, 0] * right.X + left[0, 1] * right.Y,
+                                        left[1, 0] * right.X + left[1, 1] * right.Y);
+                }
+
                 public static Vector2D operator *(double scalar, Vector2D vector) { return vector * scalar; }
 
                 public static Vector2D operator +(Vector2D left, Vector2D right) { return new Vector2D(left.X + right.X, left.Y + right.Y); }
@@ -161,6 +170,16 @@ namespace Utility
                 public static Vector3D operator *(Vector3D vector, double scalar) { return new Vector3D(vector.X * scalar, vector.Y * scalar, vector.Z * scalar); }
 
                 public static Vector3D operator *(double scalar, Vector3D vector) { return vector * scalar; }
+
+                public static Vector3D operator *(Matrix left, Vector3D right)
+                {
+                    if (!left.IsSquare || left.Columns != 3)
+                        throw new ArgumentException("Matrix must be 3x3.");
+
+                    return new Vector3D(left[0, 0] * right.X + left[0, 1] * right.Y + left[0, 2] * right.Z,
+                                        left[1, 0] * right.X + left[1, 1] * right.Y + left[1, 2] * right.Z,
+                                        left[2, 0] * right.X + left[2, 1] * right.Y + left[2, 2] * right.Z);
+                }
 
                 public static Vector3D operator +(Vector3D left, Vector3D right) { return new Vector3D(left.X + right.X, left.Y + right.Y, left.Z + right.Z); }
 

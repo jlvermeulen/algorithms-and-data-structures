@@ -16,18 +16,18 @@ namespace Utility
                 where TKey : IComparable<TKey>
             {
                 /// <summary>
-                /// Initializes a new instance of the AVLTree&lt;TKey, TValue> class that is empty.
+                /// Initialises a new instance of the AVLTree&lt;TKey, TValue&gt; class that is empty.
                 /// </summary>
                 public AVLTree() { }
 
                 /// <summary>
-                /// Initializes a new instance of the AVLTree&lt;TKey, TValue> class that contains elements copied from the specified IDictionary&lt;TKey, TValue>.
+                /// Initialises a new instance of the AVLTree&lt;TKey, TValue&gt; class that contains elements copied from the specified IDictionary&lt;TKey, TValue&gt;.
                 /// </summary>
-                /// <param name="collection">The IDictionary&lt;TKey, TValue> whose elements are copied to the new AVLTree&lt;TKey, TValue>.</param>
+                /// <param name="collection">The IDictionary&lt;TKey, TValue&gt; whose elements are copied to the new AVLTree&lt;TKey, TValue&gt;.</param>
                 public AVLTree(IDictionary<TKey, TValue> collection) : base(collection) { }
 
                 /// <summary>
-                /// Adds the specified key and value to the AVLTree&lt;TKey, TValue>.
+                /// Adds the specified key and value to the AVLTree&lt;TKey, TValue&gt;.
                 /// </summary>
                 /// <param name="key">The key of the element to add.</param>
                 /// <param name="value">The value of the element to add.</param>

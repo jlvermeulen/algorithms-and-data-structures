@@ -46,8 +46,18 @@ namespace Utility
                     List<Vector2D> temp = new List<Vector2D>();
                     for (int i = 0; i < points.Count; i++)
                     {
-                        while (i < points.Count - 1 && comp.Compare(points[i], points[i + 1]) == 0 && Vector2D.Distance(points[i], start) < Vector2D.Distance(points[i + 1], start))
-                            i++;
+                        while (i < points.Count - 1 && comp.Compare(points[i], points[i + 1]) == 0)
+                        {
+                            if (Vector2D.Distance(points[i], start) - Vector2D.Distance(points[i + 1], start) <= 0)
+                                i++;
+                            else
+                            {
+                                Vector2D t = points[i];
+                                points[i] = points[i + 1];
+                                points[i + 1] = t;
+                                i++;
+                            }
+                        }
                         temp.Add(points[i]);
                     }
                     points = temp;

@@ -17,18 +17,18 @@ namespace Utility
                 where TKey : IComparable<TKey>
             {
                 /// <summary>
-                /// Initializes a new instance of the RedBlackTree&lt;TKey, TValue> class that is empty.
+                /// Initialises a new instance of the RedBlackTree&lt;TKey, TValue&gt; class that is empty.
                 /// </summary>
                 public RedBlackTree() { }
 
                 /// <summary>
-                /// Initializes a new instance of the RedBlackTree&lt;TKey, TValue> class that contains elements copied from the specified IDictionary&lt;TKey, TValue>.
+                /// Initialises a new instance of the RedBlackTree&lt;TKey, TValue&gt; class that contains elements copied from the specified IDictionary&lt;TKey, TValue&gt;.
                 /// </summary>
-                /// <param name="collection">The IDictionary&lt;TKey, TValue> whose elements are copied to the new RedBlackTree&lt;TKey, TValue>.</param>
+                /// <param name="collection">The IDictionary&lt;TKey, TValue&gt; whose elements are copied to the new RedBlackTree&lt;TKey, TValue&gt;.</param>
                 public RedBlackTree(IDictionary<TKey, TValue> collection) : base(collection) { }
 
                 /// <summary>
-                /// Adds the specified key and value to the RedBlackTree&lt;TKey, TValue>.
+                /// Adds the specified key and value to the RedBlackTree&lt;TKey, TValue&gt;.
                 /// </summary>
                 /// <param name="key">The key of the element to add.</param>
                 /// <param name="value">The value of the element to add.</param>
@@ -74,7 +74,7 @@ namespace Utility
                 }
 
                 /// <summary>
-                /// Removes the value with the specified key from the RedBlackTree&lt;TKey, TValue>.
+                /// Removes the value with the specified key from the RedBlackTree&lt;TKey, TValue&gt;.
                 /// </summary>
                 /// <param name="key">The key of the element to remove.</param>
                 /// <returns>true if the element is successfully found and removed; otherwise, false.</returns>
@@ -338,7 +338,7 @@ namespace Utility
                 /// <summary>
                 /// Returns an enumerator that iterates through the collection.
                 /// </summary>
-                /// <returns>An IEnumerator&lt;T> that can be used to iterate through the collection.</returns>
+                /// <returns>An IEnumerator&lt;T&gt; that can be used to iterate through the collection.</returns>
                 IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() { return new RBEnumerator(this); }
 
                 /// <summary>

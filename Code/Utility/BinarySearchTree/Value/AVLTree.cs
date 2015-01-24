@@ -15,18 +15,18 @@ namespace Utility
                 where T : IComparable<T>
             {
                 /// <summary>
-                /// Initializes a new instance of the AVLTree&lt;T> class that is empty.
+                /// Initialises a new instance of the AVLTree&lt;T&gt; class that is empty.
                 /// </summary>
                 public AVLTree() { }
 
                 /// <summary>
-                /// Initializes a new instance of the AVLTree&lt;T> class that contains elements copied from the specified IEnumerable&lt;T>.
+                /// Initialises a new instance of the AVLTree&lt;T&gt; class that contains elements copied from the specified IEnumerable&lt;T&gt;.
                 /// </summary>
-                /// <param name="collection">The IEnumerable&lt;T> whose elements are copied to the new AVLTree&lt;T>.</param>
+                /// <param name="collection">The IEnumerable&lt;T&gt; whose elements are copied to the new AVLTree&lt;T&gt;.</param>
                 public AVLTree(IEnumerable<T> collection) : base(collection) { }
 
                 /// <summary>
-                /// Adds the specified value to the AVLTree&lt;T>.
+                /// Adds the specified value to the AVLTree&lt;T&gt;.
                 /// </summary>
                 /// <param name="item">The value to add.</param>
                 public override void Add(T item)
